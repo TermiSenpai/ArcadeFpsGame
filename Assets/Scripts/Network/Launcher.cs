@@ -47,7 +47,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        showError(returnCode, message);
+        showError(message);
     }
 
     public void LeaveRoom()
@@ -72,13 +72,13 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        showError(returnCode,message);
+        showError(message);
     }
 
-    private void showError(short returnCode, string message)
+    private void showError(string message)
     {
         MenuManager.Instance.openMenu("error");
-        errorTxt.text = $"Code {returnCode}, {message}";
+        errorTxt.text = $"Error: {message}";
     }
 
 }
