@@ -22,4 +22,18 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(playerDir * Time.deltaTime);
     }
+
+    public void OnMoveInput(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                movementInput = context.ReadValue<Vector2>();
+                break;
+
+            case InputActionPhase.Canceled:
+                movementInput = Vector2.zero;
+                break;
+        }
+    }
 }
