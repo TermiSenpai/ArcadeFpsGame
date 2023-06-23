@@ -58,4 +58,18 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.openMenu("title");
     }
 
+    public void joinRoom(TMP_InputField roomName)
+    {
+        if (string.IsNullOrEmpty(roomName.text))
+            return;
+
+        PhotonNetwork.JoinRoom(roomName.text);
+        MenuManager.Instance.openMenu("loading");
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        MenuManager.Instance.openMenu("error");
+    }
+
 }
