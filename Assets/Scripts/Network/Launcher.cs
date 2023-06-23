@@ -44,7 +44,18 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
+        MenuManager.Instance.openMenu("error");
+    }
 
+    public void LeaveRoom()
+    {
+        MenuManager.Instance.openMenu("loading");
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        MenuManager.Instance.openMenu("title");
     }
 
 }
