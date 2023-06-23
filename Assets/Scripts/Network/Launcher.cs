@@ -7,6 +7,9 @@ using Photon.Realtime;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
+
+    [SerializeField] TextMeshProUGUI errorTxt;
+
     private void Start()
     {
         Debug.Log("Connecting to Master");
@@ -44,7 +47,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        MenuManager.Instance.openMenu("error");
+        showError(returnCode, message);
     }
 
     public void LeaveRoom()
@@ -69,7 +72,13 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
+        showError(returnCode,message);
+    }
+
+    private void showError(short returnCode, string message)
+    {
         MenuManager.Instance.openMenu("error");
+        errorTxt.text = $"Code {returnCode}, {message}";
     }
 
 }
