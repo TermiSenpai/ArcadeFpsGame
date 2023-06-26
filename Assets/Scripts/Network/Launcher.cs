@@ -17,6 +17,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [Header("Inside Room")]
     [SerializeField] Transform playerListContent;
     [SerializeField] GameObject playerListPrefab;
+    [SerializeField] GameObject startGameBtn;
 
     #endregion
 
@@ -103,6 +104,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.openMenu("room");
 
         OnPlayerListUpdate();
+        startGameBtn.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     // instantiate player on enter room
@@ -168,6 +170,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Instantiate(playerListPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(player);
         }
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        startGameBtn.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     #endregion
