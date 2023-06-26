@@ -39,6 +39,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected to Master");
         PhotonNetwork.JoinLobby();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnJoinedLobby()
@@ -167,6 +168,15 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Instantiate(playerListPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(player);
         }
+    }
+
+    #endregion
+
+    #region Starting
+
+    public void startGame()
+    {
+        PhotonNetwork.LoadLevel(1);
     }
 
     #endregion
