@@ -3,6 +3,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using System.ComponentModel;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -157,13 +158,21 @@ public class Launcher : MonoBehaviourPunCallbacks
 
 
         foreach (var room in roomList)
+        {
+            if (room.RemovedFromList)
+                continue;
+
             Instantiate(roomListPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(room);
+        }
 
     }
 
     // Update player list
     private void OnPlayerListUpdate()
     {
+        foreach (Transform child in playerListContent)
+            Destroy(child.gameObject);
+
         Player[] players = PhotonNetwork.PlayerList;
 
         foreach (Player player in players)

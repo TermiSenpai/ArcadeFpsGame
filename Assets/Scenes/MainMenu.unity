@@ -4751,13 +4751,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112386589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97aeeb4565b2dc04e959056956ba21af, type: 3}
+  m_Script: {fileID: 11500000, guid: 65133f50012a3ab48bc3712b87552f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: create
   isOpen: 0
-  roomname: {fileID: 1263893535}
-  roomPlaceholder: {fileID: 1730634231}
 --- !u!1 &1210578942
 GameObject:
   m_ObjectHideFlags: 0
@@ -5506,12 +5504,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1298545112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 124788bbc2e6adf4ea1d8e9f87342734, type: 3}
+  m_Script: {fileID: 11500000, guid: 65133f50012a3ab48bc3712b87552f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: find
   isOpen: 0
-  container: {fileID: 270888794}
 --- !u!1 &1300755619
 GameObject:
   m_ObjectHideFlags: 0
@@ -8643,12 +8640,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1929940887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 124788bbc2e6adf4ea1d8e9f87342734, type: 3}
+  m_Script: {fileID: 11500000, guid: 65133f50012a3ab48bc3712b87552f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: room
   isOpen: 0
-  container: {fileID: 762903740}
 --- !u!1 &1941974703
 GameObject:
   m_ObjectHideFlags: 0
