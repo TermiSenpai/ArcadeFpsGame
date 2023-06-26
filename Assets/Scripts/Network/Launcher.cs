@@ -61,11 +61,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (string.IsNullOrEmpty(roomName.text))
             return;
 
-        roomName.text = roomUpperName(roomName.text);
-        PhotonNetwork.CreateRoom(roomName.text);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = PlayerLimit.Instance.limit;
 
-        RoomOptions room = new RoomOptions();
-        room.MaxPlayers = PlayerLimit.Instance.limit;
+        roomName.text = roomUpperName(roomName.text);
+        PhotonNetwork.CreateRoom(roomName.text, roomOptions);
 
         MenuManager.Instance.openMenu("loading");
     }
