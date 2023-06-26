@@ -6,10 +6,15 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
    [SerializeField] PlayerMovConfig movementConfig;
-    [SerializeField] CharacterController controller;
+   [SerializeField] Rigidbody rb;
+
     Vector2 movementInput;
 
-    private void LateUpdate()
+    private void Start()
+    {
+        rb.freezeRotation = true;
+    }
+    private void FixedUpdate()
     {
         Movementent();
     }
@@ -17,10 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private void Movementent()
     {
         Vector3 playerDir = transform.forward * movementInput.y + transform.right * movementInput.x;
-        playerDir *= movementConfig.MovSpeed;
-        playerDir.y = controller.velocity.y;
 
-        controller.Move(playerDir * Time.deltaTime);
+        rb.AddForce(playerDir.normalized * movementConfig.MovSpeed * 10f, ForceMode.Force);
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)

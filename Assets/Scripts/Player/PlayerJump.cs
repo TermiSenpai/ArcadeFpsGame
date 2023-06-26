@@ -6,17 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] PlayerGravityConfig gravity;
-    [SerializeField] CharacterController controller;
+    [SerializeField] Rigidbody rb;
     [SerializeField] private LayerMask ground;
 
-    [SerializeField] float jumpHeight = 8.5f;
+    [SerializeField] float jumpForce = 8.5f;
     Vector3 speed;
    
-
-    private void Awake()
-    {
-        controller = GetComponent<CharacterController>();
-    }
 
     private void LateUpdate()
     {
@@ -31,30 +26,29 @@ public class PlayerJump : MonoBehaviour
             case InputActionPhase.Started:
                 if (isGrounded())
                 {
-                    speed.y = jumpHeight;
+                    jumpAction();
                 }
                 break;
         }
     }
 
-
-    private void FixedUpdate()
+    private void jumpAction()
     {
-        applyGrav();
-    }
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-    private void applyGrav()
-    {
-        if (isGrounded() && speed.y < 0)
-            speed.y = -2f;
-        speed.y += gravity.gravity * Time.deltaTime;
-        controller.Move(speed * Time.deltaTime);
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     public bool isGrounded()
     {
-        Ray[] rays = new Ray[1]
-        {new Ray(transform.position + (Vector3.up * 0.02f), Vector3.down)};
+        Ray[] rays = new Ray[5]
+        {
+            new Ray(transform.position + (Vector3.up * 0.02f), Vector3.down),
+            new Ray(transform.position + (transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down),
+        };
 
         foreach (Ray r in rays)
             if (Physics.Raycast(r, 1.2f, ground))
@@ -69,5 +63,9 @@ public class PlayerJump : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position + (Vector3.up * 0.02f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down);
     }
 }
