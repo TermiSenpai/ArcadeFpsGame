@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8906069}
   - component: {fileID: 8906068}
   - component: {fileID: 8906067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: truck (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 63179708}
   - component: {fileID: 63179707}
   - component: {fileID: 63179706}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 109870946}
   - component: {fileID: 109870945}
   - component: {fileID: 109870944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125687816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -108.75, y: 1, z: -175.5}
+  m_LocalPosition: {x: -108.75, y: 5, z: -175.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 154048882}
   - component: {fileID: 154048881}
   - component: {fileID: 154048880}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 187132123}
   - component: {fileID: 187132122}
   - component: {fileID: 187132121}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,6 +648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 323672533}
+  - component: {fileID: 323672534}
   m_Layer: 0
   m_Name: SpawnPoints
   m_TagString: Untagged
@@ -676,6 +677,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &323672534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323672532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4db7379ba1bca4c99b416ae33a27b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnpoints:
+  - {fileID: 1800228631}
+  - {fileID: 125687817}
+  - {fileID: 517780584}
+  - {fileID: 1528648362}
+  - {fileID: 1610718139}
+  - {fileID: 667410420}
 --- !u!1 &406794509
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 406794510}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +746,7 @@ GameObject:
   - component: {fileID: 418631645}
   - component: {fileID: 418631644}
   - component: {fileID: 418631643}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517780583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -108.75, y: 1, z: 10.25}
+  m_LocalPosition: {x: -108.75, y: 5, z: 10.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -948,7 +968,7 @@ GameObject:
   - component: {fileID: 624310671}
   - component: {fileID: 624310670}
   - component: {fileID: 624310669}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: car (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1077,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667410419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -173.2, y: 1, z: 167.5}
+  m_LocalPosition: {x: -173.2, y: 5, z: 167.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1076,7 +1096,7 @@ GameObject:
   - component: {fileID: 703651266}
   - component: {fileID: 703651265}
   - component: {fileID: 703651264}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,7 +1277,7 @@ GameObject:
   - component: {fileID: 934709190}
   - component: {fileID: 934709189}
   - component: {fileID: 934709188}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1413,7 +1433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1076584690}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Casa2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1451,7 +1471,7 @@ GameObject:
   - component: {fileID: 1126201253}
   - component: {fileID: 1126201252}
   - component: {fileID: 1126201251}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1548,7 +1568,7 @@ GameObject:
   - component: {fileID: 1292958365}
   - component: {fileID: 1292958364}
   - component: {fileID: 1292958363}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,7 +1662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1487810074}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: casa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1692,7 +1712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528648361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.75, y: 1, z: 10.25}
+  m_LocalPosition: {x: 65.75, y: 5, z: 10.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1723,7 +1743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610718138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.75, y: 1, z: 167.5}
+  m_LocalPosition: {x: 65.75, y: 5, z: 167.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1742,7 +1762,7 @@ GameObject:
   - component: {fileID: 1769763716}
   - component: {fileID: 1769763715}
   - component: {fileID: 1769763714}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1851,7 +1871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800228630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41, y: 1, z: -175.5}
+  m_LocalPosition: {x: 41, y: 5, z: -175.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1870,7 +1890,7 @@ GameObject:
   - component: {fileID: 1979416754}
   - component: {fileID: 1979416753}
   - component: {fileID: 1979416752}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: House (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
