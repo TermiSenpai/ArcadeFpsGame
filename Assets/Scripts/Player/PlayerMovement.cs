@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Movementent();
     }
-
+    
     private void Movementent()
     {
         Vector3 playerDir = transform.forward * movementInput.y + transform.right * movementInput.x;
