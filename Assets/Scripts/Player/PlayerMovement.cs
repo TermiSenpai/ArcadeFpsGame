@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private void Movementent()
     {
 
-        playerDir = transform.forward * movementInput.y * movementConfig.fowardSpeed + transform.right * movementInput.x * movementConfig.strafeSpeed;
+        playerDir = orientation.forward * movementInput.y * movementConfig.fowardSpeed + orientation.right * movementInput.x * movementConfig.strafeSpeed;
 
         // IsGrounded and not onSlope
         if (playerJump.isGrounded() && !onSlope())
