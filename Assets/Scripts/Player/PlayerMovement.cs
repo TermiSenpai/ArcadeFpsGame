@@ -5,11 +5,17 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] PlayerMovConfig movementConfig;
+    [SerializeField] PlayerJump playerJump;
+    [SerializeField] Transform orientation;
     Rigidbody rb;
 
     Vector2 movementInput;
+    Vector3 playerDir;
 
     PhotonView pv;
+    RaycastHit slopeHit;
+    float playerHeight = 2f;
+    Vector3 slopeMoveDirection;
 
     private void Awake()
     {
@@ -21,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!pv.IsMine)
             Destroy(rb);
+        rb.freezeRotation = true;
+        playerHeight = transform.localScale.y;
     }
 
     private void FixedUpdate()
@@ -31,17 +39,49 @@ public class PlayerMovement : MonoBehaviour
         controlDrag();
     }
 
+    private void Update()
+    {
+        slopeMoveDirection = Vector3.ProjectOnPlane(playerDir, slopeHit.normal);
+    }
+
     private void Movementent()
     {
 
-        Vector3 playerDir = transform.forward * movementInput.y * movementConfig.fowardSpeed + transform.right * movementInput.x * movementConfig.strafeSpeed;
+        playerDir = transform.forward * movementInput.y * movementConfig.fowardSpeed + transform.right * movementInput.x * movementConfig.strafeSpeed;
 
-        rb.AddForce(playerDir.normalized * movementConfig.movementMultiplier, ForceMode.Acceleration);
+        // IsGrounded and not onSlope
+        if (playerJump.isGrounded() && !onSlope())
+            rb.AddForce(playerDir.normalized * movementConfig.movementMultiplier, ForceMode.Acceleration);
+
+        // Is jumping
+        else if (!playerJump.isGrounded())
+            rb.AddForce(playerDir.normalized * movementConfig.airMultiplier * movementConfig.airMultiplier, ForceMode.Acceleration);
+
+        // IsGrounded and onSlope
+        else if (playerJump.isGrounded() && onSlope())
+            rb.AddForce(slopeMoveDirection.normalized * movementConfig.movementMultiplier, ForceMode.Acceleration);
+
     }
 
     private void controlDrag()
     {
-        rb.drag = movementConfig.rbDrag;
+        if (playerJump.isGrounded())
+            rb.drag = movementConfig.groundDrag;
+
+        else if(!playerJump.isGrounded())
+            rb.drag = movementConfig.airDrag;
+            
+    }
+
+    bool onSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.5f))
+        {
+            if (slopeHit.normal != Vector3.up)
+                return true;
+            return false;
+        }
+        return false;
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
