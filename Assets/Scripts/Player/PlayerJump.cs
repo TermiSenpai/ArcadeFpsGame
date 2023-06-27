@@ -5,20 +5,17 @@ using UnityEngine.InputSystem;
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] PlayerJumpConfig jumpConfig;
-    Rigidbody rb;   
-    bool isGrounded;
-    float playerHeight = 2f;
+    [SerializeField] Transform groundCheck;
+    Rigidbody rb;
+
+    public float distance = 0.1f;
+
     PhotonView pv;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
-    }
-
-    private void Start()
-    {
-        playerHeight = transform.localScale.y;
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -35,13 +32,16 @@ public class PlayerJump : MonoBehaviour
 
     private void jumpAction()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.1f);
-        if (isGrounded)
+        if (isGrounded())
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(transform.up * jumpConfig.jumpForce, ForceMode.Impulse);
+        }
 
     }
 
     private void FixedUpdate()
+
     {
         if (pv.IsMine)
             applyGravity();
@@ -51,6 +51,17 @@ public class PlayerJump : MonoBehaviour
     {
         Vector3 gravity = jumpConfig.gravityMultiplier * Physics.gravity;
         rb.AddForce(gravity, ForceMode.Acceleration);
+    }
+
+    public bool isGrounded()
+    {
+        return Physics.CheckSphere(groundCheck.position, jumpConfig.groundDistance, jumpConfig.ground); 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position - new Vector3(0, distance, 0), jumpConfig.groundDistance);
     }
 
 
