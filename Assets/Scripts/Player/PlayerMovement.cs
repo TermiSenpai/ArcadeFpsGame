@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveAmount;
     Vector3 smoothMoveSpeed;
     float smoothTime;
+
+    [SerializeField] PhotonView pv;
 
 
     private void FixedUpdate()
@@ -31,15 +34,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        switch (context.phase)
-        {
-            case InputActionPhase.Performed:
-                movementInput = context.ReadValue<Vector2>();
-                break;
+        if (pv.IsMine)
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    movementInput = context.ReadValue<Vector2>();
+                    break;
 
-            case InputActionPhase.Canceled:
-                movementInput = Vector2.zero;
-                break;
-        }
+                case InputActionPhase.Canceled:
+                    movementInput = Vector2.zero;
+                    break;
+            }
     }
 }
