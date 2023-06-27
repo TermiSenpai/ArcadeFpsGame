@@ -7,6 +7,8 @@ public class PlayerMovConfig : ScriptableObject
     public float fowardSpeed;
     [Tooltip("Velocidad lateral")]
     public float strafeSpeed;
+    public float airMultiplier = 5f;
     public float movementMultiplier = 10f;
-    public float rbDrag = 6f;
+    public float groundDrag = 6f;
+    public float airDrag = 2f;
 }

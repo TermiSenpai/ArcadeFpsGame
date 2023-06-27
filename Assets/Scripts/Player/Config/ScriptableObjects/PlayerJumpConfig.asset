@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85245e64bb16d64bbee3a62309c08e1, type: 3}
   m_Name: PlayerJumpConfig
   m_EditorClassIdentifier: 
-  gravityMultiplier: 1.5
-  jumpForce: 100
+  gravityMultiplier: 3
+  jumpForce: 150
   ground:
     serializedVersion: 2
     m_Bits: 8
+  groundDistance: 0.25
