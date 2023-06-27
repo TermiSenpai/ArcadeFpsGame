@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,26 +10,34 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private PlayerSensConfig sensConfig;
     private float camRot;
 
-    //Posición del ratón
+    //Movimiento del ratón
     private Vector2 mouseDelta;
 
-    private int maxY = 90;
-    private int minY = -85;
-    
+    PhotonView pv;
+
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+    }
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (!pv.IsMine)
+            Destroy(CamHolder.GetComponentInChildren<Camera>().gameObject);
     }
 
     void LateUpdate()
     {
-        cameraLook();
+        if (pv.IsMine)
+            cameraLook();
     }
 
     private void cameraLook()
     {
         camRot += mouseDelta.y * sensConfig.CamSensY;
-        camRot = Mathf.Clamp(camRot, minY, maxY);
+        camRot = Mathf.Clamp(camRot, sensConfig.minY, sensConfig.maxY);
         CamHolder.localEulerAngles = new Vector3(-camRot, 0, 0);
 
         transform.eulerAngles += new Vector3(0, mouseDelta.x * sensConfig.CamSensX, 0);

@@ -14,8 +14,12 @@ public class PlayerMovement : MonoBehaviour
     Vector3 smoothMoveSpeed;
     float smoothTime;
 
-    [SerializeField] PhotonView pv;
+    PhotonView pv;
 
+    private void Start()
+    {
+        pv = GetComponent<PhotonView>();
+    }
 
     private void FixedUpdate()
     {
