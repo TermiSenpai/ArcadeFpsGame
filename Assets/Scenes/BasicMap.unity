@@ -655,12 +655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnpoints:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 517780584}
   - {fileID: 1528648362}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &406794509
 GameObject:
   m_ObjectHideFlags: 0

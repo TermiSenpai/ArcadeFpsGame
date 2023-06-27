@@ -40,7 +40,8 @@ public class PlayerJump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        applyGravity();
+        if (pv.IsMine)
+            applyGravity();
     }
 
     private void applyGravity()
