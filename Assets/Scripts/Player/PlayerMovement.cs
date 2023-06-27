@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (!pv.IsMine) return;
 
         Movementent();
+        controlDrag();
     }
 
     private void Movementent()
@@ -39,9 +40,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 playerDir = transform.forward * movementInput.y * movementConfig.fowardSpeed + transform.right * movementInput.x * movementConfig.strafeSpeed;
 
-        moveAmount = Vector3.SmoothDamp(moveAmount, playerDir, ref smoothMoveSpeed, smoothTime);
+        rb.AddForce(playerDir.normalized * movementConfig.movementMultiplier, ForceMode.Acceleration);
+    }
 
-        rb.MovePosition(moveAmount + rb.position);
+    private void controlDrag()
+    {
+        rb.drag = movementConfig.rbDrag;
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
