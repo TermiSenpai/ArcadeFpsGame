@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399ee7022dd122949ab837ba8c0a93f6, type: 3}
   m_Name: PlayerMovConfig
   m_EditorClassIdentifier: 
-  fowardSpeed: 0.2
-  strafeSpeed: 0.1
+  fowardSpeed: 50
+  strafeSpeed: 30
+  movementMultiplier: 50
+  rbDrag: 1

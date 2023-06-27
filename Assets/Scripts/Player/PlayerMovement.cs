@@ -1,23 +1,19 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] PlayerMovConfig movementConfig;
-    [SerializeField] Rigidbody rb;
+    Rigidbody rb;
 
     Vector2 movementInput;
-    Vector3 moveAmount;
-    Vector3 smoothMoveSpeed;
-    float smoothTime;
 
     PhotonView pv;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
     }
 
