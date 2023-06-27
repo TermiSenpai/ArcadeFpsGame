@@ -1,21 +1,24 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] PlayerJumpConfig jumpConfig;
-    [SerializeField] Rigidbody rb;
-    [SerializeField] PlayerGroundCheck groundCheck;
-    Vector3 speed;
-    bool groundState = true;
+    Rigidbody rb;   
+    bool isGrounded;
+    float playerHeight = 2f;
     PhotonView pv;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
+    }
+
+    private void Start()
+    {
+        playerHeight = transform.localScale.y;
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -25,7 +28,6 @@ public class PlayerJump : MonoBehaviour
             {
                 case InputActionPhase.Started:
                     jumpAction();
-                    setGroundState(false);
 
                     break;
             }
@@ -33,7 +35,8 @@ public class PlayerJump : MonoBehaviour
 
     private void jumpAction()
     {
-        if (groundState)
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.1f);
+        if (isGrounded)
             rb.AddForce(transform.up * jumpConfig.jumpForce, ForceMode.Impulse);
 
     }
@@ -50,11 +53,5 @@ public class PlayerJump : MonoBehaviour
         rb.AddForce(gravity, ForceMode.Acceleration);
     }
 
-    public bool isGrounded()
-    {
-        return groundState;
-    }
-
-    public void setGroundState(bool state) => groundState = state;
 
 }
