@@ -5,25 +5,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-   [SerializeField] PlayerMovConfig movementConfig;
-   [SerializeField] Rigidbody rb;
+    [SerializeField] PlayerMovConfig movementConfig;
+    [SerializeField] Rigidbody rb;
 
     Vector2 movementInput;
+    Vector3 moveAmount;
+    Vector3 smoothMoveSpeed;
+    float smoothTime;
 
-    private void Start()
-    {
-        rb.freezeRotation = true;
-    }
+
     private void FixedUpdate()
     {
         Movementent();
     }
-    
+
     private void Movementent()
     {
-        Vector3 playerDir = transform.forward * movementInput.y + transform.right * movementInput.x;
 
-        rb.AddForce(playerDir.normalized * movementConfig.MovSpeed * 10f, ForceMode.Force);
+        Vector3 playerDir = transform.forward * movementInput.y * movementConfig.fowardSpeed + transform.right * movementInput.x * movementConfig.strafeSpeed;
+
+        moveAmount = Vector3.SmoothDamp(moveAmount, playerDir, ref smoothMoveSpeed, smoothTime);
+
+        rb.MovePosition(moveAmount + rb.position);
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
