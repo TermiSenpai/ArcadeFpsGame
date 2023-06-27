@@ -16,13 +16,21 @@ public class PlayerMovement : MonoBehaviour
 
     PhotonView pv;
 
-    private void Start()
+    private void Awake()
     {
         pv = GetComponent<PhotonView>();
     }
 
+    private void Start()
+    {
+        if (!pv.IsMine)
+            Destroy(rb);
+    }
+
     private void FixedUpdate()
     {
+        if (!pv.IsMine) return;
+
         Movementent();
     }
 

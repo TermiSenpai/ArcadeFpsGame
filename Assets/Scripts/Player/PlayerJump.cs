@@ -13,7 +13,7 @@ public class PlayerJump : MonoBehaviour
     bool groundState = true;
     PhotonView pv;
 
-    private void Start()
+    private void Awake()
     {
         pv = GetComponent<PhotonView>();
     }
