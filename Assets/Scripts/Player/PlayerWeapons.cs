@@ -19,10 +19,10 @@ public class PlayerWeapons : MonoBehaviour
 
     private void Start()
     {
-        if(pv.IsMine)
-        {
-            equipItem(0);
-        }
+        if (!pv.IsMine)
+            return;
+
+        equipItem(0);
     }
 
     void equipItem(int _index)
@@ -33,7 +33,7 @@ public class PlayerWeapons : MonoBehaviour
 
         items[itemIndex].itemGameobject.SetActive(true);
 
-        if(previusItemIndex != -1)
+        if (previusItemIndex != -1)
             items[previusItemIndex].itemGameobject.SetActive(false);
 
         previusItemIndex = itemIndex;
@@ -45,14 +45,24 @@ public class PlayerWeapons : MonoBehaviour
 
     private void checkInputValue(Vector2 value)
     {
-        if(value.y > 0)
+
+        if (value.y > 0)
         {
-            equipItem(0);
+            if (itemIndex >= items.Length - 1)
+                equipItem(0);
+            else
+                equipItem(itemIndex + 1);
         }
+
         else
         {
-            equipItem(1);
+            if (itemIndex <= 0)
+                equipItem(items.Length - 1);
+            else
+                equipItem(itemIndex - 1);
+
         }
+
     }
 
     public void OnScrollInput(InputAction.CallbackContext context)
