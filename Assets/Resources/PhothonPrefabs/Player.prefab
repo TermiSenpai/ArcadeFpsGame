@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 48948106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ItemHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   - {fileID: 1834988309}
   - {fileID: 1891943076}
   m_Father: {fileID: 1779458511152472017}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1834988307
 GameObject:
@@ -42,8 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1834988309}
-  - component: {fileID: 1834988308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,20 +65,6 @@ Transform:
   m_Father: {fileID: 48948106}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1834988308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834988307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3bd773dfa2ccc84ab573b3be44e1569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: e8f33769b1aaa1943841fcff8083a8e9, type: 2}
-  itemGameobject: {fileID: 4309820761059248624}
 --- !u!1 &1891943075
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,8 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1891943076}
-  - component: {fileID: 1891943077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +140,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1779458513240772430}
+  - {fileID: 698984986884235838}
   - {fileID: 48948106}
   m_Father: {fileID: 1779458511959362450}
   m_RootOrder: 0
@@ -217,8 +202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 1834988308}
-  - {fileID: 1891943077}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1779458511959362453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,11 +710,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
---- !u!1 &4309820761059248624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2557595109008343949, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
-  m_PrefabInstance: {fileID: 1779458512115616381}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4309820761059481040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2557595109008842669, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
@@ -745,6 +725,10 @@ PrefabInstance:
     - target: {fileID: 6589862043497593322, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
       propertyPath: m_Name
       value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589862043497593322, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6589862043498014154, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
       propertyPath: m_RootOrder
@@ -792,11 +776,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
---- !u!1 &4882478741061789082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6589862043497593322, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
-  m_PrefabInstance: {fileID: 1779458512294943856}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4882478741062023610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6589862043498014154, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
