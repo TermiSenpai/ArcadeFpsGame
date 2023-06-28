@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1579704668966813650}
   - component: {fileID: 1579704668970205170}
   - component: {fileID: 1579704668969237810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SniperRifle1_01_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2557595109008842669}
   - component: {fileID: 2557595109005451149}
   - component: {fileID: 2557595109006417229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 5700576108474464234}
   - component: {fileID: 5700576108471564234}
   - component: {fileID: 5700576108472694026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SniperRifle1_01_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 6080168350574862241}
   - component: {fileID: 6080168350575632257}
   - component: {fileID: 6080168350576762177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Optic_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 6575773545901156700}
   - component: {fileID: 6575773545902451068}
   - component: {fileID: 6575773545903451068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SniperRifle1_01_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
