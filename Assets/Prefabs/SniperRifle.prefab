@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1579704668966813650}
   - component: {fileID: 1579704668970205170}
   - component: {fileID: 1579704668969237810}
-  - component: {fileID: 6993306228701240387}
   m_Layer: 0
   m_Name: SniperRifle1_01_2
   m_TagString: Untagged
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6993306228701240387
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579704668966970354}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 49e2fe04ad798d443b2052e281df0e24, type: 3}
 --- !u!1 &2557595109008343949
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,14 +94,13 @@ GameObject:
   - component: {fileID: 2557595109008842669}
   - component: {fileID: 2557595109005451149}
   - component: {fileID: 2557595109006417229}
-  - component: {fileID: 5605320681648699954}
   m_Layer: 0
   m_Name: SniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2557595109008842669
 Transform:
   m_ObjectHideFlags: 0
@@ -124,7 +108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2557595109008343949}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -186,20 +170,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5605320681648699954
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2557595109008343949}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ca50ec481550aa646b9a8e063a07c781, type: 3}
 --- !u!1 &5700576108474624970
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +181,6 @@ GameObject:
   - component: {fileID: 5700576108474464234}
   - component: {fileID: 5700576108471564234}
   - component: {fileID: 5700576108472694026}
-  - component: {fileID: 8695467017829599045}
   m_Layer: 0
   m_Name: SniperRifle1_01_4
   m_TagString: Untagged
@@ -284,20 +253,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8695467017829599045
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700576108474624970}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: efecae59ffb32004c9d282115361cc4e, type: 3}
 --- !u!1 &6080168350574560129
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +264,6 @@ GameObject:
   - component: {fileID: 6080168350574862241}
   - component: {fileID: 6080168350575632257}
   - component: {fileID: 6080168350576762177}
-  - component: {fileID: 5288942687685564766}
   m_Layer: 0
   m_Name: Optic_04
   m_TagString: Untagged
@@ -382,20 +336,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5288942687685564766
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080168350574560129}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: d0122171b38a2344dac23c236d1defae, type: 3}
 --- !u!1 &6575773545901520252
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +347,6 @@ GameObject:
   - component: {fileID: 6575773545901156700}
   - component: {fileID: 6575773545902451068}
   - component: {fileID: 6575773545903451068}
-  - component: {fileID: 3809362247343314426}
   m_Layer: 0
   m_Name: SniperRifle1_01_3
   m_TagString: Untagged
@@ -480,17 +419,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3809362247343314426
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6575773545901520252}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 72368045cb2d841428d232cc99f3d456, type: 3}
