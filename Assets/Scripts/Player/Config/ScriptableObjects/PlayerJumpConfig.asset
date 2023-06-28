@@ -10,6 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d85245e64bb16d64bbee3a62309c08e1, type: 3}
-  m_Name: PlayerGravityConfig
+  m_Name: PlayerJumpConfig
   m_EditorClassIdentifier: 
-  gravity: -10
+  gravityMultiplier: 3
+  jumpForce: 150
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
+  groundDistance: 0.25

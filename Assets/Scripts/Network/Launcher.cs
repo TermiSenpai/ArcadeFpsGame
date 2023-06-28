@@ -3,7 +3,6 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
-using System.ComponentModel;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -50,7 +49,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Joined lobby");
 
         PhotonNetwork.NickName = getNickName();
-        Debug.Log(PhotonNetwork.NickName);
     }
 
     #endregion
