@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
@@ -15,10 +13,9 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        if(pv.IsMine)
-        {
+        if(pv.IsMine)        
             createController();
-        }
+        
     }
 
     void createController()

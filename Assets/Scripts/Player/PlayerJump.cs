@@ -1,71 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] PlayerGravityConfig gravity;
-    [SerializeField] Rigidbody rb;
-    [SerializeField] private LayerMask ground;
+    [SerializeField] PlayerJumpConfig jumpConfig;
+    [SerializeField] Transform groundCheck;
+    Rigidbody rb;
 
-    [SerializeField] float jumpForce = 8.5f;
-    Vector3 speed;
-   
+    public float distance = 0.1f;
 
-    private void LateUpdate()
+    PhotonView pv;
+
+    private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        pv = GetComponent<PhotonView>();
     }
 
-
-    public void OnJumpInput (InputAction.CallbackContext context)
+    public void OnJumpInput(InputAction.CallbackContext context)
     {
-        switch (context.phase)
-        {
-            case InputActionPhase.Started:
-                if (isGrounded())
-                {
+        if (pv.IsMine)
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
                     jumpAction();
-                }
-                break;
-        }
+
+                    break;
+            }
     }
 
     private void jumpAction()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        if (isGrounded())
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(transform.up * jumpConfig.jumpForce, ForceMode.Impulse);
+        }
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void FixedUpdate()
+
+    {
+        if (pv.IsMine)
+            applyGravity();
+    }
+
+    private void applyGravity()
+    {
+        Vector3 gravity = jumpConfig.gravityMultiplier * Physics.gravity;
+        rb.AddForce(gravity, ForceMode.Acceleration);
     }
 
     public bool isGrounded()
     {
-        Ray[] rays = new Ray[5]
-        {
-            new Ray(transform.position + (Vector3.up * 0.02f), Vector3.down),
-            new Ray(transform.position + (transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down),
-        };
-
-        foreach (Ray r in rays)
-            if (Physics.Raycast(r, 1.2f, ground))
-            {
-                Debug.Log("Ready");
-                return true;
-            }
-            return false;
+        return Physics.CheckSphere(groundCheck.position, jumpConfig.groundDistance, jumpConfig.ground); 
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position + (Vector3.up * 0.02f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (-transform.forward * 0.15f) + (Vector3.up * 0.02f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (-transform.right * 0.25f) + (Vector3.up * 0.02f), Vector3.down);
+        Gizmos.DrawSphere(transform.position - new Vector3(0, distance, 0), jumpConfig.groundDistance);
     }
+
+
 }

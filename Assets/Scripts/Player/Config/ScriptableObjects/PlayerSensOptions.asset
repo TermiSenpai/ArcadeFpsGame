@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CamSensY: 0.1
   CamSensX: 0.1
+  maxY: 85
+  minY: -75

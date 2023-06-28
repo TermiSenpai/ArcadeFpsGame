@@ -1,8 +1,6 @@
 using Photon.Pun;
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ProfileName : MonoBehaviour
 {
@@ -21,7 +19,6 @@ public class ProfileName : MonoBehaviour
         string newNickname = nickname.text;
         if (newNickname != string.Empty)
         {
-            Debug.Log(newNickname);
             PlayerPrefs.SetString("Nickname", newNickname);
             PhotonNetwork.NickName = newNickname;
         }
