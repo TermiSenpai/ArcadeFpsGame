@@ -1,10 +1,11 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class PlayerWeapons : MonoBehaviour
+public class PlayerWeapons : MonoBehaviourPunCallbacks
 {
     [SerializeField] Item[] items;
     int itemIndex;
@@ -37,9 +38,24 @@ public class PlayerWeapons : MonoBehaviour
             items[previusItemIndex].itemGameobject.SetActive(false);
 
         previusItemIndex = itemIndex;
+
+        sync();
     }
 
+    private void sync()
+    {
+        if (!pv.IsMine) return;
 
+        Hashtable hash = new Hashtable();
+        hash.Add("itemIndex", itemIndex);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+        if (!pv.IsMine && targetPlayer == pv.Owner)
+            equipItem((int)changedProps["itemIndex"]);
+    }
 
     #region Input
 
