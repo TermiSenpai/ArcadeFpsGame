@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperGun : Gun
+public class KnifeGun : Gun
 {
     [SerializeField] Camera cam;
     PhotonView pv;
@@ -28,16 +28,10 @@ public class SniperGun : Gun
         Ray r = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         r.origin = cam.transform.position;
 
-        if(Physics.Raycast(r, out RaycastHit hit))
+        if (Physics.Raycast(r, out RaycastHit hit, ((GunInfo)itemInfo).maxDistance))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
             Debug.Log(hit.collider.gameObject.name);
-
-            if(hit.collider.gameObject.GetComponent<IDamageable>() != null)
-            {
-                Debug.Log(true);
-            }
-            else Debug.Log(false);
         }
     }
 }

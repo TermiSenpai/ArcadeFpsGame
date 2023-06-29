@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     void createController()
     {
         player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), SpawnpointManager.Instance.GetRandomSpawnPoint().position, Quaternion.identity, 0, new object[] { pv.ViewID });
+        player.name = PhotonNetwork.NickName;
     }
 
     public void die()

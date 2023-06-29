@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void takeDamage(float damage)
     {
+        Debug.Log(damage);
         pv.RPC("RPC_TackeDamage", RpcTarget.All, damage);
     }
 
@@ -31,10 +32,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (!pv.IsMine) return;
 
-
-
         currentHealth -= damage;
-
         if(currentHealth <= 0) playerDie();
     }
 

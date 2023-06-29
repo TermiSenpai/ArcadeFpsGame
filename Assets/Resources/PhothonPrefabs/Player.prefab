@@ -139,10 +139,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4727051984480503190}
   - component: {fileID: 5193503184987137087}
-  - component: {fileID: 1461399905}
+  - component: {fileID: 3761559024150456381}
+  - component: {fileID: 2927713924215725564}
   m_Layer: 7
   m_Name: LegLeft1
-  m_TagString: Untagged
+  m_TagString: Legs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,14 +220,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.030000001, y: 0.00020696409, z: 0.005}
     m_Extent: {x: 0.030363511, y: 0.011090546, z: 0.015}
   m_DirtyAABB: 0
---- !u!65 &1461399905
+--- !u!114 &3761559024150456381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196562547110499862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4774f4b50eaa646b6e2825425d6704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partDamageMultiplier: 0.75
+--- !u!65 &2927713924215725564
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196562547110499862}
-  m_Material: {fileID: 13400000, guid: d721425852eea0b4186953f38f6eefc4, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -504,6 +518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1779458511959362450}
+  - component: {fileID: 770247789}
   - component: {fileID: 1779458512173576962}
   - component: {fileID: 1779458511959362453}
   - component: {fileID: 1779458511959362448}
@@ -513,8 +528,6 @@ GameObject:
   - component: {fileID: 275143006}
   - component: {fileID: 1779458511959362449}
   - component: {fileID: 1798997345450945556}
-  - component: {fileID: 770247789}
-  - component: {fileID: 6160732167565656736}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -542,6 +555,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &770247789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779458511959362446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953e4132b94c48643bc3be4bb79820e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1779458512173576962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,31 +874,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &770247789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779458511959362446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953e4132b94c48643bc3be4bb79820e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &6160732167565656736
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779458511959362446}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.099481285, y: 0.16772452, z: 0.043298353}
-  m_Center: {x: -0.0026147887, y: 0.07907911, z: -0.000000020861625}
 --- !u!1 &1779458512670191779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,10 +1054,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2568519655539203997}
   - component: {fileID: 5043991278111791821}
-  - component: {fileID: 1686417246}
+  - component: {fileID: 4094584653073724599}
+  - component: {fileID: 3784117013096583823}
   m_Layer: 7
   m_Name: Body1
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1133,14 +1134,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.029999997, y: 0, z: 0}
     m_Extent: {x: 0.030727033, y: 0.021090543, z: 0.010043231}
   m_DirtyAABB: 0
---- !u!65 &1686417246
+--- !u!114 &4094584653073724599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024389701882877032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4774f4b50eaa646b6e2825425d6704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partDamageMultiplier: 1
+--- !u!65 &3784117013096583823
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024389701882877032}
-  m_Material: {fileID: 13400000, guid: d721425852eea0b4186953f38f6eefc4, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1623,7 +1637,7 @@ GameObject:
   - component: {fileID: 6839184313611740478}
   m_Layer: 7
   m_Name: ArmRight1
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1905,7 +1919,7 @@ GameObject:
   - component: {fileID: 4442486409104094580}
   m_Layer: 7
   m_Name: ArmLeft1
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2199,10 +2213,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4090930144850117849}
   - component: {fileID: 4615760070960369242}
-  - component: {fileID: 477193553}
+  - component: {fileID: 7540145474659349749}
+  - component: {fileID: 1740952271801016187}
   m_Layer: 7
   m_Name: Head1
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2276,14 +2291,27 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.019999998, z: 0}
     m_Extent: {x: 0.019999994, y: 0.019999998, z: 0.02}
   m_DirtyAABB: 0
---- !u!65 &477193553
+--- !u!114 &7540145474659349749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378858192842588026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4774f4b50eaa646b6e2825425d6704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partDamageMultiplier: 2
+--- !u!65 &1740952271801016187
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8378858192842588026}
-  m_Material: {fileID: 13400000, guid: d721425852eea0b4186953f38f6eefc4, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2299,10 +2327,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6080803234914340316}
   - component: {fileID: 235870978769419600}
-  - component: {fileID: 1308433865}
+  - component: {fileID: 5449730482172096546}
+  - component: {fileID: 4105248567781078449}
   m_Layer: 7
   m_Name: LegRight1
-  m_TagString: Untagged
+  m_TagString: Legs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2379,14 +2408,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.029997539, y: -0.0003845836, z: -0.0050000027}
     m_Extent: {x: 0.03012574, y: 0.010383761, z: 0.015000008}
   m_DirtyAABB: 0
---- !u!65 &1308433865
+--- !u!114 &5449730482172096546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672534661441512989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4774f4b50eaa646b6e2825425d6704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partDamageMultiplier: 0.75
+--- !u!65 &4105248567781078449
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8672534661441512989}
-  m_Material: {fileID: 13400000, guid: d721425852eea0b4186953f38f6eefc4, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
