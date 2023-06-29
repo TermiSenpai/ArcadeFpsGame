@@ -8,7 +8,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class PlayerWeapons : MonoBehaviourPunCallbacks
 {
     [SerializeField] Item[] items;
-    int itemIndex;
+    int itemIndex = -1;
     int previusItemIndex = -1;
 
     PhotonView pv;
@@ -83,10 +83,26 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
     public void OnScrollInput(InputAction.CallbackContext context)
     {
+        if (!pv.IsMine)
+            return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:
                 checkInputValue(context.ReadValue<Vector2>());
+                break;
+        }
+    }
+
+    public void OnFireInput(InputAction.CallbackContext context)
+    {
+        if (!pv.IsMine)
+            return;
+
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                items[itemIndex].Use();
                 break;
         }
     }

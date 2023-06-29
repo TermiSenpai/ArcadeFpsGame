@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   itemName: Knife
+  damage: 50
+  maxDistance: 2

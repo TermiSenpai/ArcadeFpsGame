@@ -23,7 +23,11 @@ public class PlayerLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         if (!pv.IsMine)
-            Destroy(CamHolder.GetComponentInChildren<Camera>().gameObject);
+        {
+            Camera[] cameras = CamHolder.GetComponentsInChildren<Camera>();
+            foreach (Camera c in cameras)
+                Destroy(c.gameObject);
+        }
     }
 
     void LateUpdate()
