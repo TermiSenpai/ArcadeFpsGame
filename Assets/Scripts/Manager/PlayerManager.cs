@@ -21,7 +21,10 @@ public class PlayerManager : MonoBehaviour
 
     void createController()
     {
-        player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), SpawnpointManager.Instance.GetRandomSpawnPoint().position, Quaternion.identity, 0, new object[] { pv.ViewID });
+        Transform spawnpoint = SpawnpointManager.Instance.GetRandomSpawnPoint();
+        player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), spawnpoint.position, Quaternion.identity, 0, new object[] { pv.ViewID });
+
+        // set gameobjet name in editor, just for debug
         player.name = PhotonNetwork.NickName;
     }
 
