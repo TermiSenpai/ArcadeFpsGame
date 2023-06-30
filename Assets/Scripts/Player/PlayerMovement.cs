@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public PlayerMovConfig config;
+    [SerializeField] PlayerMovConfig config;
+    [SerializeField] PlayerJump playerJump;
     public Transform orientation;
 
     private Vector2 movementInput;
@@ -19,6 +20,17 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
     }
 
+    private void Update()
+    {
+        if (playerJump.IsGrounded())
+        {
+            rb.drag = config.groundDrag;
+        }
+        else
+            rb.drag = 0;
+
+        SpeedControl();
+    }
     private void FixedUpdate()
     {
         MovePlayer();
@@ -27,7 +39,12 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
 
-        rb.AddForce(moveDirection.normalized * config.moveSpeed * 10f, ForceMode.Force);
+        if(playerJump.IsGrounded())
+            rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier, ForceMode.Force);
+        else if(!playerJump.IsGrounded())
+            rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier * config.airMovMultiplier, ForceMode.Force);
+
+
     }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
@@ -40,6 +57,18 @@ public class PlayerMovement : MonoBehaviour
             case InputActionPhase.Canceled:
                 movementInput = Vector2.zero;
                 break;
+        }
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        
+        //limit velocity if needed
+        if(flatVel.magnitude > config.moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * config.moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
 }

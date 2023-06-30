@@ -4,4 +4,7 @@ using UnityEngine;
 public class PlayerMovConfig : ScriptableObject
 {
     public float moveSpeed;
+    public float movMultiplier;
+    public float airMovMultiplier;
+    public float groundDrag;
 }
