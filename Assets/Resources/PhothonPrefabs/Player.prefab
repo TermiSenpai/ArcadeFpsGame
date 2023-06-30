@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1834988309}
   - component: {fileID: 545073537}
+  - component: {fileID: 5726588274516128423}
   m_Layer: 8
   m_Name: Sniper
   m_TagString: Untagged
@@ -80,7 +81,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: e8f33769b1aaa1943841fcff8083a8e9, type: 2}
   itemGameobject: {fileID: 4309820761059248624}
+  bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   cam: {fileID: 1779458513240772432}
+--- !u!114 &5726588274516128423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834988307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1891943075
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1891943076}
   - component: {fileID: 545073536}
+  - component: {fileID: 4312672614633028110}
   m_Layer: 8
   m_Name: Knife
   m_TagString: Untagged
@@ -123,12 +148,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1891943075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5021b12c8939854daef7ba3b2e2d70d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ed5ca455dc54d34a9f77e390ad87ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 2a845cd39fbbd6b4b96dc6c250a5734f, type: 2}
   itemGameobject: {fileID: 4882478741061789082}
+  bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   cam: {fileID: 1779458513240772432}
+--- !u!114 &4312672614633028110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891943075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &196562547110499862
 GameObject:
   m_ObjectHideFlags: 0

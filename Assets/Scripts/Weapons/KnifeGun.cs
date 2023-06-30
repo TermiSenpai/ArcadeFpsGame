@@ -10,12 +10,12 @@ public class KnifeGun : Gun
 
     private void Awake()
     {
-        pv = GetComponentInParent<PhotonView>();
+        pv = GetComponent<PhotonView>();
     }
     private void Start()
     {
-        if (!pv.IsMine)
-            Destroy(cam.gameObject);
+        //if (!pv.IsMine)
+        //    Destroy(cam.gameObject);
     }
 
     public override void Use()
@@ -31,7 +31,6 @@ public class KnifeGun : Gun
         if (Physics.Raycast(r, out RaycastHit hit, ((GunInfo)itemInfo).maxDistance))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
-            Debug.Log(hit.collider.gameObject.name);
         }
     }
 }

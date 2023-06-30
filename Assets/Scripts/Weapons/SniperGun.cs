@@ -10,12 +10,12 @@ public class SniperGun : Gun
 
     private void Awake()
     {
-        pv = GetComponentInParent<PhotonView>();
+        pv = GetComponent<PhotonView>();
     }
     private void Start()
     {
-        if (!pv.IsMine)
-            Destroy(cam.gameObject);
+        //if (!pv.IsMine)
+        //    Destroy(cam.gameObject);
     }
 
     public override void Use()
@@ -30,14 +30,19 @@ public class SniperGun : Gun
 
         if(Physics.Raycast(r, out RaycastHit hit))
         {
-            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
             Debug.Log(hit.collider.gameObject.name);
-
-            if(hit.collider.gameObject.GetComponent<IDamageable>() != null)
-            {
-                Debug.Log(true);
-            }
-            else Debug.Log(false);
+            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
+            pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
+    }
+
+    [PunRPC]
+    void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
+    {
+        //TODO
+        // Change instantiate for gameobject enable
+
+        Instantiate(bulletImpactPrefab, hitPos + hitNormal * 0.001f, Quaternion.LookRotation(hitNormal, Vector3.up) * bulletImpactPrefab.transform.rotation);
+        Debug.Log("Instantiated impact");
     }
 }
