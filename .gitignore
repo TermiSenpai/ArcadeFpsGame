@@ -9,7 +9,6 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-/[Aa]ssets/Imports
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -71,3 +70,11 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 UserSettings/Layouts/
+
+Assets/Imports/LowPolyFPS/LowPolyFPSMap_2020.3_SRP_v1.01.unitypackage.meta
+
+Assets/Imports/LowPolyWeapons/LowPolyWeapons_2020.3_HDRP_v1.12.unitypackage.meta
+
+Assets/Imports/LowPolyWeapons/LowPolyWeapons_2020.3_SRP_v1.12.unitypackage.meta
+
+Assets/Imports/LowPolyWeapons/LowPolyWeapons_2020.3_URP_v1.12.unitypackage.meta

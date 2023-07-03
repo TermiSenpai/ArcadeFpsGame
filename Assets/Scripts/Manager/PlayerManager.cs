@@ -5,6 +5,7 @@ using System.IO;
 public class PlayerManager : MonoBehaviour
 {
     PhotonView pv;
+    GameObject player;
 
     private void Awake()
     {
@@ -13,13 +14,23 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        if(pv.IsMine)        
+        if (pv.IsMine)
             createController();
-        
+
     }
 
     void createController()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), SpawnpointManager.Instance.GetRandomSpawnPoint().position, Quaternion.identity);
+        Transform spawnpoint = SpawnpointManager.Instance.GetRandomSpawnPoint();
+        player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), spawnpoint.position, Quaternion.identity, 0, new object[] { pv.ViewID });
+
+        // set gameobjet name in editor, just for debug
+        player.name = PhotonNetwork.NickName;
+    }
+
+    public void die()
+    {
+        PhotonNetwork.Destroy(player);
+        createController();
     }
 }

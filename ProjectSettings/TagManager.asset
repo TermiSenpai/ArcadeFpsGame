@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - cameraContainer
+  - Head
+  - Body
+  - Legs
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - UI
   - 
   - Player
-  - 
+  - Weapons
   - 
   - 
   - 

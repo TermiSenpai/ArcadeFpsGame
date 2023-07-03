@@ -1,101 +1,93 @@
 using Photon.Pun;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] PlayerMovConfig movementConfig;
-    [SerializeField] PlayerJump playerJump;
-    [SerializeField] Transform orientation;
-    Rigidbody rb;
+    [SerializeField] PlayerMovConfig config;
+    PlayerController playerController;
+    public Transform orientation;
 
-    Vector2 movementInput;
-    Vector3 playerDir;
-
+    private Vector2 movementInput;
     PhotonView pv;
-    RaycastHit slopeHit;
-    float playerHeight = 2f;
-    Vector3 slopeMoveDirection;
+    Vector3 moveDirection;
+    Rigidbody rb;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        playerController = GetComponent<PlayerController>();
         pv = GetComponent<PhotonView>();
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     private void Start()
     {
-        if (!pv.IsMine)
+        if(!pv.IsMine)        
             Destroy(rb);
-        rb.freezeRotation = true;
-        playerHeight = transform.localScale.y;
-    }
-
-    private void FixedUpdate()
-    {
-        if (!pv.IsMine) return;
-
-        Movementent();
-        controlDrag();
+        
     }
 
     private void Update()
     {
-        slopeMoveDirection = Vector3.ProjectOnPlane(playerDir, slopeHit.normal);
-    }
+        if (!pv.IsMine) return;
 
-    private void Movementent()
-    {
-
-        playerDir = orientation.forward * movementInput.y * movementConfig.fowardSpeed + orientation.right * movementInput.x * movementConfig.strafeSpeed;
-
-        // IsGrounded and not onSlope
-        if (playerJump.isGrounded() && !onSlope())
-            rb.AddForce(playerDir.normalized * movementConfig.movementMultiplier, ForceMode.Acceleration);
-
-        // Is jumping
-        else if (!playerJump.isGrounded())
-            rb.AddForce(playerDir.normalized * movementConfig.airMultiplier * movementConfig.airMultiplier, ForceMode.Acceleration);
-
-        // IsGrounded and onSlope
-        else if (playerJump.isGrounded() && onSlope())
-            rb.AddForce(slopeMoveDirection.normalized * movementConfig.movementMultiplier, ForceMode.Acceleration);
-
+        controlDrag();
+        SpeedControl();
     }
 
     private void controlDrag()
     {
-        if (playerJump.isGrounded())
-            rb.drag = movementConfig.groundDrag;
+        if (playerController.IsGrounded())        
+            rb.drag = config.groundDrag;
+        
+        else
+            rb.drag = 0;
 
-        else if(!playerJump.isGrounded())
-            rb.drag = movementConfig.airDrag;
-            
     }
 
-    bool onSlope()
+    private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.5f))
-        {
-            if (slopeHit.normal != Vector3.up)
-                return true;
-            return false;
-        }
-        return false;
-    }
+        if(!pv.IsMine) return;
 
+        MovePlayer();
+    }
+    private void MovePlayer()
+    {
+        moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
+
+        if(playerController.IsGrounded())
+            rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier, ForceMode.Force);
+        else if(!playerController.IsGrounded())
+            rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier * config.airMovMultiplier, ForceMode.Force);
+
+
+    }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if (pv.IsMine)
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    movementInput = context.ReadValue<Vector2>();
-                    break;
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                movementInput = context.ReadValue<Vector2>();
+                break;
 
-                case InputActionPhase.Canceled:
-                    movementInput = Vector2.zero;
-                    break;
-            }
+            case InputActionPhase.Canceled:
+                movementInput = Vector2.zero;
+                break;
+        }
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        
+        //limit velocity if needed
+        if(flatVel.magnitude > config.moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * config.moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
     }
 }

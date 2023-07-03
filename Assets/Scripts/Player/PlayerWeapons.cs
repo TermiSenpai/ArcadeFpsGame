@@ -8,7 +8,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class PlayerWeapons : MonoBehaviourPunCallbacks
 {
     [SerializeField] Item[] items;
-    int itemIndex;
+    int itemIndex = -1;
     int previusItemIndex = -1;
 
     PhotonView pv;
@@ -24,6 +24,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
             return;
 
         equipItem(0);
+
     }
 
     void equipItem(int _index)
@@ -32,10 +33,17 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
         itemIndex = _index;
 
+
         items[itemIndex].itemGameobject.SetActive(true);
+        if (pv.IsMine)
+            items[itemIndex].handsGameobject.SetActive(true);
 
         if (previusItemIndex != -1)
+        {
             items[previusItemIndex].itemGameobject.SetActive(false);
+            if (pv.IsMine)
+                items[previusItemIndex].handsGameobject.SetActive(false);
+        }
 
         previusItemIndex = itemIndex;
 
@@ -46,8 +54,11 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine) return;
 
-        Hashtable hash = new Hashtable();
-        hash.Add("itemIndex", itemIndex);
+        Hashtable hash = new Hashtable
+        {
+            { "itemIndex", itemIndex }
+        };
+
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
@@ -83,10 +94,26 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
     public void OnScrollInput(InputAction.CallbackContext context)
     {
+        if (!pv.IsMine)
+            return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:
                 checkInputValue(context.ReadValue<Vector2>());
+                break;
+        }
+    }
+
+    public void OnFireInput(InputAction.CallbackContext context)
+    {
+        if (!pv.IsMine)
+            return;
+
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                items[itemIndex].Use();
                 break;
         }
     }
