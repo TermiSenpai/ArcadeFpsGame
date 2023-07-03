@@ -33,9 +33,13 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         itemIndex = _index;
 
         items[itemIndex].itemGameobject.SetActive(true);
+        items[itemIndex].handsGameobject.SetActive(true);
 
         if (previusItemIndex != -1)
+        {
             items[previusItemIndex].itemGameobject.SetActive(false);
+            items[previusItemIndex].handsGameobject.SetActive(false);
+        }
 
         previusItemIndex = itemIndex;
 

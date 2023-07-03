@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerJump : MonoBehaviour
 {
     Rigidbody rb;
+    PhotonView pv;
     [SerializeField] PlayerJumpConfig config;
 
     //groundCheck
@@ -14,7 +16,7 @@ public class PlayerJump : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        pv = GetComponent<PhotonView>();
     }
     public bool IsGrounded()
     {
@@ -31,6 +33,7 @@ public class PlayerJump : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
+        if (!pv.IsMine) return;
         switch (context.phase)
         {
             case InputActionPhase.Started:

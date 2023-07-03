@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,29 +11,47 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
 
     private Vector2 movementInput;
-
+    PhotonView pv;
     Vector3 moveDirection;
     Rigidbody rb;
 
-    private void Start()
+    private void Awake()
     {
+        pv = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
 
+    private void Start()
+    {
+        if(!pv.IsMine)
+        {
+            Destroy(rb);
+        }
+    }
+
     private void Update()
     {
-        if (playerJump.IsGrounded())
-        {
+        if (!pv.IsMine) return;
+
+        controlDrag();
+        SpeedControl();
+    }
+
+    private void controlDrag()
+    {
+        if (playerJump.IsGrounded())        
             rb.drag = config.groundDrag;
-        }
+        
         else
             rb.drag = 0;
 
-        SpeedControl();
     }
+
     private void FixedUpdate()
     {
+        if(!pv.IsMine) return;
+
         MovePlayer();
     }
     private void MovePlayer()
