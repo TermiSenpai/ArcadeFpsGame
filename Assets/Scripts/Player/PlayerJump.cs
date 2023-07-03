@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
+
     Rigidbody rb;
     PhotonView pv;
     [SerializeField] PlayerJumpConfig config;
     PlayerController playerController;
 
-    //groundCheck
+    [Header("Ground check")]
     [SerializeField] Transform groundCheck;
 
 

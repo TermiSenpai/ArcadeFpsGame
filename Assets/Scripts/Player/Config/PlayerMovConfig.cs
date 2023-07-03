@@ -7,4 +7,7 @@ public class PlayerMovConfig : ScriptableObject
     public float movMultiplier;
     public float airMovMultiplier;
     public float groundDrag;
+
+    [Header("Slope Handling")]
+    public float maxSlopeAngle;
 }

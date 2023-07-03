@@ -10,10 +10,15 @@ public class PlayerMovement : MonoBehaviour
     PlayerController playerController;
     public Transform orientation;
 
+    [Header("Inputs and movement")]
     private Vector2 movementInput;
     PhotonView pv;
     Vector3 moveDirection;
     Rigidbody rb;
+
+    [Header("Slopes")]
+    [SerializeField] private RaycastHit slopeHit;
+    const float playerHeight = 5;
 
     private void Awake()
     {
@@ -58,8 +63,17 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
 
-        if(playerController.IsGrounded())
+        //On slope
+        if (OnSlope())
+        {
+            rb.AddForce(GetSlopeMoveDir() * config.moveSpeed * config.movMultiplier, ForceMode.Force);
+        }
+
+        //On ground
+        else if(playerController.IsGrounded())
             rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier, ForceMode.Force);
+
+        // On air
         else if(!playerController.IsGrounded())
             rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier * config.airMovMultiplier, ForceMode.Force);
 
@@ -89,5 +103,28 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * config.moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
+    }
+
+    public bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < config.maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawRay(transform.position, Vector3.down);
+    }
+
+    private Vector3 GetSlopeMoveDir()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 }
