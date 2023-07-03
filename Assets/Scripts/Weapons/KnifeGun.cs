@@ -14,8 +14,8 @@ public class KnifeGun : Gun
     }
     private void Start()
     {
-        //if (!pv.IsMine)
-        //    Destroy(handsGameobject);
+        if (pv.IsMine)
+            gameObject.layer = 8;
     }
 
     public override void Use()
