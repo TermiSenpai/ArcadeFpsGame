@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] PlayerMovConfig config;
-    [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerJump playerJump;
     public Transform orientation;
 
     private Vector2 movementInput;
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void controlDrag()
     {
-        if (playerController.IsGrounded())        
+        if (playerJump.IsGrounded())        
             rb.drag = config.groundDrag;
         
         else
@@ -57,9 +57,9 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
 
-        if(playerController.IsGrounded())
+        if(playerJump.IsGrounded())
             rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier, ForceMode.Force);
-        else if(!playerController.IsGrounded())
+        else if(!playerJump.IsGrounded())
             rb.AddForce(moveDirection.normalized * config.moveSpeed * config.movMultiplier * config.airMovMultiplier, ForceMode.Force);
 
 

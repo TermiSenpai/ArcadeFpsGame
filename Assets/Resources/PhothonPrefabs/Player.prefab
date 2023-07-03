@@ -328,7 +328,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 1
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &1700531620175732164
@@ -1444,7 +1444,7 @@ GameObject:
   - component: {fileID: 6095217042096614561}
   - component: {fileID: 5487468529459871342}
   - component: {fileID: 5503923309672946155}
-  - component: {fileID: 2283419243995810027}
+  - component: {fileID: 8356123298111582778}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -1513,7 +1513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 6d86cc7c2e0d7d64c827621ae2499e94, type: 2}
-  playerController: {fileID: 2283419243995810027}
+  playerJump: {fileID: 6095217042096614558}
   orientation: {fileID: 5487468529459871341}
 --- !u!114 &6095217042096614558
 MonoBehaviour:
@@ -1564,7 +1564,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6095217042096614561}
-  sceneViewId: 6
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &6095217042096614561
@@ -1773,21 +1773,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &2283419243995810027
-MonoBehaviour:
+--- !u!143 &8356123298111582778
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5487468529459871345}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f9acfb1d6fc564ebca2a7ae723c4ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCam: {fileID: 6393457726681453524}
-  playerMov: {fileID: 6095217042096614559}
-  playerJump: {fileID: 6095217042096614558}
+  serializedVersion: 2
+  m_Height: 0.17
+  m_Radius: 0.03
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.08, z: 0}
 --- !u!1 &5487468529805772124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,7 +2198,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 5
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &8875113647700506997
@@ -2283,7 +2286,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 3
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &7022249039837597595
@@ -3200,10 +3203,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SniperHands
       objectReference: {fileID: 0}
-    - target: {fileID: 7598260460893160930, guid: 3ef47cc2c14741e4cb154ebbaf097a3e, type: 3}
-      propertyPath: sceneViewId
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ef47cc2c14741e4cb154ebbaf097a3e, type: 3}
 --- !u!1 &847277688265144321 stripped
@@ -3270,10 +3269,6 @@ PrefabInstance:
     - target: {fileID: 6475863022525104021, guid: 2d1b19dad4b8c954cab79859a8f60ba7, type: 3}
       propertyPath: m_Name
       value: KnifeHands
-      objectReference: {fileID: 0}
-    - target: {fileID: 8595638472118727378, guid: 2d1b19dad4b8c954cab79859a8f60ba7, type: 3}
-      propertyPath: sceneViewId
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1b19dad4b8c954cab79859a8f60ba7, type: 3}
