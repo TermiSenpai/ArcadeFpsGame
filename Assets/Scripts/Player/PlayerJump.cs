@@ -9,14 +9,18 @@ public class PlayerJump : MonoBehaviour
     Rigidbody rb;
     PhotonView pv;
     [SerializeField] PlayerJumpConfig config;
+    PlayerController playerController;
 
     //groundCheck
     [SerializeField] Transform groundCheck;
 
-    private void Start()
+
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void FixedUpdate()
