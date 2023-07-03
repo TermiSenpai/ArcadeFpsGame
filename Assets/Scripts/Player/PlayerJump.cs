@@ -55,4 +55,11 @@ public class PlayerJump : MonoBehaviour
                 break;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawSphere(groundCheck.position, config.checkRadius);
+    }
 }
