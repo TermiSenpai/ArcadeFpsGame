@@ -24,7 +24,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
             return;
 
         equipItem(0);
-
+        sync();
     }
 
     void equipItem(int _index)
