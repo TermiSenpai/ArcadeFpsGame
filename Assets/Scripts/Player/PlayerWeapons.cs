@@ -24,6 +24,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
             return;
 
         equipItem(0);
+
     }
 
     void equipItem(int _index)
@@ -32,8 +33,10 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
         itemIndex = _index;
 
+
         items[itemIndex].itemGameobject.SetActive(true);
-        items[itemIndex].handsGameobject.SetActive(true);
+        if (pv.IsMine)
+            items[itemIndex].handsGameobject.SetActive(true);
 
         if (previusItemIndex != -1)
         {
@@ -50,8 +53,11 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine) return;
 
-        Hashtable hash = new Hashtable();
-        hash.Add("itemIndex", itemIndex);
+        Hashtable hash = new Hashtable
+        {
+            { "itemIndex", itemIndex }
+        };
+
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 

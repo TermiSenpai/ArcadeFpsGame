@@ -15,7 +15,7 @@ public class KnifeGun : Gun
     private void Start()
     {
         //if (!pv.IsMine)
-        //    Destroy(cam.gameObject);
+        //    Destroy(handsGameobject);
     }
 
     public override void Use()
