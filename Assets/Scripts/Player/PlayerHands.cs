@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerHands : MonoBehaviour
 {
     PhotonView pv;
+    [SerializeField] GameObject hands;
 
     private void Awake()
     {
@@ -16,7 +17,7 @@ public class PlayerHands : MonoBehaviour
     {
         if(!pv.IsMine)
         {
-            gameObject.SetActive(false);
+            hands.SetActive(false);
         }
     }
 
