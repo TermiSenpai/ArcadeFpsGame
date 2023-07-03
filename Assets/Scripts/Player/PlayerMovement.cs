@@ -24,10 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        if(!pv.IsMine)
-        {
+        if(!pv.IsMine)        
             Destroy(rb);
-        }
+        
     }
 
     private void Update()
