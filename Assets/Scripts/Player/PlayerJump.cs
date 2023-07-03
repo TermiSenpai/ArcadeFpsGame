@@ -18,6 +18,14 @@ public class PlayerJump : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
     }
+
+    private void FixedUpdate()
+    {
+        if (!pv.IsMine) return;
+
+        applyGravity();
+    }
+
     public bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, config.checkRadius, config.groundLayer);
@@ -29,6 +37,12 @@ public class PlayerJump : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * config.jumpForce, ForceMode.Impulse);
+    }
+
+    void applyGravity()
+    {
+        Vector3 gravity = config.gravityMultiplier * Physics.gravity;
+        rb.AddForce(gravity, ForceMode.Acceleration);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
