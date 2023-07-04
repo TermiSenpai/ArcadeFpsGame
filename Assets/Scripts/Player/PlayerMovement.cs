@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,19 +8,18 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] PlayerMovConfig config;
-    PlayerController playerController;
-    public Transform orientation;
-    [SerializeField] CharacterController controller;
+    PlayerJump player;
 
     [Header("Inputs and movement")]
     private Vector2 movementInput;
-    PhotonView pv;
     Vector3 moveDirection;
+
+    PhotonView pv;
     Rigidbody rb;
 
     private void Awake()
     {
-        playerController = GetComponent<PlayerController>();
+        player = GetComponent<PlayerJump>();
         pv = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -27,9 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        if(!pv.IsMine)        
+        if (!pv.IsMine)
             Destroy(rb);
-        
+
     }
 
     private void Update()
@@ -37,24 +37,37 @@ public class PlayerMovement : MonoBehaviour
         if (!pv.IsMine) return;
 
         MovePlayer();
+        controlDrag();
+    }
+
+    private void controlDrag()
+    {
+        if (player.isGrounded())
+        {
+            config.movSpeed = 3.5f;
+            rb.drag = config.groundDrag;
+        }
+        else if (!player.isGrounded())
+        {
+            config.movSpeed = 2;
+            rb.drag = config.airDrag;
+        }
     }
 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
+        moveDirection = transform.forward * movementInput.y  + transform.right * movementInput.x ;
 
-        //On ground
-         if(playerController.IsGrounded())
-            controller.Move(moveDirection.normalized * config.moveSpeed * config.movMultiplier * Time.deltaTime);
+        rb.AddForce(moveDirection.normalized * config.movSpeed * config.movMultiplier, ForceMode.Acceleration);
 
-        // On air
-        else if(!playerController.IsGrounded())
-            controller.Move(moveDirection.normalized * config.moveSpeed * config.movMultiplier * config.airMovMultiplier * Time.deltaTime);
     }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
+            case InputActionPhase.Started:
+                movementInput = context.ReadValue<Vector2>();
+                break;
             case InputActionPhase.Performed:
                 movementInput = context.ReadValue<Vector2>();
                 break;
