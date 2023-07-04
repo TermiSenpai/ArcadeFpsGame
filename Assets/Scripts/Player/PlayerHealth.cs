@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     PlayerManager playerManager;
     private const float maxHealth = 100f;
     private float currentHealth;
+    [SerializeField] UIHealth health;
 
     private void Awake()
     {
@@ -18,6 +19,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        if(!pv.IsMine)
+            Destroy(health.gameObject);
         currentHealth = maxHealth;
     }
 
@@ -33,6 +36,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (!pv.IsMine) return;
 
         currentHealth -= damage;
+
+        health.updateHealthBar(currentHealth / maxHealth);
         if(currentHealth <= 0) playerDie();
     }
 
