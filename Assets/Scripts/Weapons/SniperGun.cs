@@ -30,7 +30,6 @@ public class SniperGun : Gun
 
         if (Physics.Raycast(r, out RaycastHit hit))
         {
-            Debug.Log(hit.collider.gameObject.name);
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }

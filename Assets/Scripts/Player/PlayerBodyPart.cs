@@ -18,7 +18,6 @@ public class PlayerBodyPart : MonoBehaviour, IDamageable
     public void takeDamage(float damage)
     {
         damage *= partDamageMultiplier;
-        Debug.Log(damage);
         playerHP.takeDamage(damage);
     }
 }
