@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private const float maxHealth = 100f;
     private float currentHealth;
     [SerializeField] UIHealth health;
+    [SerializeField] BillboardHealth billboardHealth;
 
     private void Awake()
     {
@@ -22,6 +23,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if(!pv.IsMine)
             Destroy(health.gameObject);
         currentHealth = maxHealth;
+
+        takeDamage(0f);
     }
 
     public void takeDamage(float damage)
@@ -37,7 +40,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         currentHealth -= damage;
 
+        billboardHealth.updateBillboardBar(currentHealth / maxHealth);
         health.updateHealthBar(currentHealth / maxHealth);
+        health.updateHealthTxt(currentHealth.ToString("00"));
+
         if(currentHealth <= 0) playerDie();
     }
 
