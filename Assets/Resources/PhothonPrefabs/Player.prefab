@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4192415442752288670}
   - component: {fileID: 6468570551420315166}
   - component: {fileID: 8523202246978524346}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ArmLeft1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7520526007210655699}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: SniperHands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 6715427371292783735}
   - component: {fileID: 4695712064490444847}
   - component: {fileID: 9167277998945640886}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ArmRight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 7975432598221213120}
   - component: {fileID: 8265535859850518936}
   - component: {fileID: 5523426250358790145}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ArmRight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 698589616374025769}
   - component: {fileID: 7663836327647469481}
   - component: {fileID: 5032754326220303629}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ArmLeft1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1811,7 +1811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6611801722857457252}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: KnifeHands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2923,7 +2923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6095217041803826805}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ItemHolder
   m_TagString: cameraContainer
   m_Icon: {fileID: 0}
@@ -2959,7 +2959,7 @@ GameObject:
   - component: {fileID: 6095217042364308606}
   - component: {fileID: 2012654019935618904}
   - component: {fileID: 6230065334941526894}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3047,7 +3047,7 @@ GameObject:
   - component: {fileID: 6095217042364308607}
   - component: {fileID: 8020699279095271409}
   - component: {fileID: 7348665297177891612}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3424,7 +3424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7513835154897531224}
   - component: {fileID: 4269813384374192056}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: WeaponCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3797,9 +3797,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6095217043222202090}
     m_Modifications:
+    - target: {fileID: 1579704668966970354, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2557595109008343949, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
       propertyPath: m_Name
       value: SniperRifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557595109008343949, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2557595109008842669, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
       propertyPath: m_RootOrder
@@ -3845,6 +3853,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5700576108474624970, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080168350574560129, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575773545901520252, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
 --- !u!4 &8023445030871556143 stripped
@@ -3867,6 +3887,10 @@ PrefabInstance:
     - target: {fileID: 6589862043497593322, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
       propertyPath: m_Name
       value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589862043497593322, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6589862043498014154, guid: 1cb0df029c73b794b907282183c7a9b3, type: 3}
       propertyPath: m_RootOrder
