@@ -11,6 +11,9 @@ public class PlayerJump : MonoBehaviour
     PhotonView pv;
     [SerializeField] PlayerJumpConfig config;
     PlayerController playerController;
+    [SerializeField] CharacterController controller;
+
+    [SerializeField] Vector3 velocity;
 
     [Header("Ground check")]
     [SerializeField] Transform groundCheck;
@@ -24,7 +27,7 @@ public class PlayerJump : MonoBehaviour
         playerController = GetComponent<PlayerController>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!pv.IsMine) return;
 
@@ -36,18 +39,26 @@ public class PlayerJump : MonoBehaviour
         return Physics.CheckSphere(groundCheck.position, config.checkRadius, config.groundLayer);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawSphere(groundCheck.position, config.checkRadius);
+    }
+
     private void Jump()
     {
         if (!IsGrounded()) return;
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up * config.jumpForce, ForceMode.Impulse);
+
     }
 
     void applyGravity()
     {
-        Vector3 gravity = config.gravityMultiplier * Physics.gravity;
-        rb.AddForce(gravity, ForceMode.Acceleration);
+
+         velocity.y += config.gravity * Time.deltaTime;
+
+         controller.Move(velocity * Time.deltaTime);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -59,12 +70,5 @@ public class PlayerJump : MonoBehaviour
                 Jump();
                 break;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawSphere(groundCheck.position, config.checkRadius);
     }
 }

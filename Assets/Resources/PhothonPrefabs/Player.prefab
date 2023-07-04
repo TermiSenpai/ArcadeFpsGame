@@ -1714,6 +1714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 6d86cc7c2e0d7d64c827621ae2499e94, type: 2}
   orientation: {fileID: 5487468529459871341}
+  controller: {fileID: 8356123298111582778}
 --- !u!114 &6095217042096614558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,6 +1728,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 7650f313fda77bd4d9cd37bebc20cced, type: 2}
+  controller: {fileID: 8356123298111582778}
+  velocity: {x: 0, y: 0, z: 0}
   groundCheck: {fileID: 5487468530454757076}
 --- !u!114 &6095217042096614560
 MonoBehaviour:
@@ -1983,7 +1986,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.17
+  m_Height: 0.17149045
   m_Radius: 0.03
   m_SlopeLimit: 45
   m_StepOffset: 0.3
