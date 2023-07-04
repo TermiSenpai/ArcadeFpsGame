@@ -1980,7 +1980,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   billboardHealth: {fileID: 5110914966198757440}
-  playerPV: {fileID: 4383785911082587982}
 --- !u!114 &4383785911082587982
 MonoBehaviour:
   m_ObjectHideFlags: 0
