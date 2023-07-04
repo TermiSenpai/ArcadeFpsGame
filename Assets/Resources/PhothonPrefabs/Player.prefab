@@ -3797,17 +3797,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6095217043222202090}
     m_Modifications:
-    - target: {fileID: 1579704668966970354, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2557595109008343949, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
       propertyPath: m_Name
       value: SniperRifle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2557595109008343949, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2557595109008842669, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
       propertyPath: m_RootOrder
@@ -3852,18 +3844,6 @@ PrefabInstance:
     - target: {fileID: 2557595109008842669, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700576108474624970, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6080168350574560129, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6575773545901520252, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe18f7e0e71120f42a09c224e9f2f3b1, type: 3}
