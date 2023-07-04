@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerMovConfig
   m_EditorClassIdentifier: 
   movSpeed: 3.5
-  movMultiplier: 2
-  airMovMultiplier: 1
+  movMultiplier: 4
+  airMovMultiplier: 2
   groundDrag: 2
   airDrag: 0.5
   maxSlopeAngle: 40

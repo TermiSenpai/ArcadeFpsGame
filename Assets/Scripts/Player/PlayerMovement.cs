@@ -56,9 +56,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = transform.forward * movementInput.y  + transform.right * movementInput.x ;
+        moveDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
 
-        rb.AddForce(moveDirection.normalized * config.movSpeed * config.movMultiplier, ForceMode.Acceleration);
+        if (player.isGrounded())
+            rb.AddForce(moveDirection.normalized * config.movSpeed * config.movMultiplier, ForceMode.Acceleration);
+        else if(!player.isGrounded())
+            rb.AddForce(moveDirection.normalized * config.movSpeed * config.airMovMultiplier, ForceMode.Acceleration);
+
 
     }
     public void OnMoveInput(InputAction.CallbackContext context)
