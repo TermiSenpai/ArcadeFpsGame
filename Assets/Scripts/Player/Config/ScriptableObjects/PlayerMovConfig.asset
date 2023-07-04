@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399ee7022dd122949ab837ba8c0a93f6, type: 3}
   m_Name: PlayerMovConfig
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  movSpeed: 3.5
   movMultiplier: 2
-  airMovMultiplier: 0.4
-  groundDrag: 5
+  airMovMultiplier: 1
+  groundDrag: 2
+  airDrag: 0.5
   maxSlopeAngle: 40
