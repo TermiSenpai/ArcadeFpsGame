@@ -29,13 +29,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void takeDamage(float damage)
     {
-        pv.RPC("RPC_TackeDamage", RpcTarget.All, damage);
+        pv.RPC(nameof(RPC_TackeDamage), pv.Owner, damage);
     }
 
     [PunRPC]
-    void RPC_TackeDamage(float damage)
+    void RPC_TackeDamage(float damage, PhotonMessageInfo info)
     {
-        if (!pv.IsMine) return;
 
         currentHealth -= damage;
 
@@ -43,7 +42,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         health.updateHealthBar(currentHealth / maxHealth);
         health.updateHealthTxt(currentHealth.ToString("00"));
 
-        if(currentHealth <= 0) playerDie();
+        if (currentHealth <= 0)
+        {
+            playerDie();
+            PlayerManager.Find(info.Sender).getKill();
+        }
     }
 
     private void playerDie()
