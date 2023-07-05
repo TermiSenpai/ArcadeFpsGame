@@ -6,7 +6,16 @@ using UnityEngine.InputSystem;
 public abstract class Gun : Item
 {
     public GameObject bulletImpactPrefab;
+    public bool canUse = true;
+    public float cooldownSeconds;
+    public Coroutine weaponCoroutine;
+
     public abstract override void Use();
 
-    
+    public IEnumerator weaponCooldown()
+    {
+        canUse = false;
+        yield return new WaitForSeconds(cooldownSeconds);
+        canUse = true;
+    }
 }

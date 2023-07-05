@@ -10,8 +10,9 @@ public class PlayerJump : MonoBehaviour
     Rigidbody rb;
     PhotonView pv;
     [SerializeField] PlayerJumpConfig config;
-    PlayerController playerController;
+    CharacterController controller;
 
+    Vector3 velocity;
 
     [Header("Ground check")]
     [SerializeField] Transform groundCheck;
@@ -22,14 +23,16 @@ public class PlayerJump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
-        //playerController = GetComponent<PlayerController>();
+        controller = GetComponent<CharacterController>();
     }
+
 
     private void FixedUpdate()
     {
         if (!pv.IsMine) return;
 
         applyGravity();
+
     }
 
     public bool isGrounded()
@@ -41,14 +44,19 @@ public class PlayerJump : MonoBehaviour
     {
         if (!isGrounded()) return;
 
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * config.jumpForce, ForceMode.Impulse);
+        velocity.y = Mathf.Sqrt(config.jumpForce * -2f * Physics.gravity.y);
+
+        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //rb.AddForce(transform.up * config.jumpForce, ForceMode.Impulse);
     }
 
-    void applyGravity()
+    public void applyGravity()
     {
-        Vector3 gravity = config.gravityMultiplier * Physics.gravity;
-        rb.AddForce(gravity, ForceMode.Acceleration);
+        if (isGrounded() && velocity.y < 0)
+            velocity.y = -2f;
+        velocity.y += Physics.gravity.y * Time.deltaTime * config.gravityMultiplier;
+        controller.Move(velocity * Time.deltaTime);
+        //rb.AddForce(gravity, ForceMode.Acceleration);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
