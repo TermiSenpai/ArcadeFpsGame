@@ -2534,8 +2534,9 @@ GameObject:
   - component: {fileID: 6095217042096614561}
   - component: {fileID: 5487468529459871342}
   - component: {fileID: 5503923309672946155}
-  - component: {fileID: 393713488862476061}
   - component: {fileID: 650088769}
+  - component: {fileID: 393713488862476061}
+  - component: {fileID: 1533611051077154744}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2769,18 +2770,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2730740825723964201, guid: 3894a7a17fac7b848a586f27c6fb3024, type: 3}
-        m_TargetAssemblyTypeName: PlayerWallRun, Assembly-CSharp
-        m_MethodName: onJumpInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: f245d6c4-99f7-4acc-8f93-30e151919493
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -2840,7 +2829,19 @@ MonoBehaviour:
     m_ActionId: abead45d-a03f-4e4c-90aa-9e01cf9c4345
     m_ActionName: Player/ChangeWeapon[/Mouse/scroll]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1533611051077154744}
+        m_TargetAssemblyTypeName: PlayerIngameSettings, Assembly-CSharp
+        m_MethodName: OnPauseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 95da890a-f7ab-4b0a-ae36-3557126185e1
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:
@@ -2880,18 +2881,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &393713488862476061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69dcc50c64e84904c8a1e08969d71cf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &650088769
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2910,6 +2899,33 @@ CharacterController:
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &393713488862476061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dcc50c64e84904c8a1e08969d71cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1533611051077154744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf25b11989c39445a28a5399ef795be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 6393457726681453524}
+  playerJump: {fileID: 6095217042096614558}
+  playerMov: {fileID: 6095217042096614559}
 --- !u!1 &5487468529805772124
 GameObject:
   m_ObjectHideFlags: 0
