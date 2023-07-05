@@ -11,12 +11,7 @@ public class SniperGun : Gun
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-    }
-    private void Start()
-    {
-        if (pv.IsMine)
-            gameObject.layer = 8;
-    }
+    }   
 
     public override void Use()
     {
