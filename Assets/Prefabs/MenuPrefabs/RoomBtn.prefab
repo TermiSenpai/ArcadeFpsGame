@@ -419,7 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8987c4e71bb210f4ca8495d536a588b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt: {fileID: 2797450074477948223}
+  RoomName: {fileID: 2797450074477948223}
+  RoomPlayers: {fileID: 5982399598766410936}
 --- !u!114 &5825112575342755471
 MonoBehaviour:
   m_ObjectHideFlags: 0

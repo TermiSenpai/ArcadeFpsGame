@@ -18,6 +18,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] Transform playerListContent;
     [SerializeField] GameObject playerListPrefab;
     [SerializeField] GameObject startGameBtn;
+    [SerializeField] TMP_Text Title;
 
     #endregion
 
@@ -177,6 +178,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Instantiate(playerListPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(player);
         }
+
+        Title.text = $"{PhotonNetwork.CurrentRoom.Name} - {PhotonNetwork.CurrentRoom.PlayerCount} / {PhotonNetwork.CurrentRoom.MaxPlayers}";
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
