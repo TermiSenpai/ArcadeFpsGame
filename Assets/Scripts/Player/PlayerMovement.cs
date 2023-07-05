@@ -8,11 +8,13 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] PlayerMovConfig config;
+    CharacterController controller;
     PlayerJump player;
 
     [Header("Inputs and movement")]
     private Vector2 movementInput;
     Vector3 moveDirection;
+    Vector3 currentSpeed;
 
     PhotonView pv;
     Rigidbody rb;
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         pv = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        controller = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -56,15 +59,40 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
 
-        if (player.isGrounded())
-            rb.AddForce(moveDirection.normalized * config.movSpeed * config.movMultiplier, ForceMode.Acceleration);
-        else if(!player.isGrounded())
-            rb.AddForce(moveDirection.normalized * config.movSpeed * config.airMovMultiplier, ForceMode.Acceleration);
+        moveDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
+        moveDirection = moveDirection.normalized;
+
+        // Si hay movimiento
+        if (moveDirection.magnitude >= 0.1f)
+        {
+            // Calcular la velocidad objetivo
+            Vector3 velocidadObjetivo = moveDirection * config.maxSpeed;
+
+            // Calcular la aceleración
+            currentSpeed = Vector3.Lerp(currentSpeed, velocidadObjetivo, config.acceleration * Time.deltaTime);
+        }
+        else
+        {
+            // Si no hay movimiento, detener al personaje
+            currentSpeed = Vector3.zero;
+        }        
+
+        controller.Move(currentSpeed * config.movSpeed * Time.deltaTime);
+
+        //if (player.isGrounded())
+        //    rb.AddForce(moveDirection.normalized * config.movSpeed * config.movMultiplier, ForceMode.Acceleration);
+        //else if(!player.isGrounded())
+        //    rb.AddForce(moveDirection.normalized * config.movSpeed * config.airMovMultiplier, ForceMode.Acceleration);
 
 
     }
+
+    private float applyGravity()
+    {
+        return Physics.gravity.y * Time.deltaTime;
+    }
+
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         switch (context.phase)

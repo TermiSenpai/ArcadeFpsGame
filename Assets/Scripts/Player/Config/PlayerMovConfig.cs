@@ -5,6 +5,8 @@ public class PlayerMovConfig : ScriptableObject
 {
     public float movSpeed;
 
+    public float acceleration;
+    public float maxSpeed;
     public float movMultiplier;
     public float airMovMultiplier;
     public float groundDrag;
