@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class InGameMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
-    
+
 
     public void togglePauseMenu(bool value)
     {
@@ -19,9 +19,19 @@ public class InGameMenu : MonoBehaviour
 
     public void leaveRoom()
     {
-        PhotonNetwork.LoadLevel(0);
-        //SceneManager.LoadScene(0);
+        Destroy(RoomManager.Instance.gameObject);
+        StartCoroutine(DisconnectAndLoad());
+    }
+
+    IEnumerator DisconnectAndLoad()
+    {
         PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        while (PhotonNetwork.IsConnected)
+            yield return 0;
+
+        SceneManager.LoadScene(0);
+
     }
 
 }
