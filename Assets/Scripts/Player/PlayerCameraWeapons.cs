@@ -11,7 +11,6 @@ public class PlayerCameraWeapons : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(playerPv.IsMine);
         if (playerPv.IsMine)
             changeLayer();
     }
