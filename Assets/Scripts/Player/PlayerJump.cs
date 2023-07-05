@@ -32,7 +32,7 @@ public class PlayerJump : MonoBehaviour
         if (!pv.IsMine) return;
 
         applyGravity();
-        
+
     }
 
     public bool isGrounded()
@@ -44,7 +44,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (!isGrounded()) return;
 
-        velocity.y = Mathf.Sqrt(config.jumpForce * -2f * Physics.gravity.y );
+        velocity.y = Mathf.Sqrt(config.jumpForce * -2f * Physics.gravity.y);
 
         //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         //rb.AddForce(transform.up * config.jumpForce, ForceMode.Impulse);

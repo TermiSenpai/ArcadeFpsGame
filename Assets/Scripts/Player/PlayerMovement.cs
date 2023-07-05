@@ -11,8 +11,9 @@ public class PlayerMovement : MonoBehaviour
     CharacterController controller;
     PlayerJump player;
 
-    [Header("Inputs and movement")]
-    private Vector2 movementInput;
+    float curMovementSpeed;
+
+    Vector2 movementInput;
     Vector3 moveDirection;
     Vector3 currentSpeed;
 
@@ -40,20 +41,19 @@ public class PlayerMovement : MonoBehaviour
         if (!pv.IsMine) return;
 
         MovePlayer();
-        controlDrag();
+        controlSpeed();
     }
 
-    private void controlDrag()
+    private void controlSpeed()
     {
         if (player.isGrounded())
         {
-            config.movSpeed = 3.5f;
-            rb.drag = config.groundDrag;
+            curMovementSpeed = config.groundSpeed;
         }
+
         else if (!player.isGrounded())
         {
-            config.movSpeed = 2;
-            rb.drag = config.airDrag;
+            curMovementSpeed = config.airSpeed;
         }
     }
 
@@ -67,31 +67,30 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.magnitude >= 0.1f)
         {
             // Calcular la velocidad objetivo
-            Vector3 velocidadObjetivo = moveDirection * config.maxSpeed;
+            Vector3 objetiveSpeed = moveDirection * config.maxSpeed;
 
             // Calcular la aceleración
-            currentSpeed = Vector3.Lerp(currentSpeed, velocidadObjetivo, config.acceleration * Time.deltaTime);
+            currentSpeed = Vector3.Lerp(currentSpeed, objetiveSpeed, config.acceleration * Time.deltaTime);
         }
         else
         {
-            // Si no hay movimiento, detener al personaje
-            currentSpeed = Vector3.zero;
-        }        
+            switch (player.isGrounded())
 
-        controller.Move(currentSpeed * config.movSpeed * Time.deltaTime);
+            {
+                case true:
+                    // Si no hay movimiento, detener al personaje
+                    currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.groundDeceleration * Time.deltaTime);
+                    break;
+                case false:
+                    currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.airDeceleration * Time.deltaTime);
+                    break;
+            }
 
-        //if (player.isGrounded())
-        //    rb.AddForce(moveDirection.normalized * config.movSpeed * config.movMultiplier, ForceMode.Acceleration);
-        //else if(!player.isGrounded())
-        //    rb.AddForce(moveDirection.normalized * config.movSpeed * config.airMovMultiplier, ForceMode.Acceleration);
-
-
+        }
+        controller.Move(currentSpeed * curMovementSpeed * Time.deltaTime);
     }
 
-    private float applyGravity()
-    {
-        return Physics.gravity.y * Time.deltaTime;
-    }
+
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
@@ -110,3 +109,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
