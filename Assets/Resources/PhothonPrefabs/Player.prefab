@@ -515,7 +515,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 7
+  sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &1700531620175732164
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 6
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &4949670402282120451
@@ -2323,7 +2323,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6095217042096614561}
-  sceneViewId: 10
+  sceneViewId: 5
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &6095217042096614561
@@ -2571,13 +2571,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.17
-  m_Radius: 0.03
+  m_Height: 1.6
+  m_Radius: 0.15
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.0867, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1 &5487468529805772124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,7 +2593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5487468529805772123
 Transform:
   m_ObjectHideFlags: 0
@@ -3001,7 +3001,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 9
+  sceneViewId: 4
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &6230065334941526894
@@ -3089,7 +3089,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 8
+  sceneViewId: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &7348665297177891612
