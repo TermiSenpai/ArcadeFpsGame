@@ -2997,6 +2997,8 @@ MonoBehaviour:
   itemGameobject: {fileID: 8023445030871989263}
   handsGameobject: {fileID: 847277688265144321}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
+  canUse: 1
+  cooldownSeconds: 1
   cam: {fileID: 5487468530309266095}
 --- !u!114 &2012654019935618904
 MonoBehaviour:
@@ -3085,6 +3087,8 @@ MonoBehaviour:
   itemGameobject: {fileID: 1681112669535817829}
   handsGameobject: {fileID: 4061598966007251382}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
+  canUse: 1
+  cooldownSeconds: 0.75
   cam: {fileID: 5487468530309266095}
 --- !u!114 &8020699279095271409
 MonoBehaviour:

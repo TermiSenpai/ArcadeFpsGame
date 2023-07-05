@@ -7,6 +7,7 @@ public class SniperGun : Gun
 {
     [SerializeField] Camera cam;
     PhotonView pv;
+    
 
     private void Awake()
     {
@@ -15,6 +16,8 @@ public class SniperGun : Gun
 
     public override void Use()
     {
+        if (!canUse) return;
+
         shoot();
     }
 
@@ -26,9 +29,14 @@ public class SniperGun : Gun
         if (Physics.Raycast(r, out RaycastHit hit))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
-            pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
+            weaponCoroutine = StartCoroutine(weaponCooldown());
+            //pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
     }
+
+    
+
+
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)

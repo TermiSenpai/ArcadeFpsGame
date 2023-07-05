@@ -31,6 +31,7 @@ public class KnifeGun : Gun
         if (Physics.Raycast(r, out RaycastHit hit, ((GunInfo)itemInfo).maxDistance))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
+            weaponCoroutine = StartCoroutine(weaponCooldown());
         }
     }
 }
