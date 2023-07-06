@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
-
-    Rigidbody rb;
     PhotonView pv;
     [SerializeField] PlayerJumpConfig config;
     CharacterController controller;
@@ -21,7 +19,6 @@ public class PlayerJump : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController>();
     }
@@ -45,9 +42,6 @@ public class PlayerJump : MonoBehaviour
         if (!isGrounded()) return;
 
         velocity.y = Mathf.Sqrt(config.jumpForce * -2f * Physics.gravity.y);
-
-        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        //rb.AddForce(transform.up * config.jumpForce, ForceMode.Impulse);
     }
 
     public void applyGravity()
@@ -56,7 +50,6 @@ public class PlayerJump : MonoBehaviour
             velocity.y = -2f;
         velocity.y += Physics.gravity.y * Time.deltaTime * config.gravityMultiplier;
         controller.Move(velocity * Time.deltaTime);
-        //rb.AddForce(gravity, ForceMode.Acceleration);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)

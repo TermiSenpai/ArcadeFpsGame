@@ -18,23 +18,17 @@ public class PlayerMovement : MonoBehaviour
     Vector3 currentSpeed;
 
     PhotonView pv;
-    Rigidbody rb;
 
     private void Awake()
     {
         player = GetComponent<PlayerJump>();
         pv = GetComponent<PhotonView>();
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
         controller = GetComponent<CharacterController>();
     }
 
     private void Start()
     {
-        if (!pv.IsMine)
-            Destroy(rb);
-
-        controller.detectCollisions = false;
+        controller.detectCollisions = true;
     }
 
     private void Update()
