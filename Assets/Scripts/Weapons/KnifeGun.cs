@@ -7,10 +7,12 @@ public class KnifeGun : Gun
 {
     [SerializeField] Camera cam;
     PhotonView pv;
+    Animator anim;
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        anim = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -21,6 +23,13 @@ public class KnifeGun : Gun
     public override void Use()
     {
         shoot();
+    }
+
+    public override void Aim()
+    {
+    }
+    public override void StopAim()
+    {
     }
 
     private void shoot()

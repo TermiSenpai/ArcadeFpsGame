@@ -1,5 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &641443908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 641443909}
+  - component: {fileID: 641443911}
+  - component: {fileID: 641443910}
+  m_Layer: 7
+  m_Name: Scope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &641443909
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641443908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8278266304342685867}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &641443911
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641443908}
+  m_CullTransparentMesh: 1
+--- !u!114 &641443910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641443908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 12ebdfe852af2d64895a53b25c372b09, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &105073395890581433
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847277688265144321}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.32866675, y: 0.18133329, z: -0.24333332}
+  m_LocalPosition: {x: 0.32866675, y: 0.1813333, z: -0.24333332}
   m_LocalScale: {x: 6.666665, y: 6.666667, z: 6.666665}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -612,6 +688,7 @@ GameObject:
   - component: {fileID: 1681112669535390789}
   - component: {fileID: 1681112669536685157}
   - component: {fileID: 1681112669537816229}
+  - component: {fileID: 1542697796}
   m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
@@ -684,6 +761,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1542697796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681112669535817829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPv: {fileID: 6062109617032368201}
+  root: {fileID: 6095217043717617500}
+  weaponLayerValue: 8
 --- !u!1 &1686229442778204926
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6686504971024718901
 Transform:
   m_ObjectHideFlags: 0
@@ -1733,7 +1825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &597609632740451947
 Transform:
   m_ObjectHideFlags: 0
@@ -2749,7 +2841,19 @@ MonoBehaviour:
     m_ActionId: c20a2c69-7472-4a88-af0c-f43936e75cd4
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6095217042096614560}
+        m_TargetAssemblyTypeName: PlayerWeapons, Assembly-CSharp
+        m_MethodName: OnAimInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a57206b5-846c-4514-bf60-73947c678c83
     m_ActionName: Player/AltFire[/Mouse/rightButton]
   - m_PersistentCalls:
@@ -3022,12 +3126,12 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 191
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -3161,6 +3265,7 @@ RectTransform:
   m_Children:
   - {fileID: 2200064254295084621}
   - {fileID: 7401718963569953156}
+  - {fileID: 641443909}
   m_Father: {fileID: 5487468529459871341}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3305,6 +3410,7 @@ GameObject:
   - component: {fileID: 6095217042364308606}
   - component: {fileID: 2012654019935618904}
   - component: {fileID: 6230065334941526894}
+  - component: {fileID: 1479014721}
   m_Layer: 7
   m_Name: Sniper
   m_TagString: Untagged
@@ -3347,7 +3453,10 @@ MonoBehaviour:
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
   cooldownSeconds: 1
+  scopeOverlay: {fileID: 641443908}
+  crosshairOverlay: {fileID: 3980459047496005393}
   cam: {fileID: 5487468530309266095}
+  weaponCam: {fileID: 7224073935488071204}
 --- !u!114 &2012654019935618904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3383,6 +3492,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hands: {fileID: 847277688265144321}
+--- !u!95 &1479014721
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095217043222202092}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d9938fe78b7a2546a4113e90945278f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &6095217043717617500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,6 +4190,7 @@ GameObject:
   - component: {fileID: 8023445030871556143}
   - component: {fileID: 8023445030868656143}
   - component: {fileID: 8023445030869787343}
+  - component: {fileID: 173394287}
   m_Layer: 7
   m_Name: SniperRifle
   m_TagString: Untagged
@@ -4137,6 +4267,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &173394287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023445030871989263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPv: {fileID: 6062109617032368201}
+  root: {fileID: 8023445030871989263}
+  weaponLayerValue: 8
 --- !u!1 &8067227886690419489
 GameObject:
   m_ObjectHideFlags: 0
