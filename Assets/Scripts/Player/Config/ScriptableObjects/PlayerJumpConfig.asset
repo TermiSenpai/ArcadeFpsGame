@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerJumpConfig
   m_EditorClassIdentifier: 
   gravityMultiplier: 2.5
-  jumpForce: 3
+  jumpForce: 3.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
