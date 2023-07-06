@@ -2569,7 +2569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: bfdd93386b6578b49a2974933b69f8f0, type: 2}
   cameraHolder: {fileID: 5487468528657033774}
-  orientation: {fileID: 0}
 --- !u!114 &6095217042096614559
 MonoBehaviour:
   m_ObjectHideFlags: 0

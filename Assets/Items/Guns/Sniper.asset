@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   itemName: Sniper
-  damage: 75
-  maxDistance: Infinity
+  damage: 100
+  maxDistance: 150
