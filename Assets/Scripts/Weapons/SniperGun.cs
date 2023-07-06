@@ -61,7 +61,7 @@ public class SniperGun : Gun
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
             weaponCoroutine = StartCoroutine(weaponCooldown());
-            //pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
+            pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
     }
 

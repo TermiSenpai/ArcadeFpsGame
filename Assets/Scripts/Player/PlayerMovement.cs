@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (!pv.IsMine)
             Destroy(rb);
 
+        controller.detectCollisions = false;
     }
 
     private void Update()
