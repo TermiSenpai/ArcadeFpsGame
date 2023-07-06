@@ -2,18 +2,7 @@ using UnityEngine;
 
 public class OcclusionCulling : MonoBehaviour
 {
-    [SerializeField]
-    private int alwaysVisibleLayer = 8; // El layer que deseas mantener siempre visible
-
-    private Camera mainCamera;
-
-    private void Start()
-    {
-        mainCamera = Camera.main;
-
-        // Habilitar el occlusion culling
-        mainCamera.useOcclusionCulling = true;
-    }
+    private int alwaysVisibleLayer = 8; // El layer que deseas mantener siempre visible   
 
     private void Update()
     {
@@ -35,11 +24,11 @@ public class OcclusionCulling : MonoBehaviour
             switch (renderer.isVisible)
             {
                 case true:
-                renderer.enabled = true;
+                    renderer.enabled = true;
                     break;
 
-                    case false:
-                renderer.enabled = false;
+                case false:
+                    renderer.enabled = false;
                     break;
 
             }
