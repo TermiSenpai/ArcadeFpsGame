@@ -7,7 +7,19 @@ using UnityEngine;
 public class Billboard : MonoBehaviour
 {
     Camera cam;
-    
+    PhotonView pv;
+
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+    }
+
+    private void Start()
+    {
+        if(pv.IsMine)
+            gameObject.SetActive(false);
+    }
+
 
     private void Update()
     {

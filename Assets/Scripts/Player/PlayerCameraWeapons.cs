@@ -7,7 +7,7 @@ public class PlayerCameraWeapons : MonoBehaviour
 {
     [SerializeField] PhotonView playerPv;
     [SerializeField] GameObject root;
-    [SerializeField] int weaponLayerValue;
+    [SerializeField] int weaponLayerValue = 8;
 
     private void Start()
     {

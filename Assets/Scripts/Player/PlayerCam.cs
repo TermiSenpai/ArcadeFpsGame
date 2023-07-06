@@ -8,7 +8,6 @@ public class PlayerCam : MonoBehaviour
 {
     public PlayerSensConfig config;
     [SerializeField] Transform cameraHolder;
-    public Transform orientation;
 
     float xRotation;
     float yRotation;
@@ -52,7 +51,7 @@ public class PlayerCam : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, config.minY, config.maxY);
 
         cameraHolder.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
         transform.eulerAngles += new Vector3(0, camInput.x * config.CamSensX, 0);
 
     }
