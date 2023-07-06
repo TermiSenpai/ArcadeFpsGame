@@ -22,7 +22,7 @@ public class KnifeGun : Gun
 
     public override void Use()
     {
-        shoot();
+        Attack();
     }
 
     public override void Aim()
@@ -32,7 +32,12 @@ public class KnifeGun : Gun
     {
     }
 
-    private void shoot()
+    private void Attack()
+    {
+        anim.SetTrigger("Attack");
+    }
+
+    public void checkHit()
     {
         Ray r = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         r.origin = cam.transform.position;
@@ -42,5 +47,6 @@ public class KnifeGun : Gun
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
             weaponCoroutine = StartCoroutine(weaponCooldown());
         }
+
     }
 }
