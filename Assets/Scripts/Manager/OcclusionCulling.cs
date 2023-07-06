@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class OcclusionCulling : MonoBehaviour
 {
-    private int alwaysVisibleLayer = 8; // El layer que deseas mantener siempre visible   
+    [SerializeField] private LayerMask alwaysVisibleLayers; // El layer que deseas mantener siempre visible   
 
     private void Update()
     {
@@ -12,7 +12,7 @@ public class OcclusionCulling : MonoBehaviour
         foreach (Renderer renderer in renderers)
         {
             // Comprueba si el renderizador está en el layer siempre visible
-            if (renderer.gameObject.layer == alwaysVisibleLayer)
+            if (renderer.gameObject.layer == alwaysVisibleLayers)
             {
                 // Mantén el renderizador siempre visible
                 renderer.enabled = true;
