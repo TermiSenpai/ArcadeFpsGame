@@ -1,3 +1,4 @@
+using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ public class PlayerCam : MonoBehaviour
             {
                 Destroy(c.gameObject);
             }
+            CinemachineVirtualCamera cam = cameraHolder.GetComponentInChildren<CinemachineVirtualCamera>();
+            Destroy(cam);
         }
     }
 
