@@ -117,6 +117,21 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
                 break;
         }
     }
+    public void OnAimInput(InputAction.CallbackContext context)
+    {
+        if (!pv.IsMine)
+            return;
+
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                items[itemIndex].Aim();
+                break;
+            case InputActionPhase.Canceled:
+                items[itemIndex].StopAim();
+                break;
+        }
+    }
 
     #endregion
 }

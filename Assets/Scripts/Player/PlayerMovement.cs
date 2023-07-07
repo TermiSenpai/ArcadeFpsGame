@@ -8,28 +8,27 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] PlayerMovConfig config;
+    CharacterController controller;
     PlayerJump player;
 
-    [Header("Inputs and movement")]
-    private Vector2 movementInput;
+    float curMovementSpeed;
+
+    Vector2 movementInput;
     Vector3 moveDirection;
+    Vector3 currentSpeed;
 
     PhotonView pv;
-    Rigidbody rb;
 
     private void Awake()
     {
         player = GetComponent<PlayerJump>();
         pv = GetComponent<PhotonView>();
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        controller = GetComponent<CharacterController>();
     }
 
     private void Start()
     {
-        if (!pv.IsMine)
-            Destroy(rb);
-
+        controller.detectCollisions = true;
     }
 
     private void Update()
@@ -37,34 +36,57 @@ public class PlayerMovement : MonoBehaviour
         if (!pv.IsMine) return;
 
         MovePlayer();
-        controlDrag();
+        controlSpeed();
     }
 
-    private void controlDrag()
+    private void controlSpeed()
     {
         if (player.isGrounded())
         {
-            config.movSpeed = 3.5f;
-            rb.drag = config.groundDrag;
+            curMovementSpeed = config.groundSpeed;
         }
+
         else if (!player.isGrounded())
         {
-            config.movSpeed = 2;
-            rb.drag = config.airDrag;
+            curMovementSpeed = config.airSpeed;
         }
     }
 
     private void MovePlayer()
     {
+
         moveDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
+        moveDirection = moveDirection.normalized;
 
-        if (player.isGrounded())
-            rb.AddForce(moveDirection.normalized * config.movSpeed * config.movMultiplier, ForceMode.Acceleration);
-        else if(!player.isGrounded())
-            rb.AddForce(moveDirection.normalized * config.movSpeed * config.airMovMultiplier, ForceMode.Acceleration);
+        // Si hay movimiento
+        if (moveDirection.magnitude >= 0.1f)
+        {
+            // Calcular la velocidad objetivo
+            Vector3 objetiveSpeed = moveDirection * config.maxSpeed;
 
+            // Calcular la aceleración
+            currentSpeed = Vector3.Lerp(currentSpeed, objetiveSpeed, config.acceleration * Time.deltaTime);
+        }
+        else
+        {
+            switch (player.isGrounded())
 
+            {
+                case true:
+                    // Si no hay movimiento, detener al personaje
+                    currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.groundDeceleration * Time.deltaTime);
+                    break;
+                case false:
+                    currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.airDeceleration * Time.deltaTime);
+                    break;
+            }
+
+        }
+        controller.Move(currentSpeed * curMovementSpeed * Time.deltaTime);
     }
+
+
+
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         switch (context.phase)
@@ -82,3 +104,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+

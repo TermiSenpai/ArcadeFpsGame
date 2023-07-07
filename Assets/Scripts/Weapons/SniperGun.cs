@@ -5,22 +5,51 @@ using UnityEngine;
 
 public class SniperGun : Gun
 {
+    [SerializeField] GameObject scopeOverlay; 
+    [SerializeField] GameObject crosshairOverlay; 
     [SerializeField] Camera cam;
+    [SerializeField] GameObject weaponCam;
     PhotonView pv;
+    Animator anim;
+
+    
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-    }
-    private void Start()
-    {
-        if (pv.IsMine)
-            gameObject.layer = 8;
-    }
+        anim = GetComponent<Animator>();
+    }   
 
     public override void Use()
     {
+        if (!canUse) return;
+
         shoot();
+    }
+
+    public override void Aim()
+    {
+        anim.SetBool("Scoped", true);
+    }
+
+    public override void StopAim()
+    {
+        anim.SetBool("Scoped", false);        
+    }
+
+    public void enableScopeOverlay()
+    {
+        cam.fieldOfView = 15f;
+        scopeOverlay.SetActive(true);
+        crosshairOverlay.SetActive(false);
+        weaponCam.SetActive(false);
+    }
+    public void disableScopeOverlay()
+    {
+        cam.fieldOfView = 60f;
+        scopeOverlay.SetActive(false);
+        crosshairOverlay.SetActive(true);
+        weaponCam.SetActive(true);
     }
 
     private void shoot()
@@ -31,9 +60,14 @@ public class SniperGun : Gun
         if (Physics.Raycast(r, out RaycastHit hit))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
+            weaponCoroutine = StartCoroutine(weaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
     }
+
+    
+
+
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
