@@ -1,3 +1,4 @@
+using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,8 @@ public class SniperGun : Gun
 {
     [SerializeField] GameObject scopeOverlay; 
     [SerializeField] GameObject crosshairOverlay; 
-    [SerializeField] Camera cam;
+    
+    [SerializeField] CinemachineVirtualCamera cam;
     [SerializeField] GameObject weaponCam;
     PhotonView pv;
     Animator anim;
@@ -39,14 +41,14 @@ public class SniperGun : Gun
 
     public void enableScopeOverlay()
     {
-        cam.fieldOfView = 15f;
+        cam.m_Lens.FieldOfView = 15f;
         scopeOverlay.SetActive(true);
         crosshairOverlay.SetActive(false);
         weaponCam.SetActive(false);
     }
     public void disableScopeOverlay()
     {
-        cam.fieldOfView = 60f;
+        cam.m_Lens.FieldOfView = 60f;
         scopeOverlay.SetActive(false);
         crosshairOverlay.SetActive(true);
         weaponCam.SetActive(true);
@@ -54,7 +56,7 @@ public class SniperGun : Gun
 
     private void shoot()
     {
-        Ray r = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         r.origin = cam.transform.position;
 
         if (Physics.Raycast(r, out RaycastHit hit))

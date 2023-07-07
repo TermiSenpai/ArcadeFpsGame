@@ -11,24 +11,20 @@ public class SensitivitySettings : MonoBehaviour
 
     private void Start()
     {
-        xSlider.value = PlayerPrefs.GetFloat("sensX");
-        ySlider.value = PlayerPrefs.GetFloat("sensY");
+        xSlider.value = PlayerPrefs.GetFloat("sens");
         
     }
 
-    public void setXSens(float newValue) => sensConfig.CamSensX = newValue;
-    public void setYSens(float newValue) => sensConfig.CamSensY = newValue;
+    public void setSens(float newValue) => sensConfig.sensitivity = newValue;
 
     private void OnEnable()
     {
-        xSlider.value = sensConfig.CamSensX;
-        ySlider.value = sensConfig.CamSensY;
+        xSlider.value = sensConfig.sensitivity;
     }
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat("sensX", xSlider.value);
-        PlayerPrefs.SetFloat("sensY", ySlider.value);
+        PlayerPrefs.SetFloat("sens", xSlider.value);
     }
 
 
