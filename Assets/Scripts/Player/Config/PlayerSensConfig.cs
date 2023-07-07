@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerSensConfig : ScriptableObject
 {
-    [Range (0.1f, 1f)] public float CamSensY;
-    [Range(0.1f, 1f)] public float CamSensX;
+    public float sensitivity;   
+    public float smoothSpeed;
 
     public int maxY = 90;
     public int minY = -85;

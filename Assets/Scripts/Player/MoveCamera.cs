@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public Transform cameraPosition;
-    void FixedUpdate()
+    public Transform target;
+    public float smoothSpeed;
+   
+    void LateUpdate()
     {
-        transform.position = cameraPosition.position;
+        transform.position = Vector3.Lerp(transform.position, target.position, smoothSpeed * Time.deltaTime);
+        transform.LookAt(target);
+        
     }
 }

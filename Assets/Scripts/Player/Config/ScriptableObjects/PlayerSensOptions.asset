@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f0606952c6b1947b319148b65e0146, type: 3}
   m_Name: PlayerSensOptions
   m_EditorClassIdentifier: 
-  CamSensY: 0.1
-  CamSensX: 0.1
+  sensitivity: 0
+  smoothSpeed: 1
   maxY: 85
   minY: -75
