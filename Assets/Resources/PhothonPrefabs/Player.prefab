@@ -3391,7 +3391,7 @@ MonoBehaviour:
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
   cooldownSeconds: 0.75
-  cam: {fileID: 5487468530309266095}
+  cam: {fileID: 9111037616720877483}
 --- !u!114 &8020699279095271409
 MonoBehaviour:
   m_ObjectHideFlags: 0
