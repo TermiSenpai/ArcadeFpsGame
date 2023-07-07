@@ -2567,6 +2567,7 @@ MonoBehaviour:
   items:
   - {fileID: 6095217042364308606}
   - {fileID: 6095217042364308607}
+  isAiming: 0
 --- !u!114 &6062109617032368201
 MonoBehaviour:
   m_ObjectHideFlags: 0

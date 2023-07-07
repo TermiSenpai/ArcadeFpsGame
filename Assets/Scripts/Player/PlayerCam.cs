@@ -5,21 +5,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerCam : MonoBehaviour
 {
     public PlayerSensConfig config;
     [SerializeField] Transform cameraHolder;
+    PlayerWeapons player;
 
     float camCurXRot;
     float yRotation;
 
     private Vector2 mouseDelta;
-
     PhotonView pv;
+
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        player = GetComponent<PlayerWeapons>();
     }
     private void Start()
     {
@@ -46,9 +49,10 @@ public class PlayerCam : MonoBehaviour
 
     void playerLook()
     {
+        float currentSens = player.isAiming ? config.aimSens : config.sensitivity;
         // Aumenta el valor actual de camCurXRot por la entrada vertical del ratón multiplicada por un factor de sensibilidad
         // Esto controla la rotación vertical de la cámara
-        camCurXRot += mouseDelta.y * config.sensitivity;
+        camCurXRot += mouseDelta.y * currentSens;
 
         // Limita el valor de camCurXRot dentro del rango definido por config.minY y config.maxY
         // asegurando que la rotación vertical de la cámara esté dentro de los límites establecidos
@@ -60,8 +64,8 @@ public class PlayerCam : MonoBehaviour
 
         // Actualiza la rotación del jugador en el eje Y
         // utilizando la entrada horizontal del ratón multiplicada por la sensibilidad
-        // Esto permite que el jugador rote horizontalmente
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * config.sensitivity, 0);
+        // Esto permite que el jugador rote horizontalmente        
+        transform.eulerAngles += new Vector3(0, mouseDelta.x * currentSens, 0);
 
 
     }

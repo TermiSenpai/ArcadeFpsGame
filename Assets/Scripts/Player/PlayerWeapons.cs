@@ -11,6 +11,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     int itemIndex = -1;
     int previusItemIndex = -1;
 
+    public bool isAiming = false;
     PhotonView pv;
 
     private void Awake()
@@ -126,9 +127,11 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         {
             case InputActionPhase.Started:
                 items[itemIndex].Aim();
+                isAiming = true;
                 break;
             case InputActionPhase.Canceled:
                 items[itemIndex].StopAim();
+                isAiming = false;
                 break;
         }
     }
