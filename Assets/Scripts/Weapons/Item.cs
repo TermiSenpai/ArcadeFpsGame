@@ -8,6 +8,8 @@ public abstract class Item : MonoBehaviour
     public GameObject itemGameobject;
     public GameObject handsGameobject;
 
+
+
     public abstract void Use();
     public abstract void Aim();
     public abstract void StopAim();

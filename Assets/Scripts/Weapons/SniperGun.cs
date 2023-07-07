@@ -6,21 +6,20 @@ using UnityEngine;
 
 public class SniperGun : Gun
 {
-    [SerializeField] GameObject scopeOverlay; 
-    [SerializeField] GameObject crosshairOverlay; 
-    
+    [SerializeField] GameObject scopeOverlay;
+    [SerializeField] GameObject crosshairOverlay;
+
     [SerializeField] CinemachineVirtualCamera cam;
     [SerializeField] GameObject weaponCam;
     PhotonView pv;
     Animator anim;
 
-    
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
-    }   
+    }
 
     public override void Use()
     {
@@ -32,11 +31,12 @@ public class SniperGun : Gun
     public override void Aim()
     {
         anim.SetBool("Scoped", true);
+
     }
 
     public override void StopAim()
     {
-        anim.SetBool("Scoped", false);        
+        anim.SetBool("Scoped", false);
     }
 
     public void enableScopeOverlay()
@@ -67,7 +67,7 @@ public class SniperGun : Gun
         }
     }
 
-    
+
 
 
 

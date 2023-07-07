@@ -14,12 +14,12 @@ public class SensitivitySettings : MonoBehaviour
 
     private void Start()
     {
-        normalSlider.value = PlayerPrefs.GetFloat("normalSens");
-        aimSlider.value = PlayerPrefs.GetFloat("aimSens");
+        sensConfig.sensitivity = PlayerPrefs.GetFloat("normalSens");
+        sensConfig.aimSens = PlayerPrefs.GetFloat("aimSens");
     }
 
     public void setNormalSens(float newValue) => sensConfig.sensitivity = newValue;
-    public void setAimSens(float newValue) => sensConfig.sensitivity = newValue;
+    public void setAimSens(float newValue) => sensConfig.aimSens = newValue;
 
     public void setValueToTxt()
     {
