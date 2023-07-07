@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSensConfig : ScriptableObject
 {
     public float sensitivity;   
-    public float smoothSpeed;
+    public float aimSens;   
 
     public int maxY = 90;
     public int minY = -85;
