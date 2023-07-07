@@ -1,3 +1,4 @@
+using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ public class PlayerCam : MonoBehaviour
     public PlayerSensConfig config;
     [SerializeField] Transform cameraHolder;
 
-    float xRotation;
+    float camCurXRot;
     float yRotation;
 
-    private Vector2 camInput;
+    private Vector2 mouseDelta;
 
     PhotonView pv;
 
@@ -32,6 +33,8 @@ public class PlayerCam : MonoBehaviour
             {
                 Destroy(c.gameObject);
             }
+            CinemachineVirtualCamera cam = cameraHolder.GetComponentInChildren<CinemachineVirtualCamera>();
+            Destroy(cam);
         }
     }
 
@@ -43,22 +46,29 @@ public class PlayerCam : MonoBehaviour
 
     void playerLook()
     {
-        float mouseX = camInput.x * config.CamSensX;
-        float mouseY = camInput.y * config.CamSensY;
+        // Aumenta el valor actual de camCurXRot por la entrada vertical del ratón multiplicada por un factor de sensibilidad
+        // Esto controla la rotación vertical de la cámara
+        camCurXRot += mouseDelta.y * config.sensitivity;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, config.minY, config.maxY);
+        // Limita el valor de camCurXRot dentro del rango definido por config.minY y config.maxY
+        // asegurando que la rotación vertical de la cámara esté dentro de los límites establecidos
+        camCurXRot = Mathf.Clamp(camCurXRot, config.minY, config.maxY);
 
-        cameraHolder.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
-        transform.eulerAngles += new Vector3(0, camInput.x * config.CamSensX, 0);
+        // Actualiza la rotación local de cameraHolder en el eje X con el valor negativo de camCurXRot
+        // controlando la inclinación vertical de la cámara
+        cameraHolder.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+
+        // Actualiza la rotación del jugador en el eje Y
+        // utilizando la entrada horizontal del ratón multiplicada por la sensibilidad
+        // Esto permite que el jugador rote horizontalmente
+        transform.eulerAngles += new Vector3(0, mouseDelta.x * config.sensitivity, 0);
+
 
     }
 
     public void OnLookInput(InputAction.CallbackContext context)
     {
-        camInput = context.ReadValue<Vector2>();
+        mouseDelta = context.ReadValue<Vector2>();
     }
 
 }
