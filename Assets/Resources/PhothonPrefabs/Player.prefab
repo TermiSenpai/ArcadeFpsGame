@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 2176998143929060882}
   - component: {fileID: 1548553188278523047}
   - component: {fileID: 3341915821827854358}
+  - component: {fileID: 3201107074517156497}
   m_Layer: 7
   m_Name: advancedCharacter
   m_TagString: Untagged
@@ -580,7 +581,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548553188278523048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a905381a77258f34291d640b38118047, type: 3}
   m_Name: 
@@ -610,6 +611,21 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &3201107074517156497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548553188278523048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPv: {fileID: 3341915821827854358}
+  root: {fileID: 1548553188278523048}
+  weaponLayerValue: 9
 --- !u!1 &1681112669535817829
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +717,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681112669535817829}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
   m_Name: 
@@ -3796,8 +3812,8 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    NearClipPlane: 0.01
+    FarClipPlane: 150
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}

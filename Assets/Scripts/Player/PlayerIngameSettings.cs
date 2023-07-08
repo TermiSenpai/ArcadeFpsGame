@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerIngameSettings : MonoBehaviour
 {
 
-    InGameMenu settingsMenu;
+    //InGameMenu settingsMenu;
 
     [SerializeField] PlayerCam playerCam;
     [SerializeField] PlayerJump playerJump;
@@ -15,14 +15,14 @@ public class PlayerIngameSettings : MonoBehaviour
 
     private void Awake()
     {
-        settingsMenu = FindObjectOfType<InGameMenu>();
+        //settingsMenu = FindObjectOfType<InGameMenu>();
     }
 
     private void toggleMenu()
     {
-        bool toggle = !settingsMenu.pauseMenu.activeInHierarchy;
+        bool toggle = !InGameMenu.Instance.pauseMenu.activeInHierarchy;
         togglePlayerControlls(toggle);        
-        settingsMenu.togglePauseMenu(toggle);
+        InGameMenu.Instance.togglePauseMenu(toggle);
     }
 
     private void togglePlayerControlls(bool value)

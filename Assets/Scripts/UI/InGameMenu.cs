@@ -7,8 +7,14 @@ using UnityEngine.UI;
 
 public class InGameMenu : MonoBehaviour
 {
+    public static InGameMenu Instance;
+
     public GameObject pauseMenu;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void togglePauseMenu(bool value)
     {

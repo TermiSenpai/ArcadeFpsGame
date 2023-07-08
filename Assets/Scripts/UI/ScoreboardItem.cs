@@ -11,6 +11,7 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
     public TMP_Text usernameTxt;
     public TMP_Text killsTxt;
     public TMP_Text deathsTxt;
+    public TMP_Text pingTxt;
 
     Player player;
 
@@ -32,6 +33,16 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         {
             deathsTxt.text = deaths.ToString();
         }
+    }
+
+    private void Update()
+    {
+        updatePing();
+    }
+
+    void updatePing()
+    {       
+        pingTxt.text = PhotonNetwork.GetPing().ToString();
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hastable changedProps)
