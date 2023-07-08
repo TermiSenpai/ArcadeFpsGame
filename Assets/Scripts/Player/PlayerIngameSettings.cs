@@ -11,12 +11,7 @@ public class PlayerIngameSettings : MonoBehaviour
 
     [SerializeField] PlayerCam playerCam;
     [SerializeField] PlayerJump playerJump;
-    [SerializeField] PlayerMovement playerMov;
-
-    private void Awake()
-    {
-        //settingsMenu = FindObjectOfType<InGameMenu>();
-    }
+    [SerializeField] PlayerMovement playerMov;    
 
     private void toggleMenu()
     {

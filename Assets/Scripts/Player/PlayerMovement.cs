@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
+
+
+
     [SerializeField] PlayerMovConfig config;
     CharacterController controller;
     PlayerJump player;
@@ -21,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         player = GetComponent<PlayerJump>();
         pv = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController>();
