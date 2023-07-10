@@ -59,9 +59,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-
+        // Normalized in PlayerInputs Processor
         moveDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
-        moveDirection = moveDirection.normalized;
 
         // Si hay movimiento
         if (moveDirection.magnitude >= 0.1f)
