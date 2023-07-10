@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class PlayerCameraWeapons : MonoBehaviour
 {
-    [SerializeField] PhotonView playerPv;
-    [SerializeField] GameObject root;
+    PhotonView playerPv;
+    [SerializeField] GameObject[] ObjectsToWeaponLayer;
     [SerializeField] int weaponLayerValue = 8;
+
+    private void Awake()
+    {
+        playerPv = GetComponent<PhotonView>();
+    }
 
     private void Start()
     {
@@ -16,9 +21,10 @@ public class PlayerCameraWeapons : MonoBehaviour
     }
     void changeLayer()
     {
-        root.layer = weaponLayerValue;
-        Transform[] childs = GetComponentsInChildren<Transform>();
-        foreach (Transform child in childs)
-            child.gameObject.layer = weaponLayerValue;
+        // objects that need to be of a specific layer
+        foreach (GameObject part in ObjectsToWeaponLayer)
+        {
+            part.layer = weaponLayerValue;
+        }
     }
 }
