@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    public ItemInfo itemInfo;
+    public GunInfo gunInfo;
     public GameObject itemGameobject;
     public GameObject handsGameobject;
 

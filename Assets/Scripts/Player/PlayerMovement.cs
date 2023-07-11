@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement Instance;
 
 
     [SerializeField] PlayerMovConfig config;
@@ -23,15 +22,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         player = GetComponent<PlayerJump>();
         pv = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController>();
-    }
-
-    private void Start()
-    {
-        controller.detectCollisions = true;
     }
 
     private void Update()
@@ -81,7 +74,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void setVelocity()
     {
+        Debug.Log($"new velocity: {velocityToSet}");
         currentSpeed = velocityToSet;
+        Debug.Log($"applyed: {currentSpeed}");
     }
 
     private void increaseSpeed()

@@ -24,6 +24,11 @@ public class PlayerJump : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    private void Start()
+    {
+        if (!pv.IsMine) Destroy(this);
+    }
+
 
     private void FixedUpdate()
     {
@@ -35,6 +40,9 @@ public class PlayerJump : MonoBehaviour
 
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
+        Debug.Log("calculate");
+
+        Debug.Log("calculating");
         float gravity = Physics.gravity.y * config.gravityMultiplier;
         float displacementY = endPoint.y - startPoint.y;
 

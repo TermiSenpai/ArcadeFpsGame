@@ -2432,6 +2432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5487468529459871341}
+  - component: {fileID: 5814974665770905854}
   - component: {fileID: 6095217042155911570}
   - component: {fileID: 6393457726681453524}
   - component: {fileID: 6095217042096614559}
@@ -2439,12 +2440,11 @@ GameObject:
   - component: {fileID: 6095217042096614560}
   - component: {fileID: 6062109617032368201}
   - component: {fileID: 6095217042096614561}
-  - component: {fileID: 5487468529459871342}
   - component: {fileID: 650088769}
   - component: {fileID: 393713488862476061}
   - component: {fileID: 1533611051077154744}
   - component: {fileID: 4136674286549288116}
-  - component: {fileID: 5814974665770905854}
+  - component: {fileID: 5487468529459871342}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2472,6 +2472,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5814974665770905854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c28db9ee3754448a7948828ad9fb73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 6158077663866282900}
+  gunTip: {fileID: 17730566319894264}
+  whatIsGrappleable:
+    serializedVersion: 2
+    m_Bits: 8
+  lr: {fileID: 493826112993957542}
+  maxGrappleDistance: 100
+  grappleDelay: 0.1
+  overshootYAxis: 2.5
+  grapplingCd: 0.5
+  isGrappling: 0
 --- !u!114 &6095217042155911570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2584,6 +2607,78 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!143 &650088769
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.6
+  m_Radius: 0.08
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.1
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &393713488862476061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dcc50c64e84904c8a1e08969d71cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1533611051077154744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf25b11989c39445a28a5399ef795be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 6393457726681453524}
+  playerJump: {fileID: 6095217042096614558}
+  playerMov: {fileID: 6095217042096614559}
+  playerWeapon: {fileID: 6095217042096614560}
+--- !u!114 &4136674286549288116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectsToWeaponLayer:
+  - {fileID: 6095217043222202092}
+  - {fileID: 8023445030871989263}
+  - {fileID: 233030808945955912}
+  - {fileID: 1686229442778204926}
+  - {fileID: 6470364844566125680}
+  - {fileID: 1749225603402742787}
+  - {fileID: 847277688265144321}
+  - {fileID: 3825844272961540447}
+  - {fileID: 1833193904957044478}
+  - {fileID: 6095217043717617500}
+  - {fileID: 1681112669535817829}
+  - {fileID: 3093761875666308937}
+  weaponLayerValue: 8
 --- !u!114 &5487468529459871342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2806,100 +2901,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!143 &650088769
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.6
-  m_Radius: 0.08
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.1
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &393713488862476061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69dcc50c64e84904c8a1e08969d71cf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1533611051077154744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf25b11989c39445a28a5399ef795be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCam: {fileID: 6393457726681453524}
-  playerJump: {fileID: 6095217042096614558}
-  playerMov: {fileID: 6095217042096614559}
---- !u!114 &4136674286549288116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectsToWeaponLayer:
-  - {fileID: 6095217043222202092}
-  - {fileID: 8023445030871989263}
-  - {fileID: 233030808945955912}
-  - {fileID: 1686229442778204926}
-  - {fileID: 6470364844566125680}
-  - {fileID: 1749225603402742787}
-  - {fileID: 847277688265144321}
-  - {fileID: 3825844272961540447}
-  - {fileID: 1833193904957044478}
-  - {fileID: 6095217043717617500}
-  - {fileID: 1681112669535817829}
-  - {fileID: 3093761875666308937}
-  weaponLayerValue: 8
---- !u!114 &5814974665770905854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c28db9ee3754448a7948828ad9fb73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camTransform: {fileID: 6158077663866282900}
-  gunTip: {fileID: 17730566319894264}
-  whatIsGrappleable:
-    serializedVersion: 2
-    m_Bits: 8
-  lr: {fileID: 493826112993957542}
-  maxGrappleDistance: 100
-  grappleDelay: 0.1
-  overshootYAxis: 2.5
-  grapplingCd: 0.5
-  isGrappling: 0
 --- !u!1 &5487468529805772124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3302,12 +3303,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5021b12c8939854daef7ba3b2e2d70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: e8f33769b1aaa1943841fcff8083a8e9, type: 2}
+  gunInfo: {fileID: 11400000, guid: e8f33769b1aaa1943841fcff8083a8e9, type: 2}
   itemGameobject: {fileID: 8023445030871989263}
   handsGameobject: {fileID: 847277688265144321}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
   cooldownSeconds: 1
+  otherPlayerLayer:
+    serializedVersion: 2
+    m_Bits: 2147483647
   scopeOverlay: {fileID: 641443908}
   crosshairOverlay: {fileID: 3980459047496005393}
   cam: {fileID: 9111037616720877483}
@@ -3416,12 +3420,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed5ca455dc54d34a9f77e390ad87ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 2a845cd39fbbd6b4b96dc6c250a5734f, type: 2}
+  gunInfo: {fileID: 11400000, guid: 2a845cd39fbbd6b4b96dc6c250a5734f, type: 2}
   itemGameobject: {fileID: 1681112669535817829}
   handsGameobject: {fileID: 3093761875666308937}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
   cooldownSeconds: 0.75
+  otherPlayerLayer:
+    serializedVersion: 2
+    m_Bits: 128
   cam: {fileID: 9111037616720877483}
 --- !u!114 &8020699279095271409
 MonoBehaviour:
