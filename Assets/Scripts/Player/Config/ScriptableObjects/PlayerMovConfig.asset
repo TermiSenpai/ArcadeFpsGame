@@ -16,5 +16,5 @@ MonoBehaviour:
   groundSpeed: 2
   airSpeed: 3
   acceleration: 2.5
-  groundDeceleration: 4
-  airDeceleration: 1
+  groundDeceleration: 5
+  airDeceleration: 1.5

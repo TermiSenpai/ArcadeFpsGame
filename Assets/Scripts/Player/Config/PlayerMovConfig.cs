@@ -11,4 +11,5 @@ public class PlayerMovConfig : ScriptableObject
     public float acceleration;
     public float groundDeceleration;
     public float airDeceleration;
+    public float grapplingDeceleration;
 }

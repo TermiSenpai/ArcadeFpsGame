@@ -17,6 +17,7 @@ public class PlayerGrappling : MonoBehaviour
     [Header("Grappling")]
     [SerializeField] private float maxGrappleDistance;
     [SerializeField] private float grappleDelay;
+    [SerializeField] private float overshootYAxis;
 
     private Vector3 grapplePoint;
 
@@ -29,13 +30,13 @@ public class PlayerGrappling : MonoBehaviour
     #region unity
     private void Awake()
     {
-        pv = GetComponent<PhotonView>();   
+        pv = GetComponent<PhotonView>();
         pm = GetComponent<PlayerMovement>();
     }
 
     private void Start()
     {
-        if(!pv.IsMine)
+        if (!pv.IsMine)
         {
 
         }
@@ -45,15 +46,15 @@ public class PlayerGrappling : MonoBehaviour
     {
         if (!pv.IsMine) return;
 
-        if(grapplingCdTimer > 0)
-            grapplingCdTimer -= Time.deltaTime; 
+        if (grapplingCdTimer > 0)
+            grapplingCdTimer -= Time.deltaTime;
     }
 
     private void LateUpdate()
     {
-        if(!pv.IsMine) return;
+        if (!pv.IsMine) return;
 
-        if(isGrappling)
+        if (isGrappling)
             lr.SetPosition(0, gunTip.position);
     }
     #endregion
@@ -65,8 +66,9 @@ public class PlayerGrappling : MonoBehaviour
         isGrappling = true;
 
         RaycastHit hit;
-        if(Physics.Raycast(camTransform.position, camTransform.forward, out hit, maxGrappleDistance, whatIsGrappleable)) 
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
+            PlayerMovement.Instance.isFreeze = true;
             grapplePoint = hit.point;
             Invoke(nameof(executeGrapple), grappleDelay);
         }
@@ -83,7 +85,16 @@ public class PlayerGrappling : MonoBehaviour
 
     void executeGrapple()
     {
+        PlayerMovement.Instance.isFreeze = false;
 
+        Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+        float grapplePointRelativeYPos = grapplePoint.y - lowestPoint.y;
+        float highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
+
+        if (grapplePointRelativeYPos < 0) highestPointOnArc = overshootYAxis;
+        pm.JumpToPosition(grapplePoint, highestPointOnArc);
+
+        Invoke(nameof(stopGrapple), grappleDelay);
     }
 
     void stopGrapple()
@@ -92,6 +103,8 @@ public class PlayerGrappling : MonoBehaviour
         grapplingCdTimer = grapplingCd;
 
         lr.enabled = false;
+        PlayerMovement.Instance.isFreeze = false;
+        PlayerMovement.Instance.isActiveGrapple = false;
     }
     #endregion
 
@@ -99,7 +112,7 @@ public class PlayerGrappling : MonoBehaviour
 
     public void OnGrappleInput(InputAction.CallbackContext context)
     {
-        switch(context.phase)
+        switch (context.phase)
         {
             case InputActionPhase.Started:
                 startGrapple();

@@ -2513,6 +2513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 6d86cc7c2e0d7d64c827621ae2499e94, type: 2}
+  isFreeze: 0
+  isActiveGrapple: 0
 --- !u!114 &6095217042096614558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2893,10 +2895,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   lr: {fileID: 493826112993957542}
-  maxGrappleDistance: 25
-  grappleDelay: 0.25
-  grapplingCd: 1
-  grapplingCdTimer: 0
+  maxGrappleDistance: 100
+  grappleDelay: 0.1
+  overshootYAxis: 2.5
+  grapplingCd: 0.5
   isGrappling: 0
 --- !u!1 &5487468529805772124
 GameObject:
