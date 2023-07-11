@@ -16,5 +16,6 @@ MonoBehaviour:
   groundSpeed: 2
   airSpeed: 3
   acceleration: 2.5
-  groundDeceleration: 5
+  groundDeceleration: 10
   airDeceleration: 1.5
+  grapplingDeceleration: 50
