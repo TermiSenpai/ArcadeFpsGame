@@ -9,10 +9,8 @@ public class PlayerIngameSettings : MonoBehaviour
 
     //InGameMenu settingsMenu;
 
-    [SerializeField] PlayerCam playerCam;
-    [SerializeField] PlayerJump playerJump;
-    [SerializeField] PlayerMovement playerMov;    
-    [SerializeField] PlayerWeapons playerWeapon;    
+    [SerializeField] MonoBehaviour[] controlsScripts;
+  
 
     private void toggleMenu()
     {
@@ -23,10 +21,10 @@ public class PlayerIngameSettings : MonoBehaviour
 
     private void togglePlayerControlls(bool value)
     {
-        playerCam.enabled = !value;
-        playerJump.enabled = !value;
-        playerMov.enabled = !value;
-        playerWeapon.enabled = !value;
+       foreach (var control in controlsScripts)
+        {
+            control.enabled = !value;
+        }
     }
 
     public void OnPauseInput(InputAction.CallbackContext context)

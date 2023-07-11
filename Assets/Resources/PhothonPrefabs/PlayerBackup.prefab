@@ -481,7 +481,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2176998143929060882}
-  - component: {fileID: 1548553188278523047}
   - component: {fileID: 3341915821827854358}
   m_Layer: 7
   m_Name: advancedCharacter
@@ -512,21 +511,6 @@ Transform:
   m_Father: {fileID: 5487468529805772123}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1548553188278523047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548553188278523048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a905381a77258f34291d640b38118047, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodyParts:
-  - {fileID: 3810854928533780765}
-  - {fileID: 1768244914748432060}
 --- !u!114 &3341915821827854358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2305,6 +2289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 6d86cc7c2e0d7d64c827621ae2499e94, type: 2}
+  isFreeze: 0
+  isActiveGrapple: 0
 --- !u!114 &6095217042096614558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3009,12 +2995,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5021b12c8939854daef7ba3b2e2d70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: e8f33769b1aaa1943841fcff8083a8e9, type: 2}
+  gunInfo: {fileID: 0}
   itemGameobject: {fileID: 8023445030871989263}
   handsGameobject: {fileID: 847277688265144321}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
   cooldownSeconds: 0
+  otherPlayerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   scopeOverlay: {fileID: 0}
   crosshairOverlay: {fileID: 0}
   cam: {fileID: 5487468530309266095}
@@ -3102,12 +3091,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed5ca455dc54d34a9f77e390ad87ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 2a845cd39fbbd6b4b96dc6c250a5734f, type: 2}
+  gunInfo: {fileID: 0}
   itemGameobject: {fileID: 1681112669535817829}
   handsGameobject: {fileID: 4061598966007251382}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
   cooldownSeconds: 0
+  otherPlayerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cam: {fileID: 5487468530309266095}
 --- !u!114 &8020699279095271409
 MonoBehaviour:

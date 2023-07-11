@@ -14,6 +14,8 @@ public class SniperGun : Gun
     PhotonView pv;
     Animator anim;
 
+    Coroutine curCoroutine;
+
 
     private void Awake()
     {
@@ -31,12 +33,16 @@ public class SniperGun : Gun
     public override void Aim()
     {
         anim.SetBool("Scoped", true);
-
+        curCoroutine = StartCoroutine(nameof(enableScope));
     }
 
     public override void StopAim()
     {
+        if(curCoroutine != null)
+            StopCoroutine(curCoroutine);
+
         anim.SetBool("Scoped", false);
+        disableScopeOverlay();
     }
 
     public void enableScopeOverlay()
@@ -54,6 +60,12 @@ public class SniperGun : Gun
         weaponCam.SetActive(true);
     }
 
+    private IEnumerator enableScope()
+    {
+        yield return new WaitForSeconds(0.15f);
+        enableScopeOverlay();   
+    }
+    
     private void shoot()
     {
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));

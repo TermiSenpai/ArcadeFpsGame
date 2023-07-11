@@ -2568,6 +2568,7 @@ MonoBehaviour:
   - {fileID: 6095217042364308606}
   - {fileID: 6095217042364308607}
   isAiming: 0
+  canChangeWeapon: 1
 --- !u!114 &6062109617032368201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2649,10 +2650,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf25b11989c39445a28a5399ef795be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 6393457726681453524}
-  playerJump: {fileID: 6095217042096614558}
-  playerMov: {fileID: 6095217042096614559}
-  playerWeapon: {fileID: 6095217042096614560}
+  controlsScripts:
+  - {fileID: 393713488862476061}
+  - {fileID: 6095217042096614560}
+  - {fileID: 6095217042096614558}
+  - {fileID: 6095217042096614559}
+  - {fileID: 6393457726681453524}
+  - {fileID: 5814974665770905854}
 --- !u!114 &4136674286549288116
 MonoBehaviour:
   m_ObjectHideFlags: 0

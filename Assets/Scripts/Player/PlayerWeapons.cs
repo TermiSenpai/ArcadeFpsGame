@@ -12,6 +12,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     int previusItemIndex = -1;
 
     public bool isAiming = false;
+    public bool canChangeWeapon = true;
     PhotonView pv;
 
     private void Awake()
@@ -98,6 +99,8 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         if (!pv.IsMine)
             return;
 
+        if (!canChangeWeapon) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:
@@ -128,10 +131,12 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
             case InputActionPhase.Started:
                 items[itemIndex].Aim();
                 isAiming = true;
+                canChangeWeapon = false;
                 break;
             case InputActionPhase.Canceled:
                 items[itemIndex].StopAim();
                 isAiming = false;
+                canChangeWeapon = true;
                 break;
         }
     }
