@@ -8,7 +8,8 @@ public abstract class Gun : Item
     public GameObject bulletImpactPrefab;
     public bool canUse = true;
     public float cooldownSeconds;
-    public Coroutine weaponCoroutine;    
+    public Coroutine weaponCoroutine;
+    public LayerMask otherPlayerLayer;
 
     public abstract override void Use();
 

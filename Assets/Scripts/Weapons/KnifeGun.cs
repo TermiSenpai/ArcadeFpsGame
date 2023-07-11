@@ -43,9 +43,9 @@ public class KnifeGun : Gun
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         r.origin = cam.transform.position;
 
-        if (Physics.Raycast(r, out RaycastHit hit, ((GunInfo)itemInfo).maxDistance))
+        if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance))
         {
-            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
+            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
             weaponCoroutine = StartCoroutine(weaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }

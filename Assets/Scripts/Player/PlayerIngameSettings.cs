@@ -12,6 +12,7 @@ public class PlayerIngameSettings : MonoBehaviour
     [SerializeField] PlayerCam playerCam;
     [SerializeField] PlayerJump playerJump;
     [SerializeField] PlayerMovement playerMov;    
+    [SerializeField] PlayerWeapons playerWeapon;    
 
     private void toggleMenu()
     {
@@ -25,6 +26,7 @@ public class PlayerIngameSettings : MonoBehaviour
         playerCam.enabled = !value;
         playerJump.enabled = !value;
         playerMov.enabled = !value;
+        playerWeapon.enabled = !value;
     }
 
     public void OnPauseInput(InputAction.CallbackContext context)

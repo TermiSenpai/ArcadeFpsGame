@@ -1,14 +1,9 @@
 using Photon.Pun;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement Instance;
-
 
 
     [SerializeField] PlayerMovConfig config;
@@ -20,28 +15,26 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movementInput;
     Vector3 moveDirection;
     Vector3 currentSpeed;
-
+    public bool isFreeze = false;
+    public bool isActiveGrapple = false;
     PhotonView pv;
+    Vector3 velocityToSet;
 
     private void Awake()
     {
-        Instance = this;
         player = GetComponent<PlayerJump>();
         pv = GetComponent<PhotonView>();
         controller = GetComponent<CharacterController>();
     }
 
-    private void Start()
-    {
-        controller.detectCollisions = true;
-    }
-
     private void Update()
     {
         if (!pv.IsMine) return;
+        if (isActiveGrapple) return;
 
         MovePlayer();
         controlSpeed();
+        FreezePlayer();
     }
 
     private void controlSpeed()
@@ -64,32 +57,56 @@ public class PlayerMovement : MonoBehaviour
 
         // Si hay movimiento
         if (moveDirection.magnitude >= 0.1f)
-        {
-            // Calcular la velocidad objetivo
-            Vector3 objetiveSpeed = moveDirection * config.maxSpeed;
+            increaseSpeed();
 
-            // Calcular la aceleración
-            currentSpeed = Vector3.Lerp(currentSpeed, objetiveSpeed, config.acceleration * Time.deltaTime);
-        }
         else
-        {
-            switch (player.isGrounded())
+            reduceSpeed();
 
-            {
-                case true:
-                    // Si no hay movimiento, detener al personaje
-                    currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.groundDeceleration * Time.deltaTime);
-                    break;
-                case false:
-                    currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.airDeceleration * Time.deltaTime);
-                    break;
-            }
-
-        }
         controller.Move(currentSpeed * curMovementSpeed * Time.deltaTime);
     }
 
+    public void JumpToPosition(Vector3 targetPos, float trajectoryHeight)
+    {
+        isActiveGrapple = true;
+        velocityToSet = player.CalculateJumpVelocity(transform.position, targetPos, trajectoryHeight);
+        Invoke(nameof(setVelocity), 0.1f);
+    }
 
+    private void setVelocity()
+    {
+        currentSpeed = velocityToSet;
+    }
+
+    private void increaseSpeed()
+    {
+        // Calcular la velocidad objetivo
+        Vector3 objetiveSpeed = moveDirection * config.maxSpeed;
+
+        // Calcular la aceleración
+        currentSpeed = Vector3.Lerp(currentSpeed, objetiveSpeed, config.acceleration * Time.deltaTime);
+    }
+
+    private void reduceSpeed()
+    {
+        switch (player.isGrounded())
+        {
+            case true:
+                // Si no hay movimiento, detener al personaje
+                currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.groundDeceleration * Time.deltaTime);
+                break;
+            case false:
+                currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.airDeceleration * Time.deltaTime);
+                break;
+        }
+    }
+
+    private void FreezePlayer()
+    {
+        if (!isFreeze) return;
+
+        currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, config.grapplingDeceleration * Time.deltaTime);
+
+    }
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {

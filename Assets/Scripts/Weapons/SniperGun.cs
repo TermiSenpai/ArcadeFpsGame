@@ -59,9 +59,9 @@ public class SniperGun : Gun
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         r.origin = cam.transform.position;
 
-        if (Physics.Raycast(r, out RaycastHit hit))
+        if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
         {
-            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(((GunInfo)itemInfo).damage);
+            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
             weaponCoroutine = StartCoroutine(weaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
