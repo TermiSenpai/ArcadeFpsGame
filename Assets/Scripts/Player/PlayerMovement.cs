@@ -74,9 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void setVelocity()
     {
-        Debug.Log($"new velocity: {velocityToSet}");
         currentSpeed = velocityToSet;
-        Debug.Log($"applyed: {currentSpeed}");
     }
 
     private void increaseSpeed()

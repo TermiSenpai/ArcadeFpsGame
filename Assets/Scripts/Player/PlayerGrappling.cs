@@ -55,18 +55,15 @@ public class PlayerGrappling : MonoBehaviour
     #region Grapple
     void startGrapple()
     {
-        Debug.Log("Start");
         if (grapplingCdTimer > 0) return;
 
         pm.isFreeze = true;
         isGrappling = true;
-        Debug.Log("start raycast");
         RaycastHit hit;
         if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
             grapplePoint = hit.point;
             Invoke(nameof(executeGrapple), grappleDelay);
-            Debug.Log(hit.collider.gameObject.name);
         }
         else
         {
@@ -81,7 +78,6 @@ public class PlayerGrappling : MonoBehaviour
 
     void executeGrapple()
     {
-        Debug.Log("execute");
         if (!pv.IsMine) return;
 
         pm.isFreeze = false;
@@ -91,7 +87,6 @@ public class PlayerGrappling : MonoBehaviour
         float highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
 
         if (grapplePointRelativeYPos < 0) highestPointOnArc = overshootYAxis;
-        Debug.Log("Jump");
         pm.JumpToPosition(grapplePoint, highestPointOnArc);
 
         Invoke(nameof(stopGrapple), grappleDelay);
@@ -106,7 +101,6 @@ public class PlayerGrappling : MonoBehaviour
         lr.enabled = false;
         pm.isFreeze = false;
         pm.isActiveGrapple = false;
-        Debug.Log("Stop");
     }
     #endregion
 
