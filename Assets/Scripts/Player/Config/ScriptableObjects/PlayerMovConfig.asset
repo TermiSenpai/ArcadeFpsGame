@@ -18,4 +18,4 @@ MonoBehaviour:
   acceleration: 2.5
   groundDeceleration: 10
   airDeceleration: 1.5
-  grapplingDeceleration: 50
+  grapplingDeceleration: 10
