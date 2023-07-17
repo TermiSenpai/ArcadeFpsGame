@@ -32,6 +32,9 @@ public class KnifeGun : Gun
     public override void StopAim()
     {
     }
+    public override void Reload()
+    {        
+    }
 
     private void Attack()
     {

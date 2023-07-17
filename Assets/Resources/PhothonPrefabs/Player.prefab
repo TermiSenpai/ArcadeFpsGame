@@ -2490,7 +2490,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   lr: {fileID: 493826112993957542}
-  maxGrappleDistance: 100
+  maxGrappleDistance: 75
   grappleDelay: 0.1
   overshootYAxis: 2.5
   grapplingCd: 0.5
@@ -2881,7 +2881,19 @@ MonoBehaviour:
     m_ActionId: 4296230a-6ec9-4451-8e21-93f133246347
     m_ActionName: Player/Scoreboard[/Keyboard/tab]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6095217042096614560}
+        m_TargetAssemblyTypeName: PlayerWeapons, Assembly-CSharp
+        m_MethodName: OnReloadInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 26767de7-4d67-4f67-89c8-89e33908c66e
     m_ActionName: Player/Reload[/Keyboard/r]
   - m_PersistentCalls:
@@ -3312,14 +3324,16 @@ MonoBehaviour:
   handsGameobject: {fileID: 847277688265144321}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
-  cooldownSeconds: 1
+  cooldownSeconds: 0.4
   otherPlayerLayer:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 2147484095
   scopeOverlay: {fileID: 641443908}
   crosshairOverlay: {fileID: 3980459047496005393}
   cam: {fileID: 9111037616720877483}
   weaponCam: {fileID: 7224073935488071204}
+  maxAmmo: 3
+  reloadTimeDelay: 1.5
 --- !u!114 &2012654019935618904
 MonoBehaviour:
   m_ObjectHideFlags: 0

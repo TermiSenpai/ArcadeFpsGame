@@ -141,5 +141,15 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         }
     }
 
+    public void OnReloadInput(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                items[itemIndex].Reload();
+                break;
+        }
+    }
+
     #endregion
 }
