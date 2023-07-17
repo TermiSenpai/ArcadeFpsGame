@@ -44,6 +44,7 @@ MonoBehaviour:
   - RPC_UpdateBar
   - RPC_GetKill
   - RPC_GetDeath
+  - RPC_ImpactPool
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
