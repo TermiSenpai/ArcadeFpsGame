@@ -7,6 +7,8 @@ using UnityEngine.InputSystem.HID;
 
 public class SniperGun : Gun
 {
+    AudioSource source;
+
     [SerializeField] GameObject scopeOverlay;
     [SerializeField] GameObject crosshairOverlay;
 
@@ -23,6 +25,7 @@ public class SniperGun : Gun
 
     private void Awake()
     {
+        source = GetComponent<AudioSource>();
         pv = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
     }
@@ -82,6 +85,9 @@ public class SniperGun : Gun
 
     private void shoot()
     {
+
+        source.PlayOneShot(gunInfo.useClip);
+
         anim.SetTrigger("Shoot");
 
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
@@ -102,6 +108,7 @@ public class SniperGun : Gun
         if (curCoroutine != null)
             StopCoroutine(curCoroutine);
 
+        source.PlayOneShot(gunInfo.reloadClip);
         curCoroutine = StartCoroutine(nameof(Recharge));
         anim.SetTrigger("Reload");
     }

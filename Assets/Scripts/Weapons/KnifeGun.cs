@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class KnifeGun : Gun
 {
+
+    AudioSource source;
+
+
     [SerializeField] CinemachineVirtualCamera cam;
     PhotonView pv;
     Animator anim;
@@ -24,6 +28,7 @@ public class KnifeGun : Gun
     public override void Use()
     {
         Attack();
+        source.PlayOneShot(gunInfo.useClip);
     }
 
     public override void Aim()
@@ -38,6 +43,7 @@ public class KnifeGun : Gun
 
     private void Attack()
     {
+
         anim.SetTrigger("Attack");
     }
 
