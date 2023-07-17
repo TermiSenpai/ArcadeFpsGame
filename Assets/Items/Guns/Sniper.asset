@@ -15,3 +15,6 @@ MonoBehaviour:
   itemName: Sniper
   damage: 100
   maxDistance: 150
+  useClip: {fileID: 0}
+  reloadClip: {fileID: 0}
+  aimClip: {fileID: 0}
