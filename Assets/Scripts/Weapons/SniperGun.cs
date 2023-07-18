@@ -49,6 +49,7 @@ public class SniperGun : Gun
 
     public override void Aim()
     {
+        source.PlayOneShot(gunInfo.aimClip);
         anim.SetBool("Scoped", true);
         curCoroutine = StartCoroutine(nameof(enableScope));
     }
