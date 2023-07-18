@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,7 @@ public class PlayerGrappling : MonoBehaviour
 
     // Temporal to see in editor
     [SerializeField] bool isGrappling;
+
     #region unity
     private void Awake()
     {
@@ -35,9 +37,16 @@ public class PlayerGrappling : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
     }
 
+    private void Start()
+    {
+        if (!pv.IsMine) return;
+        stopGrapple();
+    }
+
     private void Update()
     {
         if (!pv.IsMine) return;
+
 
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;
