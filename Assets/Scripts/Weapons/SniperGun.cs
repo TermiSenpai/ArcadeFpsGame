@@ -86,9 +86,6 @@ public class SniperGun : Gun
 
     private void shoot()
     {
-
-        source.PlayOneShot(gunInfo.useClip);
-
         anim.SetTrigger("Shoot");
 
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
@@ -141,6 +138,8 @@ public class SniperGun : Gun
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
     {
+        // play sound online
+        source.PlayOneShot(gunInfo.useClip);
         //TODO
         // Change instantiate for gameobject enable
         Collider[] colliders = Physics.OverlapSphere(hitPos, 0.3f);
@@ -166,6 +165,7 @@ public class SniperGun : Gun
     [PunRPC]
     void RPC_ImpactPool()
     {
+        if (impact == null) return;
         impact.transform.SetParent(transform);
         impact.transform.position = Vector3.zero;
         impact.SetActive(false);
