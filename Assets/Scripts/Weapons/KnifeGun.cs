@@ -16,6 +16,7 @@ public class KnifeGun : Gun
 
     private void Awake()
     {
+        source = GetComponent<AudioSource>();
         pv = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
     }
@@ -27,8 +28,8 @@ public class KnifeGun : Gun
 
     public override void Use()
     {
-        Attack();
         source.PlayOneShot(gunInfo.useClip);
+        Attack();
     }
 
     public override void Aim()

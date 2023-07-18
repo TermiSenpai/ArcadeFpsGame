@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Knife
   damage: 500
   maxDistance: 2
-  useClip: {fileID: 0}
+  useClip: {fileID: 8300000, guid: 9d82ee3e962b30148bc69d8fb423074a, type: 3}
   reloadClip: {fileID: 0}
   aimClip: {fileID: 0}
