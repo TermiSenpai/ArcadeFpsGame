@@ -19,3 +19,5 @@ MonoBehaviour:
   groundDeceleration: 10
   airDeceleration: 1.5
   grapplingDeceleration: 10
+  walkClip: {fileID: 8300000, guid: 946aa50968be5df4485c3a67e1bf6225, type: 3}
+  deathClip: {fileID: 8300000, guid: 93f15b1d2e362174a913e5e9e370f885, type: 3}

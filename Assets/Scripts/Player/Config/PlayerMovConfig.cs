@@ -12,4 +12,7 @@ public class PlayerMovConfig : ScriptableObject
     public float groundDeceleration;
     public float airDeceleration;
     public float grapplingDeceleration;
+    [Header("SFX")]
+    public AudioClip walkClip;
+    public AudioClip deathClip;
 }

@@ -57,8 +57,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Si hay movimiento
         if (moveDirection.magnitude >= 0.1f)
+        {
             increaseSpeed();
-
+        }
         else
             reduceSpeed();
 
@@ -108,6 +109,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public Vector3 getMovementDir()
+    {
+        return moveDirection;
+    }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         switch (context.phase)
