@@ -3391,7 +3391,7 @@ MonoBehaviour:
   gunInfo: {fileID: 11400000, guid: e8f33769b1aaa1943841fcff8083a8e9, type: 2}
   itemGameobject: {fileID: 8023445030871989263}
   handsGameobject: {fileID: 847277688265144321}
-  bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
+  bulletImpactPrefab: {fileID: 3432958286849152088, guid: 87ee7299dd44ed747af24dbb91bcd33b, type: 3}
   canUse: 1
   cooldownSeconds: 0.4
   otherPlayerLayer:
