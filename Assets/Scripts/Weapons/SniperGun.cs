@@ -138,7 +138,8 @@ public class SniperGun : Gun
     // Reusable impactRotation
     private Quaternion impactRotation(Vector3 hitNormal)
     {
-        return Quaternion.LookRotation(hitNormal, Vector3.up) * bulletImpactPrefab.transform.rotation;
+        return Quaternion.LookRotation(hitNormal, Vector3.up) * Quaternion.Euler(0f, 0f, 0f);
+        //return Quaternion.LookRotation(hitNormal, Vector3.up) * bulletImpactPrefab.transform.rotation;
     }
 
 
@@ -163,7 +164,7 @@ public class SniperGun : Gun
             Invoke(nameof(impactPool), 1.5f);
 
             //Destroy(impact, 1.5f);
-            impact.transform.SetParent(colliders[0].transform);
+            //impact.transform.SetParent(colliders[0].transform);
             impact.transform.position = impactPos(hitPos, hitNormal);
             impact.transform.rotation = impactRotation(hitNormal);
         }
@@ -173,7 +174,7 @@ public class SniperGun : Gun
     void RPC_ImpactPool()
     {
         if (impact == null) return;
-        impact.transform.SetParent(transform);
+        //impact.transform.SetParent(transform);
         impact.transform.position = Vector3.zero;
         impact.SetActive(false);
     }
