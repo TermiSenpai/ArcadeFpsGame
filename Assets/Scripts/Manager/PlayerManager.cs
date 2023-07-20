@@ -31,19 +31,18 @@ public class PlayerManager : MonoBehaviour
         player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
 
         // set gameobjet name in editor, just for debug
+#if UNITY_EDITOR
         player.name = PhotonNetwork.NickName;
+#endif
     }
 
     public void die()
-    {        
+    {
         PhotonNetwork.Destroy(player);
         createController();
 
         deaths++;
-
-        Hastable hash = new Hastable();
-        hash.Add("deaths", deaths);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        SendHash("deaths", deaths);
     }
 
     public void getKill()
@@ -55,9 +54,14 @@ public class PlayerManager : MonoBehaviour
     void RPC_GetKill()
     {
         kills++;
+        SendHash("kills", kills);
+    }
+
+    void SendHash(string type, int value)
+    {
 
         Hastable hash = new Hastable();
-        hash.Add("kills", kills);
+        hash.Add(type, value);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
