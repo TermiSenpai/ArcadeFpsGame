@@ -39,16 +39,6 @@ public class SniperGun : Gun
         source.minDistance = 1f;
     }
 
-    private void OnEnable()
-    {
-        ammoUI.toggleUI(true);
-    }
-
-    private void OnDisable()
-    {
-        ammoUI.toggleUI(false);
-    }
-
     public override void Use()
     {
         if (!canUse) return;
