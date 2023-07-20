@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void openMenu(string menuName)

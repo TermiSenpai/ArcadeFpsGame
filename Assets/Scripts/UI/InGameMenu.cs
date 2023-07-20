@@ -40,4 +40,18 @@ public class InGameMenu : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        GameTimer.timerFinishReleased += GameOver;
+    }
+
+    private void OnDisable()
+    {
+        GameTimer.timerFinishReleased -= GameOver;
+    }
+
+    private void GameOver()
+    {
+        Invoke(nameof(leaveRoom), 10f);
+    }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using System.IO;
+using System;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -32,9 +33,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if(scene.buildIndex == 1) // in the game scene
+        if (scene.buildIndex == 1) // in the game scene
         {
             PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
         }
     }
+
+
+
 }

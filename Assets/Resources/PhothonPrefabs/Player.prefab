@@ -2447,6 +2447,7 @@ GameObject:
   - component: {fileID: 4136674286549288116}
   - component: {fileID: 5487468529459871342}
   - component: {fileID: 7159868030839031038}
+  - component: {fileID: 1939415276933384094}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2792,10 +2793,6 @@ MonoBehaviour:
     m_ActionId: a57206b5-846c-4514-bf60-73947c678c83
     m_ActionName: Player/AltFire[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ac1fd497-6543-43df-84b6-af83e8f1b9de
-    m_ActionName: Player/Crouch[/Keyboard/leftCtrl]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6095217042096614558}
         m_TargetAssemblyTypeName: PlayerJump, Assembly-CSharp
@@ -3032,6 +3029,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1939415276933384094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3e01a9ccffe6b45bc1631967fb0df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ptv: {fileID: 6095217042096614561}
+  inputs: {fileID: 5487468529459871342}
 --- !u!1 &5487468529805772124
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class PlayerScoreboard : MonoBehaviour
     private void Start()
     {
         group = FindObjectOfType<CanvasGroup>();
-    }
+    }   
 
     public void OnScoreboardInput(InputAction.CallbackContext context)
     {
