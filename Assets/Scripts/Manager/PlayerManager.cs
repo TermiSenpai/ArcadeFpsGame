@@ -29,8 +29,10 @@ public class PlayerManager : MonoBehaviour
     void createController()
     {
         Transform spawnpoint = SpawnpointManager.Instance.GetRandomSpawnPoint();
-        player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
-
+        if (player == null)
+            player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), Vector3.zero, spawnpoint.rotation, 0, new object[] { pv.ViewID });
+        player.SetActive(true);
+        player.transform.position = spawnpoint.position;
         // set gameobjet name in editor, just for debug
 #if UNITY_EDITOR
         player.name = PhotonNetwork.NickName;
@@ -46,7 +48,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Respawn()
     {
-        PhotonNetwork.Destroy(player);
+        player.SetActive(false);
+        //PhotonNetwork.Destroy(player);
         createController();
     }
 

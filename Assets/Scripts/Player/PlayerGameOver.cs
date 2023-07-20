@@ -26,14 +26,15 @@ public class PlayerGameOver : MonoBehaviour
     {
         ptv.enabled = false;
         inputs.enabled = false;
-        weaponCam.enabled = false;
-       StartCoroutine(GameOverCamMovement());
+        if (weaponCam != null)
+            weaponCam.enabled = false;
+        StartCoroutine(GameOverCamMovement());
     }
 
     IEnumerator GameOverCamMovement()
     {
         float timer = 9;
-        while(timer > 0)
+        while (timer > 0)
         {
             mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y + Time.deltaTime, mainCam.transform.position.z);
             timer -= Time.deltaTime;
