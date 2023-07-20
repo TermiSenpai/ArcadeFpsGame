@@ -7,6 +7,7 @@ using Photon.Realtime;
 public class Launcher : MonoBehaviourPunCallbacks
 {
     public static Launcher Instance;
+    AudioSource source;
 
     #region Variables
 
@@ -30,6 +31,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();   
         Debug.Log("Connecting to Master");
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -50,6 +52,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Joined lobby");
 
         PhotonNetwork.NickName = getNickName();
+        source.enabled = true;
     }
 
     #endregion
