@@ -4,6 +4,8 @@ using System.IO;
 using Photon.Realtime;
 using System.Linq;
 using Hastable = ExitGames.Client.Photon.Hashtable;
+using Cinemachine;
+using Unity.VisualScripting;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -22,7 +24,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (pv.IsMine)
             createController();
-
     }
 
     void createController()
@@ -38,11 +39,15 @@ public class PlayerManager : MonoBehaviour
 
     public void die()
     {
-        PhotonNetwork.Destroy(player);
-        createController();
-
+        Respawn();
         deaths++;
         SendHash("deaths", deaths);
+    }
+
+    private void Respawn()
+    {
+        PhotonNetwork.Destroy(player);
+        createController();
     }
 
     public void getKill()
