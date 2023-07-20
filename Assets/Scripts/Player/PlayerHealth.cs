@@ -57,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void playerDie()
     {
+        source.PlayOneShot(deathClip);
         playerManager.die();
     }
 }
