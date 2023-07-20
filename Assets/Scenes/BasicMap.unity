@@ -5691,7 +5691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f6d687fbe8c6b42b49db0df3fcc09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerMinutes: 1
+  timerMinutes: 5
 --- !u!1001 &230410831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9065,7 +9065,7 @@ Transform:
   - {fileID: 1952143937}
   - {fileID: 162000410}
   m_Father: {fileID: 406794510}
-  m_RootOrder: 422
+  m_RootOrder: 419
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &404163472
 PrefabInstance:
@@ -9600,11 +9600,11 @@ Transform:
   - {fileID: 1281302957}
   - {fileID: 737711311}
   - {fileID: 1351291815}
+  - {fileID: 403634714}
+  - {fileID: 1554989327}
+  - {fileID: 1813804413}
   - {fileID: 866197457}
   - {fileID: 576853543}
-  - {fileID: 1554989327}
-  - {fileID: 403634714}
-  - {fileID: 1813804413}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
