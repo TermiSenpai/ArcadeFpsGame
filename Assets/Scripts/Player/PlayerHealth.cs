@@ -12,6 +12,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] UIHealth health;
     [SerializeField] BillboardHealth billboardHealth;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip hitClip;
+    [SerializeField] AudioClip deathClip;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -29,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeDamage(float damage)
     {
+        source.PlayOneShot(hitClip);
         pv.RPC(nameof(RPC_TackeDamage), pv.Owner, damage);
     }
 

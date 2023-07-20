@@ -41,10 +41,14 @@ public class SniperGun : Gun
 
     public override void Use()
     {
-        if (!canUse) return;
+        if (!canUse)
+        {
+            return;
+        }
 
         if (currentAmmo == 0)
         {
+            source.PlayOneShot(gunInfo.emptyShot);
             canUse = false;
             return;
         }

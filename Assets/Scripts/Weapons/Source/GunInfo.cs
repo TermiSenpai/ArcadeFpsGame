@@ -11,4 +11,5 @@ public class GunInfo : ItemInfo
     public AudioClip useClip;
     public AudioClip reloadClip;
     public AudioClip aimClip;
+    public AudioClip emptyShot;
 }

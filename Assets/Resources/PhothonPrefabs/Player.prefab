@@ -2528,6 +2528,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 3939546598762281086}
   billboardHealth: {fileID: 3263021635717050454}
+  source: {fileID: 0}
+  hitClip: {fileID: 8300000, guid: 3021f08350f662e4b983c88a0c4bf3d4, type: 3}
+  deathClip: {fileID: 8300000, guid: 93f15b1d2e362174a913e5e9e370f885, type: 3}
 --- !u!114 &6393457726681453524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3391,9 +3394,9 @@ MonoBehaviour:
   gunInfo: {fileID: 11400000, guid: e8f33769b1aaa1943841fcff8083a8e9, type: 2}
   itemGameobject: {fileID: 8023445030871989263}
   handsGameobject: {fileID: 847277688265144321}
-  bulletImpactPrefab: {fileID: 3432958286849152088, guid: 87ee7299dd44ed747af24dbb91bcd33b, type: 3}
+  bulletImpactPrefab: {fileID: 1429954232896169633, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
   canUse: 1
-  cooldownSeconds: 0.4
+  cooldownSeconds: 0.6
   otherPlayerLayer:
     serializedVersion: 2
     m_Bits: 2147484095
