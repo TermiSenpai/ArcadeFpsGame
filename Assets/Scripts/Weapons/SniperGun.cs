@@ -23,6 +23,8 @@ public class SniperGun : Gun
     Coroutine curCoroutine;
     GameObject impact;
 
+    [SerializeField] UIAmmo ammoUI;
+
     private void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -35,6 +37,16 @@ public class SniperGun : Gun
         currentAmmo = maxAmmo;
         source.maxDistance = 25f;
         source.minDistance = 1f;
+    }
+
+    private void OnEnable()
+    {
+        ammoUI.toggleUI(true);
+    }
+
+    private void OnDisable()
+    {
+        ammoUI.toggleUI(false);
     }
 
     public override void Use()
@@ -100,6 +112,7 @@ public class SniperGun : Gun
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
         currentAmmo--;
+        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
     }
 
 
@@ -111,6 +124,7 @@ public class SniperGun : Gun
         source.PlayOneShot(gunInfo.reloadClip);
         curCoroutine = StartCoroutine(nameof(Recharge));
         anim.SetTrigger("Reload");
+
     }
 
     IEnumerator Recharge()
@@ -119,6 +133,7 @@ public class SniperGun : Gun
         yield return new WaitForSeconds(reloadTimeDelay);
         currentAmmo = maxAmmo;
         canUse = true;
+        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
     }
     void impactPool()
     {
