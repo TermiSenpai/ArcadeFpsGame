@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    [SerializeField] float timerSeconds;
+    [SerializeField] float timerMinutes = 5;
     TMP_Text timerTxt;
+
+    float timerSeconds;
 
     bool canRestTimer = true;
 
     public delegate void TimerFinish();
     public static TimerFinish timerFinishReleased;
+
+    private void Awake()
+    {
+        timerSeconds = (float)TimeSpan.FromMinutes(timerMinutes).TotalSeconds;
+    }
 
     private void Start()
     {
