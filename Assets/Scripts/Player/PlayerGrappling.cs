@@ -1,3 +1,4 @@
+using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,10 +17,16 @@ public class PlayerGrappling : MonoBehaviour
     PlayerMovement pm;
     private PhotonView pv;
 
+
     [Header("Grappling")]
     [SerializeField] private float maxGrappleDistance;
     [SerializeField] private float grappleDelay;
     [SerializeField] private float overshootYAxis;
+
+    [Header("Fov Effect")]
+    [SerializeField] CinemachineVirtualCamera cam;
+    [SerializeField] float fovSpeedMultiplier;
+    Coroutine fovCoroutine;
 
     private Vector3 grapplePoint;
 
@@ -37,11 +44,6 @@ public class PlayerGrappling : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
     }
 
-    private void Start()
-    {
-        if (!pv.IsMine) return;
-        stopGrapple();
-    }
 
     private void Update()
     {
@@ -66,6 +68,7 @@ public class PlayerGrappling : MonoBehaviour
     {
         if (grapplingCdTimer > 0) return;
 
+
         pm.isFreeze = true;
         isGrappling = true;
         RaycastHit hit;
@@ -88,7 +91,8 @@ public class PlayerGrappling : MonoBehaviour
     void executeGrapple()
     {
         if (!pv.IsMine) return;
-
+        if (fovCoroutine != null) StopCoroutine(fovCoroutine);
+        fovCoroutine = StartCoroutine(increaseFov());
         pm.isFreeze = false;
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
@@ -103,6 +107,7 @@ public class PlayerGrappling : MonoBehaviour
 
     void stopGrapple()
     {
+        CancelInvoke();
         if (!pv.IsMine) return;
         isGrappling = false;
         grapplingCdTimer = grapplingCd;
@@ -110,8 +115,34 @@ public class PlayerGrappling : MonoBehaviour
         lr.enabled = false;
         pm.isFreeze = false;
         pm.isActiveGrapple = false;
+        Invoke(nameof(defaultFov), 1.25f);
     }
     #endregion
+
+    IEnumerator increaseFov()
+    {
+        fovSpeedMultiplier = 50;
+        while (cam.m_Lens.FieldOfView < 80)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            cam.m_Lens.FieldOfView += Time.deltaTime * fovSpeedMultiplier;
+        }
+    }
+    IEnumerator decreaseFov()
+    {
+        fovSpeedMultiplier = 30;
+        while (cam.m_Lens.FieldOfView > 60)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            cam.m_Lens.FieldOfView -= Time.deltaTime * fovSpeedMultiplier;
+        }
+    }
+
+    void defaultFov()
+    {
+        if (fovCoroutine != null) StopCoroutine(fovCoroutine);
+        fovCoroutine = StartCoroutine(decreaseFov());
+    }
 
     #region Input
 

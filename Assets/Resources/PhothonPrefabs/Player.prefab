@@ -2514,6 +2514,8 @@ MonoBehaviour:
   maxGrappleDistance: 75
   grappleDelay: 0.1
   overshootYAxis: 2.5
+  cam: {fileID: 9111037616720877483}
+  fovSpeedMultiplier: 19.22
   grapplingCd: 0.5
   isGrappling: 0
 --- !u!114 &6095217042155911570
@@ -4804,7 +4806,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8093961744037387028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
