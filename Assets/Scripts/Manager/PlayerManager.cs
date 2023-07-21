@@ -11,6 +11,10 @@ public class PlayerManager : MonoBehaviour
 {
     PhotonView pv;
     GameObject player;
+    GameObject skullEffect;
+    GameObject explosionEffect;
+
+    const string path = "PhothonPrefabs";
 
     int kills = 0;
     int deaths = 0;
@@ -29,10 +33,13 @@ public class PlayerManager : MonoBehaviour
     void createController()
     {
         Transform spawnpoint = SpawnpointManager.Instance.GetRandomSpawnPoint();
+
         if (player == null)
-            player = PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "Player"), Vector3.zero, spawnpoint.rotation, 0, new object[] { pv.ViewID });
+            player = PhotonNetwork.Instantiate(Path.Combine(path, "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
+
         player.SetActive(true);
         player.transform.position = spawnpoint.position;
+
         // set gameobjet name in editor, just for debug
 #if UNITY_EDITOR
         player.name = PhotonNetwork.NickName;
@@ -41,6 +48,7 @@ public class PlayerManager : MonoBehaviour
 
     public void die()
     {
+        showDeathEffect();
         Respawn();
         deaths++;
         SendHash("deaths", deaths);
@@ -50,7 +58,23 @@ public class PlayerManager : MonoBehaviour
     {
         player.SetActive(false);
         //PhotonNetwork.Destroy(player);
+        //Invoke(nameof(createController), 2.5f);
         createController();
+    }
+
+    void showDeathEffect()
+    {
+        if (skullEffect == null)
+            skullEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Skull"), player.transform.position + Vector3.up, Quaternion.identity, 0, new object[] { pv.ViewID });
+        
+        if (explosionEffect == null)
+            explosionEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Explosion"), player.transform.position, Quaternion.Euler(-90f, 0, 0), 0, new object[] { pv.ViewID });
+
+        skullEffect.transform.position = player.transform.position + Vector3.up;
+        explosionEffect.transform.position = player.transform.position;
+
+        skullEffect.SetActive(true);
+        explosionEffect.SetActive(true);
     }
 
     public void getKill()
