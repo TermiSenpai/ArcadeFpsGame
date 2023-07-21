@@ -15,6 +15,7 @@ public class PlayerGrappling : MonoBehaviour
     [SerializeField] LayerMask whatIsGrappleable;
     [SerializeField] LineRenderer lr;
     PlayerMovement pm;
+    PlayerJump pj;
     private PhotonView pv;
 
 
@@ -25,7 +26,9 @@ public class PlayerGrappling : MonoBehaviour
 
     [Header("Fov Effect")]
     [SerializeField] CinemachineVirtualCamera cam;
-    [SerializeField] float fovSpeedMultiplier;
+    [SerializeField] float currenFovMultiplier;
+    [SerializeField] float minFovMultiplier;
+    [SerializeField] float maxFovMultiplier;
     Coroutine fovCoroutine;
 
     private Vector3 grapplePoint;
@@ -42,6 +45,7 @@ public class PlayerGrappling : MonoBehaviour
     {
         pv = GetComponent<PhotonView>();
         pm = GetComponent<PlayerMovement>();
+        pj = GetComponent<PlayerJump>();
     }
 
 
@@ -59,7 +63,7 @@ public class PlayerGrappling : MonoBehaviour
         if (!pv.IsMine) return;
 
         if (isGrappling)
-            lr.SetPosition(0, gunTip.position);
+            lr.SetPosition(0, gunTip.position);       
     }
     #endregion
 
@@ -91,8 +95,10 @@ public class PlayerGrappling : MonoBehaviour
     void executeGrapple()
     {
         if (!pv.IsMine) return;
+
         if (fovCoroutine != null) StopCoroutine(fovCoroutine);
         fovCoroutine = StartCoroutine(increaseFov());
+
         pm.isFreeze = false;
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
@@ -107,7 +113,6 @@ public class PlayerGrappling : MonoBehaviour
 
     void stopGrapple()
     {
-        CancelInvoke();
         if (!pv.IsMine) return;
         isGrappling = false;
         grapplingCdTimer = grapplingCd;
@@ -115,26 +120,25 @@ public class PlayerGrappling : MonoBehaviour
         lr.enabled = false;
         pm.isFreeze = false;
         pm.isActiveGrapple = false;
-        Invoke(nameof(defaultFov), 1.25f);
+
     }
     #endregion
 
     IEnumerator increaseFov()
     {
-        fovSpeedMultiplier = 50;
-        while (cam.m_Lens.FieldOfView < 80)
+
+        while (cam.m_Lens.FieldOfView < 90)
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            cam.m_Lens.FieldOfView += Time.deltaTime * fovSpeedMultiplier;
+            cam.m_Lens.FieldOfView += Time.deltaTime * currenFovMultiplier;
         }
     }
     IEnumerator decreaseFov()
     {
-        fovSpeedMultiplier = 30;
         while (cam.m_Lens.FieldOfView > 60)
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            cam.m_Lens.FieldOfView -= Time.deltaTime * fovSpeedMultiplier;
+            cam.m_Lens.FieldOfView -= Time.deltaTime * currenFovMultiplier;
         }
     }
 
