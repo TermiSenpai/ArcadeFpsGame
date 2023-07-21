@@ -616,7 +616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1681112669535390789
 Transform:
   m_ObjectHideFlags: 0
@@ -1315,7 +1315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7975432598221213120
 Transform:
   m_ObjectHideFlags: 0
@@ -2448,6 +2448,7 @@ GameObject:
   - component: {fileID: 5487468529459871342}
   - component: {fileID: 7159868030839031038}
   - component: {fileID: 1939415276933384094}
+  - component: {fileID: 3762496954286049086}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -3049,6 +3050,19 @@ MonoBehaviour:
   inputs: {fileID: 5487468529459871342}
   weaponCam: {fileID: 4269813384374192056}
   mainCam: {fileID: 9111037616720877483}
+--- !u!114 &3762496954286049086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6603f199d1612e64aaedf35498b49c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerModel: {fileID: 5487468529805772124}
 --- !u!1 &5487468529805772124
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,7 +4660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8023445030871556143
 Transform:
   m_ObjectHideFlags: 0
