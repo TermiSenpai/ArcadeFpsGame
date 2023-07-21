@@ -4,6 +4,7 @@ public class SpawnpointManager : MonoBehaviour
 {
     public static SpawnpointManager Instance;
 
+    Transform lastPos;
     private  Spawnpoint[] spawnpoints;
 
     private void Awake()
@@ -14,6 +15,9 @@ public class SpawnpointManager : MonoBehaviour
 
     public Transform GetRandomSpawnPoint()
     {
-        return spawnpoints[Random.Range(0, spawnpoints.Length - 1)].transform;
+        Transform pos = spawnpoints[Random.Range(0, spawnpoints.Length - 1)].transform;
+        if (pos == lastPos) GetRandomSpawnPoint();
+        lastPos = pos;
+        return pos;
     }
 }

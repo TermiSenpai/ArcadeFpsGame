@@ -5,12 +5,15 @@ using Photon.Realtime;
 using System.Linq;
 using Hastable = ExitGames.Client.Photon.Hashtable;
 using Cinemachine;
-using Unity.VisualScripting;
 
 public class PlayerManager : MonoBehaviour
 {
     PhotonView pv;
-    GameObject player;
+
+    public GameObject player;
+    public CinemachineVirtualCamera cam;
+
+    PlayerModelVisibility visibility;
     GameObject skullEffect;
     GameObject explosionEffect;
 
@@ -35,9 +38,13 @@ public class PlayerManager : MonoBehaviour
         Transform spawnpoint = SpawnpointManager.Instance.GetRandomSpawnPoint();
 
         if (player == null)
+        {
             player = PhotonNetwork.Instantiate(Path.Combine(path, "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
+        }
 
-        player.SetActive(true);
+        togglePlayer(true);
+
+        player.transform.rotation = spawnpoint.rotation;
         player.transform.position = spawnpoint.position;
 
         // set gameobjet name in editor, just for debug
@@ -45,36 +52,31 @@ public class PlayerManager : MonoBehaviour
         player.name = PhotonNetwork.NickName;
 #endif
     }
+    void togglePlayer(bool value)
+    {
+        player.SetActive(value);
+    }
 
     public void die()
     {
         showDeathEffect();
-        Respawn();
+        togglePlayer(false);
+
         deaths++;
         SendHash("deaths", deaths);
+
+        Respawn();
     }
 
     private void Respawn()
     {
-        player.SetActive(false);
-        //PhotonNetwork.Destroy(player);
-        //Invoke(nameof(createController), 2.5f);
         createController();
     }
 
     void showDeathEffect()
     {
-        if (skullEffect == null)
-            skullEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Skull"), player.transform.position + Vector3.up, Quaternion.identity, 0, new object[] { pv.ViewID });
-        
-        if (explosionEffect == null)
-            explosionEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Explosion"), player.transform.position, Quaternion.Euler(-90f, 0, 0), 0, new object[] { pv.ViewID });
-
-        skullEffect.transform.position = player.transform.position + Vector3.up;
-        explosionEffect.transform.position = player.transform.position;
-
-        skullEffect.SetActive(true);
-        explosionEffect.SetActive(true);
+        skullEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Skull"), player.transform.position + Vector3.up, Quaternion.identity, 0, new object[] { pv.ViewID });
+        explosionEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Explosion"), player.transform.position, Quaternion.Euler(-90f, 0, 0), 0, new object[] { pv.ViewID });
     }
 
     public void getKill()
@@ -96,9 +98,17 @@ public class PlayerManager : MonoBehaviour
         hash.Add(type, value);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
+    void SendHash(string type, bool value)
+    {
+
+        Hastable hash = new Hastable();
+        hash.Add(type, value);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
 
     public static PlayerManager Find(Player player)
     {
         return FindObjectsOfType<PlayerManager>().SingleOrDefault(x => x.pv.Owner == player);
     }
+
 }
