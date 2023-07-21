@@ -6,10 +6,10 @@ using System.Linq;
 using Hastable = ExitGames.Client.Photon.Hashtable;
 using Cinemachine;
 
-public class PlayerManager : MonoBehaviourPunCallbacks
+public class PlayerManager : MonoBehaviour
 {
     PhotonView pv;
-    
+
     public GameObject player;
     public CinemachineVirtualCamera cam;
 
@@ -42,7 +42,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks
             player = PhotonNetwork.Instantiate(Path.Combine(path, "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
         }
 
-        player.SetActive(true);
+        togglePlayer(true);
+
         player.transform.rotation = spawnpoint.rotation;
         player.transform.position = spawnpoint.position;
 
@@ -54,17 +55,17 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     void togglePlayer(bool value)
     {
         player.SetActive(value);
-        SendHash("visibility", value);
     }
 
     public void die()
     {
-        showDeathEffect();        
+        showDeathEffect();
         togglePlayer(false);
 
         deaths++;
         SendHash("deaths", deaths);
 
+        Respawn();
     }
 
     private void Respawn()
@@ -110,9 +111,4 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         return FindObjectsOfType<PlayerManager>().SingleOrDefault(x => x.pv.Owner == player);
     }
 
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hastable changedProps)
-    {
-        if (changedProps.ContainsKey("visibility") && !pv.IsMine && targetPlayer == pv.Owner)
-            togglePlayer((bool)changedProps["visibility"]);
-    }
 }
