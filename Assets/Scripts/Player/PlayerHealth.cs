@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth;
     [SerializeField] UIHealth health;
     [SerializeField] BillboardHealth billboardHealth;
+    [SerializeField] float secondsToStartRecovering = 5f;
+
+    Coroutine recoverHealthCoroutine;
 
     [Header("Audio")]
     [SerializeField] AudioSource source;
@@ -20,17 +23,29 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        playerManager = PhotonView.Find((int) pv.InstantiationData[0]).GetComponent<PlayerManager>();
+        playerManager = PhotonView.Find((int)pv.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     private void Start()
     {
-        if(!pv.IsMine)
+        if (!pv.IsMine)
+        {
+            //Destroy(billboardHealth);
             Destroy(health.gameObject);
-        currentHealth = maxHealth;
+        }
 
-        takeDamage(0f);
+        setMaxHealth();
+        updateHealthBar();
     }
+
+    private void OnEnable()
+    {
+        currentHealth = maxHealth;
+        updateHealthBar();
+    }
+
+    void setMaxHealth() => currentHealth = maxHealth;
+
 
     public void takeDamage(float damage)
     {
@@ -38,21 +53,53 @@ public class PlayerHealth : MonoBehaviour
         pv.RPC(nameof(RPC_TackeDamage), pv.Owner, damage);
     }
 
+    private IEnumerator recoverHealth()
+    {
+        yield return new WaitForSeconds(secondsToStartRecovering);
+        while (currentHealth < maxHealth)
+        {
+            currentHealth += Time.deltaTime;
+            pv.RPC(nameof(RPC_RecoverHealth), pv.Owner);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+    }
+
+
     [PunRPC]
     void RPC_TackeDamage(float damage, PhotonMessageInfo info)
     {
+        if (recoverHealthCoroutine != null)
+            StopCoroutine(recoverHealthCoroutine);
+
+        recoverHealthCoroutine = StartCoroutine(recoverHealth());
 
         currentHealth -= damage;
 
-        billboardHealth.updateBillboardBar(currentHealth / maxHealth);
-        health.updateHealthBar(currentHealth / maxHealth);
-        health.updateHealthTxt(currentHealth.ToString("00"));
+        updateHealthBar();
 
         if (currentHealth <= 0)
         {
             playerDie();
             PlayerManager.Find(info.Sender).getKill();
         }
+    }
+
+    [PunRPC]
+    void RPC_RecoverHealth()
+    {
+        currentHealth += Time.deltaTime;
+
+        if (currentHealth >= maxHealth)
+            setMaxHealth();
+
+        updateHealthBar();
+    }
+
+    void updateHealthBar()
+    {
+        billboardHealth.updateBillboardBar(currentHealth / maxHealth);
+        health.updateHealthBar(currentHealth / maxHealth);
+        health.updateHealthTxt(currentHealth.ToString("00"));
     }
 
     private void playerDie()

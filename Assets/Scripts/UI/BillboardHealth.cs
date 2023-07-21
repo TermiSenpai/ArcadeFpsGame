@@ -7,17 +7,15 @@ using Photon.Pun;
 public class BillboardHealth : MonoBehaviourPunCallbacks
 {
     [SerializeField] Image billboardHealth;
-    PhotonView pv;
+    [SerializeField] PhotonView pv;
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
     }
-
-
     public void updateBillboardBar(float health)
     {
-        pv.RPC("RPC_UpdateBar", RpcTarget.All, health);
+        pv.RPC(nameof(RPC_UpdateBar), RpcTarget.All, health);
     }
 
     [PunRPC]

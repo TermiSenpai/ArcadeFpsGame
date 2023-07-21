@@ -2187,6 +2187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   billboardHealth: {fileID: 5110914966198757440}
+  pv: {fileID: 4383785911082587982}
 --- !u!114 &4383785911082587982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2528,6 +2529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 3939546598762281086}
   billboardHealth: {fileID: 3263021635717050454}
+  secondsToStartRecovering: 5
   source: {fileID: 7159868030839031038}
   hitClip: {fileID: 8300000, guid: 3021f08350f662e4b983c88a0c4bf3d4, type: 3}
   deathClip: {fileID: 8300000, guid: 93f15b1d2e362174a913e5e9e370f885, type: 3}
