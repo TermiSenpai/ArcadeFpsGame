@@ -19,6 +19,7 @@ public class KnifeGun : Gun
         source = GetComponent<AudioSource>();
         pv = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
+
     }
     private void Start()
     {
@@ -47,7 +48,6 @@ public class KnifeGun : Gun
 
         anim.SetTrigger("Attack");
     }
-
     public void checkHit()
     {
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
