@@ -29,8 +29,12 @@ public class KnifeGun : Gun
 
     public override void Use()
     {
+        if (!canUse) return;
+
         source.PlayOneShot(gunInfo.useClip);
         Attack();
+
+        weaponCoroutine = StartCoroutine(weaponCooldown());
     }
 
     public override void Aim()
@@ -43,11 +47,8 @@ public class KnifeGun : Gun
     {        
     }
 
-    private void Attack()
-    {
+    private void Attack() => anim.SetTrigger("Attack");
 
-        anim.SetTrigger("Attack");
-    }
     public void checkHit()
     {
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
@@ -56,7 +57,6 @@ public class KnifeGun : Gun
         if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
-            weaponCoroutine = StartCoroutine(weaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
 

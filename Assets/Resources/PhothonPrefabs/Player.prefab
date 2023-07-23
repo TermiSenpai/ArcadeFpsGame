@@ -624,14 +624,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681112669535817829}
-  m_LocalRotation: {x: 0.17162594, y: -0.033370912, z: -0.2203342, w: 0.95962685}
-  m_LocalPosition: {x: 0.125, y: -0.064, z: -0.333}
+  m_LocalRotation: {x: 0.28532213, y: 0.067390166, z: 0.19260693, w: 0.9364574}
+  m_LocalPosition: {x: 0.123, y: -0.121, z: -0.334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6095217043717617499}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 18.342, y: -8.462, z: -27.231}
+  m_LocalEulerAnglesHint: {x: 30.559, y: 15.915, z: 27.618}
 --- !u!33 &1681112669536685157
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3633,7 +3633,7 @@ MonoBehaviour:
   handsGameobject: {fileID: 3093761875666308937}
   bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
   canUse: 1
-  cooldownSeconds: 0.75
+  cooldownSeconds: 0.5
   otherPlayerLayer:
     serializedVersion: 2
     m_Bits: 128
