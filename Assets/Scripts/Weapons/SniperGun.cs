@@ -95,8 +95,16 @@ public class SniperGun : Gun
     private void shoot()
     {
         anim.SetTrigger("Shoot");
+        Ray r;
 
-        Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        // if scope, have 100% precision
+        if (anim.GetBool("Scoped"))
+            r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        // else, have random ray
+        else
+            r = Camera.main.ViewportPointToRay(new Vector3(Random.Range(0.25f, 0.75f), Random.Range(0.25f, 0.75f)));
+
+
         r.origin = cam.transform.position;
 
         if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))

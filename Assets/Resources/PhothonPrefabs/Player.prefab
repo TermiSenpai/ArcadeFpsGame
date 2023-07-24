@@ -3636,7 +3636,7 @@ MonoBehaviour:
   cooldownSeconds: 0.5
   otherPlayerLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 2147484095
   cam: {fileID: 9111037616720877483}
 --- !u!114 &8020699279095271409
 MonoBehaviour:
