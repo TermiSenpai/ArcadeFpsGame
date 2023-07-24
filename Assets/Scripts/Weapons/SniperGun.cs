@@ -112,6 +112,7 @@ public class SniperGun : Gun
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
             weaponCoroutine = StartCoroutine(weaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
+            Debug.Log(hit.collider.gameObject.name);
         }
         currentAmmo--;
         ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
@@ -141,19 +142,6 @@ public class SniperGun : Gun
     {
         pv.RPC("RPC_ImpactPool", RpcTarget.All);
     }
-
-    // Reusable impactPos
-    private Vector3 impactPos(Vector3 hitPos, Vector3 hitNormal)
-    {
-        return hitPos + hitNormal * 0.001f;
-    }
-    // Reusable impactRotation
-    private Quaternion impactRotation(Vector3 hitNormal)
-    {
-        return Quaternion.LookRotation(hitNormal, Vector3.up) * Quaternion.Euler(0f, 0f, 0f);
-        //return Quaternion.LookRotation(hitNormal, Vector3.up) * bulletImpactPrefab.transform.rotation;
-    }
-
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)

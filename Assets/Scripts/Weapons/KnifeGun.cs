@@ -13,6 +13,7 @@ public class KnifeGun : Gun
     [SerializeField] CinemachineVirtualCamera cam;
     PhotonView pv;
     Animator anim;
+    GameObject impact;
 
     private void Awake()
     {
@@ -54,10 +55,11 @@ public class KnifeGun : Gun
         Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         r.origin = cam.transform.position;
 
-        if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance))
+        if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
+            Debug.Log(hit.collider.gameObject.name);
         }
 
     }
@@ -70,13 +72,35 @@ public class KnifeGun : Gun
         Collider[] colliders = Physics.OverlapSphere(hitPos, 0.3f);
         if (colliders.Length != 0)
         {
-            GameObject impact = Instantiate(bulletImpactPrefab, hitPos + hitNormal * 0.001f, Quaternion.LookRotation(hitNormal, Vector3.up) * bulletImpactPrefab.transform.rotation);
-            Destroy(impact, 5f);
-            impact.transform.SetParent(colliders[0].transform);
+            if (impact == null)
+                impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
+
+            impact.SetActive(true);
+
+            // Cancel invoke
+            CancelInvoke();
+            // Start new invoke with renewed time
+            //Invoke(nameof(impactPool), 1.5f);
+
+            //Destroy(impact, 1.5f);
+            //impact.transform.SetParent(colliders[0].transform);
+            impact.transform.position = impactPos(hitPos, hitNormal);
+            impact.transform.rotation = impactRotation(hitNormal);
 
         }
+    }
 
+    [PunRPC]
+    void RPC_ImpactPool()
+    {
+        if (impact == null) return;
+        //impact.transform.SetParent(transform);
+        impact.transform.position = Vector3.zero;
+        impact.SetActive(false);
+    }
 
-
+    void impactPool()
+    {
+        pv.RPC("RPC_ImpactPool", RpcTarget.All);
     }
 }

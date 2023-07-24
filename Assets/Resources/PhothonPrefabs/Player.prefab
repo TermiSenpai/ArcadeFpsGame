@@ -598,6 +598,7 @@ MonoBehaviour:
   - {fileID: 2364707258567608965}
   - {fileID: 6209578793575637993}
   - {fileID: 3228385802468643810}
+  - {fileID: 5487468529459871345}
   weaponLayerValue: 9
 --- !u!1 &1681112669535817829
 GameObject:
@@ -3631,9 +3632,9 @@ MonoBehaviour:
   gunInfo: {fileID: 11400000, guid: 2a845cd39fbbd6b4b96dc6c250a5734f, type: 2}
   itemGameobject: {fileID: 1681112669535817829}
   handsGameobject: {fileID: 3093761875666308937}
-  bulletImpactPrefab: {fileID: 3247952424152859706, guid: da12db81bf8276045b6bf7b23e0c8bae, type: 3}
+  bulletImpactPrefab: {fileID: 6263782476919498309, guid: 1fd2749f2a4056446881dce86ed70c39, type: 3}
   canUse: 1
-  cooldownSeconds: 0.5
+  cooldownSeconds: 0.7
   otherPlayerLayer:
     serializedVersion: 2
     m_Bits: 2147484095
