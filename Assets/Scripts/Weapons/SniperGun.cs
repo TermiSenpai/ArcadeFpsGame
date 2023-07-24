@@ -24,6 +24,7 @@ public class SniperGun : Gun
     GameObject impact;
 
     [SerializeField] UIAmmo ammoUI;
+    [SerializeField] float timeToScope;
 
     private void Awake()
     {
@@ -88,7 +89,7 @@ public class SniperGun : Gun
 
     private IEnumerator enableScope()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(timeToScope);
         enableScopeOverlay();
     }
 

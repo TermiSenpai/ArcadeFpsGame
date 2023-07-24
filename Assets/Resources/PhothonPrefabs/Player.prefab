@@ -404,7 +404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7520526007210655699
 Transform:
   m_ObjectHideFlags: 0
@@ -3428,6 +3428,7 @@ MonoBehaviour:
   maxAmmo: 3
   reloadTimeDelay: 1.5
   ammoUI: {fileID: 4871017591454010504}
+  timeToScope: 0.07
 --- !u!114 &2012654019935618904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4665,7 +4666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8023445030871556143
 Transform:
   m_ObjectHideFlags: 0
