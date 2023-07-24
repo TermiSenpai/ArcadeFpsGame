@@ -161,7 +161,7 @@ public class SniperGun : Gun
             // Cancel invoke
             CancelInvoke();
             // Start new invoke with renewed time
-            Invoke(nameof(impactPool), 1.5f);
+            //Invoke(nameof(impactPool), 1.5f);
 
             //Destroy(impact, 1.5f);
             //impact.transform.SetParent(colliders[0].transform);

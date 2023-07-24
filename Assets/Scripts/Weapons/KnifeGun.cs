@@ -45,22 +45,43 @@ public class KnifeGun : Gun
     {
     }
     public override void Reload()
-    {        
+    {
     }
 
     private void Attack() => anim.SetTrigger("Attack");
 
     public void checkHit()
     {
-        Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-        r.origin = cam.transform.position;
+        Vector3 center = cam.transform.position + cam.transform.forward * gunInfo.maxDistance;
+        Collider[] colliders = Physics.OverlapSphere(center, 1f, otherPlayerLayer);
 
-        if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
+        if (colliders.Length > 0)
         {
-            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
-            pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
-            Debug.Log(hit.collider.gameObject.name);
+            foreach (Collider hitCollider in colliders)
+            {
+                // Creamos un rayo desde el centro de la cámara hacia el collider
+
+                Ray r = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+                r.origin = cam.transform.position;
+
+                // Realizamos el Raycast para obtener información del impacto
+                if (hitCollider.Raycast(r, out RaycastHit hitInfo, gunInfo.maxDistance))
+                {
+                    // Obtenemos el punto de impacto y la normal de superficie
+                    Vector3 hitPoint = hitInfo.point;
+                    Vector3 hitNormal = hitInfo.normal;
+                    hitCollider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
+                    pv.RPC(nameof(RPC_Shoot), RpcTarget.All, hitPoint, hitNormal);
+                }
+            }
         }
+
+        //if (Physics.OverlapSphere(, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
+        //{
+        //    hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
+        //    pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
+        //    Debug.Log(hit.collider.gameObject.name);
+        //}
 
     }
 
@@ -88,19 +109,5 @@ public class KnifeGun : Gun
             impact.transform.rotation = impactRotation(hitNormal);
 
         }
-    }
-
-    [PunRPC]
-    void RPC_ImpactPool()
-    {
-        if (impact == null) return;
-        //impact.transform.SetParent(transform);
-        impact.transform.position = Vector3.zero;
-        impact.SetActive(false);
-    }
-
-    void impactPool()
-    {
-        pv.RPC("RPC_ImpactPool", RpcTarget.All);
     }
 }
