@@ -139,18 +139,15 @@ public class SniperGun : Gun
         canUse = true;
         ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
     }
-    void impactPool()
-    {
-        pv.RPC("RPC_ImpactPool", RpcTarget.All);
-    }
+    void impactPool() => pv.RPC("RPC_ImpactPool", RpcTarget.All);
+    
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
     {
         // play sound online
         source.PlayOneShot(gunInfo.useClip);
-        //TODO
-        // Change instantiate for gameobject enable
+
         Collider[] colliders = Physics.OverlapSphere(hitPos, 0.3f);
         if (colliders.Length != 0)
         {
@@ -158,14 +155,7 @@ public class SniperGun : Gun
                 impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
 
             impact.SetActive(true);
-
-            // Cancel invoke
-            CancelInvoke();
-            // Start new invoke with renewed time
-            //Invoke(nameof(impactPool), 1.5f);
-
-            //Destroy(impact, 1.5f);
-            //impact.transform.SetParent(colliders[0].transform);
+            
             impact.transform.position = impactPos(hitPos, hitNormal);
             impact.transform.rotation = impactRotation(hitNormal);
         }
@@ -175,7 +165,7 @@ public class SniperGun : Gun
     void RPC_ImpactPool()
     {
         if (impact == null) return;
-        //impact.transform.SetParent(transform);
+
         impact.transform.position = Vector3.zero;
         impact.SetActive(false);
     }

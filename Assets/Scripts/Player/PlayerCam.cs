@@ -67,8 +67,6 @@ public class PlayerCam : MonoBehaviour
         // utilizando la entrada horizontal del ratón multiplicada por la sensibilidad
         // Esto permite que el jugador rote horizontalmente        
         transform.eulerAngles += new Vector3(0, mouseDelta.x * currentSens, 0);
-
-
     }
 
     public void OnLookInput(InputAction.CallbackContext context)

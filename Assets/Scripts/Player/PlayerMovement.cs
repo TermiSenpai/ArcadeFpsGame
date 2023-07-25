@@ -73,10 +73,7 @@ public class PlayerMovement : MonoBehaviour
         Invoke(nameof(setVelocity), 0.1f);
     }
 
-    private void setVelocity()
-    {
-        currentSpeed = velocityToSet;
-    }
+    private void setVelocity() => currentSpeed = velocityToSet;
 
     private void increaseSpeed()
     {
@@ -115,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if(!pv.IsMine) return;
+        if (!pv.IsMine) return;
         if (settings.GetState() == State.paused) return;
 
         switch (context.phase)

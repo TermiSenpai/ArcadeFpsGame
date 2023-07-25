@@ -10,10 +10,8 @@ public class PlayerManager : MonoBehaviour
 {
     PhotonView pv;
 
-    public GameObject player;
-    public CinemachineVirtualCamera cam;
+    GameObject player;
 
-    PlayerModelVisibility visibility;
     GameObject skullEffect;
     GameObject explosionEffect;
 
@@ -79,10 +77,7 @@ public class PlayerManager : MonoBehaviour
         explosionEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Explosion"), player.transform.position, Quaternion.Euler(-90f, 0, 0), 0, new object[] { pv.ViewID });
     }
 
-    public void getKill()
-    {
-        pv.RPC(nameof(RPC_GetKill), pv.Owner);
-    }
+    public void getKill() => pv.RPC(nameof(RPC_GetKill), pv.Owner);
 
     [PunRPC]
     void RPC_GetKill()
@@ -93,14 +88,6 @@ public class PlayerManager : MonoBehaviour
 
     void SendHash(string type, int value)
     {
-
-        Hastable hash = new Hastable();
-        hash.Add(type, value);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
-    }
-    void SendHash(string type, bool value)
-    {
-
         Hastable hash = new Hastable();
         hash.Add(type, value);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);

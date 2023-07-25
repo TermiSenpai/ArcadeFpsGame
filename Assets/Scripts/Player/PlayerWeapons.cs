@@ -72,7 +72,6 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     }
     private void checkInputValue(Vector2 value)
     {
-
         if (value.y > 0)
         {
             if (itemIndex >= items.Length - 1)
@@ -89,7 +88,6 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
                 equipItem(itemIndex - 1);
 
         }
-
     }
 
     #region Input

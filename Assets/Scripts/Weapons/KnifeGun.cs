@@ -76,20 +76,11 @@ public class KnifeGun : Gun
             }
         }
 
-        //if (Physics.OverlapSphere(, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
-        //{
-        //    hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
-        //    pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
-        //    Debug.Log(hit.collider.gameObject.name);
-        //}
-
     }
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
     {
-        //TODO
-        // Change instantiate for gameobject enable
         Collider[] colliders = Physics.OverlapSphere(hitPos, 0.3f);
         if (colliders.Length != 0)
         {
@@ -98,13 +89,6 @@ public class KnifeGun : Gun
 
             impact.SetActive(true);
 
-            // Cancel invoke
-            CancelInvoke();
-            // Start new invoke with renewed time
-            //Invoke(nameof(impactPool), 1.5f);
-
-            //Destroy(impact, 1.5f);
-            //impact.transform.SetParent(colliders[0].transform);
             impact.transform.position = impactPos(hitPos, hitNormal);
             impact.transform.rotation = impactRotation(hitNormal);
 
