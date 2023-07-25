@@ -7,6 +7,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerWeapons : MonoBehaviourPunCallbacks
 {
+    [SerializeField] PlayerIngameSettings settings;
     [SerializeField] Item[] items;
     int itemIndex = -1;
     int previusItemIndex = -1;
@@ -69,9 +70,6 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         if (changedProps.ContainsKey("itemIndex") && !pv.IsMine && targetPlayer == pv.Owner)
             equipItem((int)changedProps["itemIndex"]);
     }
-
-    #region Input
-
     private void checkInputValue(Vector2 value)
     {
 
@@ -94,12 +92,16 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
     }
 
+    #region Input
+
+
     public void OnScrollInput(InputAction.CallbackContext context)
     {
         if (!pv.IsMine)
             return;
 
         if (!canChangeWeapon) return;
+        if (settings.GetState() == State.paused) return;
 
         switch (context.phase)
         {
@@ -113,6 +115,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine)
             return;
+        if (settings.GetState() == State.paused) return;
 
         switch (context.phase)
         {
@@ -125,6 +128,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine)
             return;
+        if (settings.GetState() == State.paused) return;
 
         switch (context.phase)
         {
@@ -143,6 +147,9 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
     public void OnReloadInput(InputAction.CallbackContext context)
     {
+        if(!pv.IsMine) return;
+        if (settings.GetState() == State.paused) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:

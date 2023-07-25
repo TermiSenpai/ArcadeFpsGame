@@ -4,27 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+public enum State
+{
+    gaming,
+    paused
+}
 public class PlayerIngameSettings : MonoBehaviour
 {
 
     //InGameMenu settingsMenu;
-
+    [SerializeField] private State pausedState;
     [SerializeField] MonoBehaviour[] controlsScripts;
-  
 
-    private void toggleMenu()
+    public State GetState()
     {
-        bool toggle = !InGameMenu.Instance.pauseMenu.activeInHierarchy;
-        togglePlayerControlls(toggle);        
-        InGameMenu.Instance.togglePauseMenu(toggle);
+        return pausedState;
     }
 
-    private void togglePlayerControlls(bool value)
+    private void continueGame()
     {
-       foreach (var control in controlsScripts)
-        {
-            control.enabled = !value;
-        }
+        pausedState = State.gaming;
+        InGameMenu.Instance.togglePauseMenu(false);
+    }
+
+    void pauseMenu()
+    {
+        pausedState = State.paused;
+        InGameMenu.Instance.togglePauseMenu(true);
     }
 
     public void OnPauseInput(InputAction.CallbackContext context)
@@ -32,7 +39,11 @@ public class PlayerIngameSettings : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                toggleMenu();
+
+                if (InGameMenu.Instance.isPauseMenuEnable())
+                    continueGame();
+                else pauseMenu();
+
                 break;
         }
     }

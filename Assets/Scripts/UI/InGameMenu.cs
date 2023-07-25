@@ -9,7 +9,7 @@ public class InGameMenu : MonoBehaviour
 {
     public static InGameMenu Instance;
 
-    public GameObject pauseMenu;
+    [SerializeField] private GameObject pauseMenu;
 
     private void Awake()
     {
@@ -21,6 +21,11 @@ public class InGameMenu : MonoBehaviour
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = value;
         pauseMenu.SetActive(value);
+    }
+
+    public bool isPauseMenuEnable()
+    {
+        return pauseMenu.activeInHierarchy;
     }
 
     public void leaveRoom()

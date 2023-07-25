@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCam : MonoBehaviour
 {
+    [SerializeField] PlayerIngameSettings settings;
     public PlayerSensConfig config;
     [SerializeField] Transform cameraHolder;
     PlayerWeapons player;
@@ -72,6 +73,8 @@ public class PlayerCam : MonoBehaviour
 
     public void OnLookInput(InputAction.CallbackContext context)
     {
+        if (settings.GetState() == State.paused) return;
+
         mouseDelta = context.ReadValue<Vector2>();
     }
 

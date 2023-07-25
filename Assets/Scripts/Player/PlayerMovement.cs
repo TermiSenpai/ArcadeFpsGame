@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-
+    [SerializeField] PlayerIngameSettings settings;
     [SerializeField] PlayerMovConfig config;
     CharacterController controller;
     PlayerJump player;
@@ -115,6 +115,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        if(!pv.IsMine) return;
+        if (settings.GetState() == State.paused) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Started:

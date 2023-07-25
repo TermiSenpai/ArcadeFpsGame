@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerJump : MonoBehaviour
 {
     PhotonView pv;
+    [SerializeField] PlayerIngameSettings settings;
     [SerializeField] PlayerJumpConfig config;
     CharacterController controller;
 
@@ -75,6 +76,10 @@ public class PlayerJump : MonoBehaviour
     public void OnJumpInput(InputAction.CallbackContext context)
     {
         if (!pv.IsMine) return;
+
+        if (settings.GetState() == State.paused) return;
+
+
         switch (context.phase)
         {
             case InputActionPhase.Started:

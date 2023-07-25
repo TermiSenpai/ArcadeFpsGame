@@ -10,6 +10,7 @@ public class PlayerGrappling : MonoBehaviour
 {
 
     [Header("References")]
+    [SerializeField] PlayerIngameSettings settings;
     [SerializeField] private Transform camTransform;
     [SerializeField] private Transform gunTip;
     [SerializeField] LayerMask whatIsGrappleable;
@@ -153,6 +154,7 @@ public class PlayerGrappling : MonoBehaviour
     public void OnGrappleInput(InputAction.CallbackContext context)
     {
         if (!pv.IsMine) return;
+        if (settings.GetState() == State.paused) return;
 
         switch (context.phase)
         {

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerScoreboard : MonoBehaviour
 {
+    [SerializeField] PlayerIngameSettings settings;
     CanvasGroup group;
     private void Start()
     {
@@ -13,6 +14,7 @@ public class PlayerScoreboard : MonoBehaviour
 
     public void OnScoreboardInput(InputAction.CallbackContext context)
     {
+        if (settings.GetState() == State.paused) return;
         switch(context.phase) {
             case InputActionPhase.Performed:
                 group.alpha = 1;
