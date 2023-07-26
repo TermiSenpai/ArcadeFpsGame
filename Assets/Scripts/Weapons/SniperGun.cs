@@ -38,7 +38,7 @@ public class SniperGun : Gun
     {
         currentAmmo = maxAmmo;
         source.maxDistance = 25f;
-        source.minDistance = 1f;
+        source.minDistance = 10f;
     }   
 
     public override void Use()
