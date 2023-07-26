@@ -7,9 +7,10 @@ public class GameQualitySettings : MonoBehaviour
 {
     [SerializeField] Toggle[] toggles;
 
-    private void OnEnable()
+    private void Start()
     {
-        int lastToggled = PlayerPrefs.GetInt("Quality");
+        int lastToggled = PlayerPrefs.GetInt("Quality", 5);
+        setQuality(lastToggled);
         toggles[lastToggled].isOn = true;
     }
 
