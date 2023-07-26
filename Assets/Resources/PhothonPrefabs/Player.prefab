@@ -2539,7 +2539,6 @@ MonoBehaviour:
   secondsToStartRecovering: 5
   source: {fileID: 7159868030839031038}
   hitClip: {fileID: 8300000, guid: 3021f08350f662e4b983c88a0c4bf3d4, type: 3}
-  deathClip: {fileID: 8300000, guid: 93f15b1d2e362174a913e5e9e370f885, type: 3}
 --- !u!114 &6393457726681453524
 MonoBehaviour:
   m_ObjectHideFlags: 0
