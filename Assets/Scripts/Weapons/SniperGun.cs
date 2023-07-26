@@ -114,7 +114,6 @@ public class SniperGun : Gun
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
             weaponCoroutine = StartCoroutine(weaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
-            Debug.Log(hit.collider.gameObject.name);
         }
         currentAmmo--;
         ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
