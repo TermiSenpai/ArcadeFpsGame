@@ -13,8 +13,18 @@ public class UIAmmo : MonoBehaviour
         currentAmmoTxt.text = $"{ammo} / {maxAmmo}";
     }
 
-    public void toggleUI(bool toggle)
+    public void toggleUI()
     {
+        bool toggle = !ammoUI.activeInHierarchy;
         ammoUI.SetActive(toggle);
+    }
+
+    private void OnEnable()
+    {
+        PlayerWeapons.onWeaponChangedRelease += toggleUI;
+    }
+    private void OnDisable()
+    {
+        PlayerWeapons.onWeaponChangedRelease -= toggleUI;
     }
 }

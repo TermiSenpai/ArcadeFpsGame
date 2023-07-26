@@ -16,6 +16,9 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     public bool canChangeWeapon = true;
     PhotonView pv;
 
+    public delegate void OnWeaponChanged();
+    public static event OnWeaponChanged onWeaponChangedRelease;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -88,6 +91,8 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
                 equipItem(itemIndex - 1);
 
         }
+        if(onWeaponChangedRelease != null)
+            onWeaponChangedRelease();
     }
 
     #region Input
