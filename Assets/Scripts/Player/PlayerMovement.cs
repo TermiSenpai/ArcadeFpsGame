@@ -113,7 +113,11 @@ public class PlayerMovement : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         if (!pv.IsMine) return;
-        if (settings.GetState() == State.paused) return;
+        if (settings.GetState() == State.paused)
+        {
+            movementInput = Vector2.zero;
+            return;
+        }
 
         switch (context.phase)
         {

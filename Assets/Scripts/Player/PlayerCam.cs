@@ -71,7 +71,11 @@ public class PlayerCam : MonoBehaviour
 
     public void OnLookInput(InputAction.CallbackContext context)
     {
-        if (settings.GetState() == State.paused) return;
+        if (settings.GetState() == State.paused)
+        {
+            mouseDelta = Vector2.zero;
+            return;
+        }
 
         mouseDelta = context.ReadValue<Vector2>();
     }
