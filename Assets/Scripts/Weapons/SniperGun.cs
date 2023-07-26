@@ -122,7 +122,7 @@ public class SniperGun : Gun
 
     public override void Reload()
     {
-        if(isReloading) return;
+        if(isReloading || currentAmmo >= maxAmmo) return;
 
         if (curCoroutine != null)
             StopCoroutine(curCoroutine);
