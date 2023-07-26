@@ -25,6 +25,7 @@ public class SniperGun : Gun
 
     [SerializeField] UIAmmo ammoUI;
     [SerializeField] float timeToScope;
+    bool isReloading = false;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class SniperGun : Gun
         currentAmmo = maxAmmo;
         source.maxDistance = 25f;
         source.minDistance = 1f;
-    }
+    }   
 
     public override void Use()
     {
@@ -122,6 +123,8 @@ public class SniperGun : Gun
 
     public override void Reload()
     {
+        if(isReloading) return;
+
         if (curCoroutine != null)
             StopCoroutine(curCoroutine);
 
@@ -133,11 +136,13 @@ public class SniperGun : Gun
 
     IEnumerator Recharge()
     {
+        isReloading = true;
         canUse = false;
         yield return new WaitForSeconds(reloadTimeDelay);
         currentAmmo = maxAmmo;
         canUse = true;
         ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
+        isReloading = false;
     }
     void impactPool() => pv.RPC("RPC_ImpactPool", RpcTarget.All);
     
