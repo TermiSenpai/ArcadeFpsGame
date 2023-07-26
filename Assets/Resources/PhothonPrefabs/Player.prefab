@@ -3058,7 +3058,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ptv: {fileID: 6095217042096614561}
-  inputs: {fileID: 5487468529459871342}
   weaponCam: {fileID: 4269813384374192056}
   mainCam: {fileID: 9111037616720877483}
 --- !u!114 &3762496954286049086
