@@ -8,7 +8,6 @@ public class PlayerGameOver : MonoBehaviour
 {
     PhotonView pv;
     [SerializeField] PhotonTransformView ptv;
-    [SerializeField] PlayerInput inputs;
     [SerializeField] Camera weaponCam;
     [SerializeField] CinemachineVirtualCamera mainCam;
 
@@ -39,7 +38,6 @@ public class PlayerGameOver : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         ptv.enabled = false;
-        inputs.enabled = false;
         if (weaponCam != null)
             weaponCam.enabled = false;
         StartCoroutine(GameOverCamMovement());
