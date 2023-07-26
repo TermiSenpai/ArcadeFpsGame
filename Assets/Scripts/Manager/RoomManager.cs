@@ -7,6 +7,7 @@ using System;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager Instance;
+    private PhotonView pv;
 
     private void Awake()
     {
@@ -17,6 +18,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
         DontDestroyOnLoad(gameObject);
         Instance = this;
+    }
+
+    private void Start()
+    {
+     pv = GetComponent<PhotonView>();
     }
 
     public override void OnEnable()
@@ -38,7 +44,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate(Path.Combine("PhothonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
         }
     }
+    
+    public void loadLevel()
+    {
+        pv.RPC(nameof(RPC_LoadLevel), RpcTarget.All);
+    }
 
-
+    [PunRPC]
+    private void RPC_LoadLevel()
+    {
+        PhotonNetwork.LoadLevel(1);
+    }
 
 }

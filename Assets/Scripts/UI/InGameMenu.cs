@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class InGameMenu : MonoBehaviour
 {
     public static InGameMenu Instance;
-
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject exitBtn;
+    [SerializeField] private GameObject restartBtn;
 
     private void Awake()
     {
@@ -57,6 +58,19 @@ public class InGameMenu : MonoBehaviour
 
     private void GameOver()
     {
-        Invoke(nameof(leaveRoom), 10f);
+        Invoke(nameof(EnableBtns), 1f);
     }
+
+    void EnableBtns()
+    {
+        exitBtn.SetActive(true);
+        restartBtn.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
+    public void RestartGame()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+        RoomManager.Instance.loadLevel();
+    }
+
 }
