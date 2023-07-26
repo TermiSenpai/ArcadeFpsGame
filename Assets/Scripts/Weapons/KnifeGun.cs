@@ -48,6 +48,16 @@ public class KnifeGun : Gun
     {
     }
 
+    private void OnDisable()
+    {
+        StopCoroutine(weaponCooldown());
+    }
+
+    private void OnEnable()
+    {
+        canUse = true;
+    }
+
     private void Attack() => anim.SetTrigger("Attack");
 
     public void checkHit()
