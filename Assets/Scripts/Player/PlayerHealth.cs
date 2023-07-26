@@ -18,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip hitClip;
-    [SerializeField] AudioClip deathClip;
 
     private void Awake()
     {
@@ -102,9 +101,9 @@ public class PlayerHealth : MonoBehaviour
         health.updateHealthTxt(currentHealth.ToString("00"));
     }
 
+    
     private void playerDie()
-    {
-        source.PlayOneShot(deathClip);
+    {        
         playerManager.die();
     }
 }

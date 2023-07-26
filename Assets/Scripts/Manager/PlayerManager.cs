@@ -4,13 +4,15 @@ using System.IO;
 using Photon.Realtime;
 using System.Linq;
 using Hastable = ExitGames.Client.Photon.Hashtable;
-using Cinemachine;
 
 public class PlayerManager : MonoBehaviour
 {
     PhotonView pv;
 
+    [SerializeField] AudioClip deathClip;
+
     GameObject player;
+    AudioSource source;
 
     GameObject skullEffect;
     GameObject explosionEffect;
@@ -38,6 +40,7 @@ public class PlayerManager : MonoBehaviour
         if (player == null)
         {
             player = PhotonNetwork.Instantiate(Path.Combine(path, "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
+            source = player.GetComponent<AudioSource>();
         }
 
         togglePlayer(true);
@@ -62,8 +65,8 @@ public class PlayerManager : MonoBehaviour
 
         deaths++;
         SendHash("deaths", deaths);
-
         Respawn();
+        source.PlayOneShot(deathClip);
     }
 
     private void Respawn()
