@@ -496,6 +496,7 @@ GameObject:
   - component: {fileID: 809426816439859924}
   - component: {fileID: 415441593}
   - component: {fileID: 4742289438950433614}
+  - component: {fileID: 5116411987561915922}
   m_Layer: 5
   m_Name: InGameMenus
   m_TagString: Untagged
@@ -635,6 +636,22 @@ MonoBehaviour:
   - {fileID: 8726232438699186776}
   - {fileID: 8726232437112937288}
   - {fileID: 8726232438102167428}
+--- !u!114 &5116411987561915922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809426816439859919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2731afea56ca47242acf84c56b730e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: e748823b6be625545b5551cf94e59fc0, type: 2}
+  masterSlider: {fileID: 8726232437428951786}
+  musicSlider: {fileID: 8726232438982332507}
+  fxSlider: {fileID: 8726232437602363248}
 --- !u!1 &809426817420063659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,7 +2276,7 @@ GameObject:
   - component: {fileID: 8726232437428951787}
   - component: {fileID: 8726232437428951786}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MasterSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2333,7 +2350,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8726232438872490463}
   m_Direction: 0
   m_MinValue: 0.001
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -2748,7 +2765,7 @@ GameObject:
   - component: {fileID: 8726232437602363249}
   - component: {fileID: 8726232437602363248}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: FxSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2822,7 +2839,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8726232438803178114}
   m_Direction: 0
   m_MinValue: 0.001
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -7457,7 +7474,7 @@ GameObject:
   - component: {fileID: 8726232438982332500}
   - component: {fileID: 8726232438982332507}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MusicSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7531,7 +7548,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8726232437738279559}
   m_Direction: 0
   m_MinValue: 0.001
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using System;
 
 public class VolumeSettings : MonoBehaviour
 {
@@ -16,12 +17,21 @@ public class VolumeSettings : MonoBehaviour
     private const string masterName = "MasterVolume";
     private const string musicName = "MusicVolume";
     private const string fxName = "FxVolume";
-    
+
 
     private void Start()
     {
         loadSaveValues();
         addSliderListeners();
+        setAllVolumes();
+    }
+
+    private void setAllVolumes()
+    {
+        // Establecer los valores iniciales de volumen llamando a SetVolume() directamente
+        SetVolume(masterName, masterSlider.value);
+        SetVolume(musicName, musicSlider.value);
+        SetVolume(fxName, fxSlider.value);
     }
 
     private void loadSaveValues()
@@ -37,7 +47,8 @@ public class VolumeSettings : MonoBehaviour
 
     private void addSliderListeners()
     {
-        masterSlider.onValueChanged.AddListener(delegate{ SetVolume(masterName, masterSlider.value); });
+        // Agregar listeners para mantener el volumen actualizado cuando se interactúa con los sliders
+        masterSlider.onValueChanged.AddListener(delegate { SetVolume(masterName, masterSlider.value); });
         musicSlider.onValueChanged.AddListener(delegate { SetVolume(musicName, musicSlider.value); });
         fxSlider.onValueChanged.AddListener(delegate { SetVolume(fxName, fxSlider.value); });
     }
