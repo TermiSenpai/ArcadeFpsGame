@@ -103,4 +103,9 @@ public class PlayerManager : MonoBehaviour
         return FindObjectsOfType<PlayerManager>().SingleOrDefault(x => x.pv.Owner == player);
     }
 
+    public string getNickname()
+    {
+        return PhotonNetwork.NickName;
+    }
+
 }
