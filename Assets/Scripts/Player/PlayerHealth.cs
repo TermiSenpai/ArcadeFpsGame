@@ -29,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!pv.IsMine)
         {
-            //Destroy(billboardHealth);
             Destroy(health.gameObject);
         }
 
@@ -80,6 +79,7 @@ public class PlayerHealth : MonoBehaviour
         {
             playerDie();
             PlayerManager.Find(info.Sender).getKill();
+            KillManager.Instance.enableKillInfo(info.Sender.NickName, playerManager.getNickname());
         }
     }
 
