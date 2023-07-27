@@ -170,6 +170,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     private void OnPlayerListUpdate()
     {
         foreach (Transform child in playerListContent)
+
             Destroy(child.gameObject);
 
         Player[] players = PhotonNetwork.PlayerList;
@@ -179,7 +180,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             Instantiate(playerListPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(player);
         }
 
-        Title.text = $"{PhotonNetwork.CurrentRoom.Name} - {PhotonNetwork.CurrentRoom.PlayerCount} / {PhotonNetwork.CurrentRoom.MaxPlayers}";
+        Title.text = $"{PhotonNetwork.CurrentRoom.Name}";
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
