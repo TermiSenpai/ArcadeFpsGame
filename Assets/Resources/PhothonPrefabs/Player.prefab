@@ -3425,7 +3425,7 @@ MonoBehaviour:
   cooldownSeconds: 0.6
   otherPlayerLayer:
     serializedVersion: 2
-    m_Bits: 2147484095
+    m_Bits: 2147483839
   scopeOverlay: {fileID: 641443908}
   crosshairOverlay: {fileID: 3980459047496005393}
   cam: {fileID: 9111037616720877483}
@@ -3643,8 +3643,9 @@ MonoBehaviour:
   cooldownSeconds: 0.7
   otherPlayerLayer:
     serializedVersion: 2
-    m_Bits: 2147484095
+    m_Bits: 2147483839
   cam: {fileID: 9111037616720877483}
+  knifeDetection: {fileID: 0}
 --- !u!114 &8020699279095271409
 MonoBehaviour:
   m_ObjectHideFlags: 0
