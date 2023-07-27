@@ -14,4 +14,5 @@ public abstract class Item : MonoBehaviour
     public abstract void Reload();
     public abstract void Aim();
     public abstract void StopAim();
+    public abstract void Default();
 }

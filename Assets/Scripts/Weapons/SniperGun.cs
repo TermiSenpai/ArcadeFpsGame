@@ -37,7 +37,7 @@ public class SniperGun : Gun
 
     private void OnDisable()
     {
-        OnReloadFinished -= onFinishedReload;        
+        OnReloadFinished -= onFinishedReload;
     }
 
     private void Awake()
@@ -77,6 +77,14 @@ public class SniperGun : Gun
 
         anim.SetBool("Scoped", false);
         disableScopeOverlay();
+    }
+
+    public override void Default()
+    {
+        currentAmmo = maxAmmo;
+        canUse = true;
+        disableScopeOverlay();
+        onFinishedReload();
     }
 
     public void enableScopeOverlay()
@@ -148,7 +156,7 @@ public class SniperGun : Gun
         canUse = false;
         yield return new WaitForSeconds(reloadTimeDelay);
         OnReloadFinished?.Invoke();
-    }  
+    }
 
     private void onFinishedReload()
     {

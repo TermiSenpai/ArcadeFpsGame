@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] AudioClip deathClip;
 
     GameObject player;
+    PlayerWeapons pWeapon;
     AudioSource source;
 
     GameObject skullEffect;
@@ -40,11 +41,12 @@ public class PlayerManager : MonoBehaviour
         if (player == null)
         {
             player = PhotonNetwork.Instantiate(Path.Combine(path, "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
+            pWeapon = player.GetComponent<PlayerWeapons>();
             source = player.GetComponent<AudioSource>();
         }
 
         togglePlayer(true);
-
+        pWeapon.setWeaponDefault();
         player.transform.rotation = spawnpoint.rotation;
         player.transform.position = spawnpoint.position;
 

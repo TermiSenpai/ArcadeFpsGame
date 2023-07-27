@@ -33,7 +33,13 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         sync();
     }
 
-    void equipItem(int _index)
+    public void setWeaponDefault()
+    {
+        equipItem(0);
+        items[itemIndex].Default();
+    }
+
+    public void equipItem(int _index)
     {
         if (_index == itemIndex) return;
 

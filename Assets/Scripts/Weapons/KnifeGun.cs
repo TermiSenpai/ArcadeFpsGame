@@ -1,8 +1,5 @@
 using Cinemachine;
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class KnifeGun : Gun
@@ -42,6 +39,12 @@ public class KnifeGun : Gun
         Attack();
 
         weaponCoroutine = StartCoroutine(weaponCooldown());
+    }
+
+    public override void Default()
+    {
+        canUse = true;
+        StopCoroutine(weaponCoroutine);
     }
 
     public override void Aim()
