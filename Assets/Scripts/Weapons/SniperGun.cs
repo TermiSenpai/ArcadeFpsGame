@@ -20,7 +20,8 @@ public class SniperGun : Gun
     PhotonView pv;
     Animator anim;
 
-    Coroutine curCoroutine;
+    Coroutine aimCoroutine;
+    Coroutine reloadCoroutine;
     GameObject impact;
 
     [SerializeField] UIAmmo ammoUI;
@@ -39,21 +40,14 @@ public class SniperGun : Gun
         currentAmmo = maxAmmo;
         source.maxDistance = 25f;
         source.minDistance = 10f;
-    }   
+    }
 
     public override void Use()
     {
-        if (!canUse)
-        {
-            return;
-        }
+        if (currentAmmo == 0) noAmmo();
+        if (!canUse) return;
 
-        if (currentAmmo == 0)
-        {
-            source.PlayOneShot(gunInfo.emptyShot);
-            canUse = false;
-            return;
-        }
+
         shoot();
     }
 
@@ -61,13 +55,13 @@ public class SniperGun : Gun
     {
         source.PlayOneShot(gunInfo.aimClip);
         anim.SetBool("Scoped", true);
-        curCoroutine = StartCoroutine(nameof(enableScope));
+        aimCoroutine = StartCoroutine(nameof(enableScope));
     }
 
     public override void StopAim()
     {
-        if (curCoroutine != null)
-            StopCoroutine(curCoroutine);
+        if (aimCoroutine != null)
+            StopCoroutine(aimCoroutine);
 
         anim.SetBool("Scoped", false);
         disableScopeOverlay();
@@ -122,15 +116,18 @@ public class SniperGun : Gun
 
     public override void Reload()
     {
-        if(isReloading || currentAmmo >= maxAmmo) return;
-
-        if (curCoroutine != null)
-            StopCoroutine(curCoroutine);
+        if (isReloading || currentAmmo >= maxAmmo) return;
 
         source.PlayOneShot(gunInfo.reloadClip);
-        curCoroutine = StartCoroutine(nameof(Recharge));
+        reloadCoroutine = StartCoroutine(nameof(Recharge));
         anim.SetTrigger("Reload");
 
+    }
+
+    private void noAmmo()
+    {
+        source.PlayOneShot(gunInfo.emptyShot);
+        canUse = false;
     }
 
     IEnumerator Recharge()
@@ -140,11 +137,11 @@ public class SniperGun : Gun
         yield return new WaitForSeconds(reloadTimeDelay);
         currentAmmo = maxAmmo;
         canUse = true;
-        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
         isReloading = false;
+        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
     }
     void impactPool() => pv.RPC("RPC_ImpactPool", RpcTarget.All);
-    
+
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
@@ -159,18 +156,9 @@ public class SniperGun : Gun
                 impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
 
             impact.SetActive(true);
-            
+
             impact.transform.position = impactPos(hitPos, hitNormal);
             impact.transform.rotation = impactRotation(hitNormal);
         }
-    }
-
-    [PunRPC]
-    void RPC_ImpactPool()
-    {
-        if (impact == null) return;
-
-        impact.transform.position = Vector3.zero;
-        impact.SetActive(false);
     }
 }
