@@ -1,9 +1,9 @@
 using Cinemachine;
 using Photon.Pun;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
+using Random = UnityEngine.Random;
 
 public class SniperGun : Gun
 {
@@ -27,6 +27,18 @@ public class SniperGun : Gun
     [SerializeField] UIAmmo ammoUI;
     [SerializeField] float timeToScope;
     bool isReloading = false;
+
+    private event Action OnReloadFinished;
+
+    private void OnEnable()
+    {
+        OnReloadFinished += onFinishedReload;
+    }
+
+    private void OnDisable()
+    {
+        OnReloadFinished -= onFinishedReload;        
+    }
 
     private void Awake()
     {
@@ -135,12 +147,16 @@ public class SniperGun : Gun
         isReloading = true;
         canUse = false;
         yield return new WaitForSeconds(reloadTimeDelay);
+        OnReloadFinished?.Invoke();
+    }  
+
+    private void onFinishedReload()
+    {
         currentAmmo = maxAmmo;
         canUse = true;
         isReloading = false;
         ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
     }
-    void impactPool() => pv.RPC("RPC_ImpactPool", RpcTarget.All);
 
 
     [PunRPC]
