@@ -16,6 +16,12 @@ public class InGameRandomMusic : MonoBehaviour
     {
         PlayRandomTrack();
     }
+
+    private void Update()
+    {
+        if (!source.isPlaying)
+            source.PlayOneShot(currentClip);
+    }
     void PlayRandomTrack()
     {
         currentClip = musicClips[Random.Range(0, musicClips.Length)];
