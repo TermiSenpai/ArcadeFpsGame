@@ -10,7 +10,7 @@ public class PlayerGameOver : MonoBehaviour
     [SerializeField] PhotonTransformView ptv;
     [SerializeField] Camera weaponCam;
     [SerializeField] CinemachineVirtualCamera mainCam;
-
+    [SerializeField] float verticalSpeed = 1.0f;
     private void Awake()
     {
         pv =GetComponent<PhotonView>();
@@ -46,9 +46,11 @@ public class PlayerGameOver : MonoBehaviour
     IEnumerator GameOverCamMovement()
     {
         float timer = 9;
+       
+
         while (timer > 0)
         {
-            mainCam.transform.position += Vector3.up * Time.deltaTime;
+            mainCam.transform.position += Vector3.up * verticalSpeed * Time.deltaTime;
             timer -= Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }

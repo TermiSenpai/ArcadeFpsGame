@@ -22,7 +22,7 @@ public class GameTimer : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        // Solo el maestro de la sala inicializará el temporizador y sincronizará su valor en la sala
+        // Solo el maestro de la sala  sincronizará su valor en la sala
         timerSeconds = (float)TimeSpan.FromMinutes(timerMinutes).TotalSeconds;
         if (PhotonNetwork.IsMasterClient)
         {
@@ -62,6 +62,7 @@ public class GameTimer : MonoBehaviourPunCallbacks
 
     void RestTimer()
     {
+        if (!canRestTimer) return;
         timerSeconds -= Time.deltaTime;
     }
 
@@ -91,6 +92,7 @@ public class GameTimer : MonoBehaviourPunCallbacks
     // Método que se llama automáticamente cuando las propiedades personalizadas de la sala son actualizadas.
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
+        // Si no eres el cliente maestro, se sincroniza 
         if (!PhotonNetwork.IsMasterClient)
             if (propertiesThatChanged.TryGetValue(TimerKey, out object timerValue))
             {
