@@ -51,6 +51,9 @@ public class PlayerManager : MonoBehaviour
             player = PhotonNetwork.Instantiate(Path.Combine(path, "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
             pWeapon = player.GetComponent<PlayerWeapons>();
             source = player.GetComponent<AudioSource>();
+
+            SendHash("deaths", deaths);
+            SendHash("kills", kills);
         }
 
         TogglePlayer(true);
