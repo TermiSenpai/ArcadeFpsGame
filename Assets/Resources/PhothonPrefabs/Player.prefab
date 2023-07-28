@@ -2516,10 +2516,6 @@ MonoBehaviour:
   maxGrappleDistance: 75
   grappleDelay: 0.1
   overshootYAxis: 2.5
-  cam: {fileID: 9111037616720877483}
-  currenFovMultiplier: 0
-  minFovMultiplier: 150
-  maxFovMultiplier: 30
   grapplingCd: 0.5
   isGrappling: 0
 --- !u!114 &6095217042155911570
