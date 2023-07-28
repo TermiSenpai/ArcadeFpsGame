@@ -32,12 +32,12 @@ public class SniperGun : Gun
 
     private void OnEnable()
     {
-        OnReloadFinished += onFinishedReload;
+        OnReloadFinished += OnFinishedReload;
     }
 
     private void OnDisable()
     {
-        OnReloadFinished -= onFinishedReload;
+        OnReloadFinished -= OnFinishedReload;
     }
 
     private void Awake()
@@ -56,18 +56,18 @@ public class SniperGun : Gun
 
     public override void Use()
     {
-        if (currentAmmo == 0) noAmmo();
+        if (currentAmmo == 0) NoAmmo();
         if (!canUse) return;
 
 
-        shoot();
+        Shoot();
     }
 
     public override void Aim()
     {
         source.PlayOneShot(gunInfo.aimClip);
         anim.SetBool("Scoped", true);
-        aimCoroutine = StartCoroutine(nameof(enableScope));
+        aimCoroutine = StartCoroutine(nameof(EnableScope));
     }
 
     public override void StopAim()
@@ -76,25 +76,25 @@ public class SniperGun : Gun
             StopCoroutine(aimCoroutine);
 
         anim.SetBool("Scoped", false);
-        disableScopeOverlay();
+        DisableScopeOverlay();
     }
 
     public override void Default()
     {
         currentAmmo = maxAmmo;
         canUse = true;
-        disableScopeOverlay();
-        onFinishedReload();
+        DisableScopeOverlay();
+        OnFinishedReload();
     }
 
-    public void enableScopeOverlay()
+    public void EnableScopeOverlay()
     {
         cam.m_Lens.FieldOfView = 15f;
         scopeOverlay.SetActive(true);
         crosshairOverlay.SetActive(false);
         weaponCam.SetActive(false);
     }
-    public void disableScopeOverlay()
+    public void DisableScopeOverlay()
     {
         cam.m_Lens.FieldOfView = 60f;
         scopeOverlay.SetActive(false);
@@ -102,13 +102,13 @@ public class SniperGun : Gun
         weaponCam.SetActive(true);
     }
 
-    private IEnumerator enableScope()
+    private IEnumerator EnableScope()
     {
         yield return new WaitForSeconds(timeToScope);
-        enableScopeOverlay();
+        EnableScopeOverlay();
     }
 
-    private void shoot()
+    private void Shoot()
     {
         anim.SetTrigger("Shoot");
         Ray r;
@@ -144,7 +144,7 @@ public class SniperGun : Gun
 
     }
 
-    private void noAmmo()
+    private void NoAmmo()
     {
         source.PlayOneShot(gunInfo.emptyShot);
         canUse = false;
@@ -158,7 +158,7 @@ public class SniperGun : Gun
         OnReloadFinished?.Invoke();
     }
 
-    private void onFinishedReload()
+    private void OnFinishedReload()
     {
         currentAmmo = maxAmmo;
         canUse = true;
@@ -173,16 +173,22 @@ public class SniperGun : Gun
         // play sound online
         source.PlayOneShot(gunInfo.useClip);
 
-        Collider[] colliders = Physics.OverlapSphere(hitPos, 0.3f);
-        if (colliders.Length != 0)
+        // Define un array para almacenar los colliders detectados por OverlapSphereNonAlloc.
+        int maxColliders = 10; // Elige un número adecuado para el máximo de colisionadores esperados.
+        Collider[] colliders = new Collider[maxColliders];
+
+        // Realiza la detección de colisiones sin asignar memoria adicional.
+        int numColliders = Physics.OverlapSphereNonAlloc(hitPos, 0.3f, colliders);
+
+        // Comprueba si se han detectado colisiones.
+        if (numColliders != 0)
         {
             if (impact == null)
                 impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
 
             impact.SetActive(true);
 
-            impact.transform.position = impactPos(hitPos, hitNormal);
-            impact.transform.rotation = impactRotation(hitNormal);
+            impact.transform.SetPositionAndRotation(impactPos(hitPos, hitNormal), impactRotation(hitNormal));
         }
     }
 }
