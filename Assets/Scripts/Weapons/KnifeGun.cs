@@ -38,7 +38,7 @@ public class KnifeGun : Gun
         source.PlayOneShot(gunInfo.useClip);
         Attack();
 
-        weaponCoroutine = StartCoroutine(weaponCooldown());
+        weaponCoroutine = StartCoroutine(WeaponCooldown());
     }
 
     public override void Default()
@@ -59,7 +59,7 @@ public class KnifeGun : Gun
 
     private void OnDisable()
     {
-        StopCoroutine(weaponCooldown());
+        StopCoroutine(WeaponCooldown());
     }
 
     private void OnEnable()
@@ -120,11 +120,11 @@ public class KnifeGun : Gun
         if (numColliders != 0)
         {
             if (impact == null)
-                impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
+                impact = Instantiate(bulletImpactPrefab, ImpactPos(hitPos, hitNormal), ImpactRotation(hitNormal));
 
             impact.SetActive(true);
 
-            impact.transform.SetPositionAndRotation(impactPos(hitPos, hitNormal), impactRotation(hitNormal));
+            impact.transform.SetPositionAndRotation(ImpactPos(hitPos, hitNormal), ImpactRotation(hitNormal));
         }
     }
 

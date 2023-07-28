@@ -126,7 +126,7 @@ public class SniperGun : Gun
         if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
         {
             hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
-            weaponCoroutine = StartCoroutine(weaponCooldown());
+            weaponCoroutine = StartCoroutine(WeaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
         currentAmmo--;
@@ -184,11 +184,11 @@ public class SniperGun : Gun
         if (numColliders != 0)
         {
             if (impact == null)
-                impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
+                impact = Instantiate(bulletImpactPrefab, ImpactPos(hitPos, hitNormal), ImpactRotation(hitNormal));
 
             impact.SetActive(true);
 
-            impact.transform.SetPositionAndRotation(impactPos(hitPos, hitNormal), impactRotation(hitNormal));
+            impact.transform.SetPositionAndRotation(ImpactPos(hitPos, hitNormal), ImpactRotation(hitNormal));
         }
     }
 }
