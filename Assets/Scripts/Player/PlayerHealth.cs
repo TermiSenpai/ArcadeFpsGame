@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    #region variables
     PhotonView pv;
     PlayerManager playerManager;
     private const float maxHealth = 100f;
@@ -19,6 +20,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip hitClip;
 
+    #endregion
+
+    #region unity
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -42,6 +46,9 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
+    #endregion
+
+    #region custom methods
     void SetMaxHealth() => currentHealth = maxHealth;
 
 
@@ -50,7 +57,22 @@ public class PlayerHealth : MonoBehaviour
         source.PlayOneShot(hitClip);
         pv.RPC(nameof(RPC_TackeDamage), pv.Owner, damage);
     }
+    void UpdateHealthBar()
+    {
+        billboardHealth.updateBillboardBar(currentHealth / maxHealth);
+        health.updateHealthBar(currentHealth / maxHealth);
+        health.updateHealthTxt(currentHealth.ToString("00"));
+    }
 
+
+    private void PlayerDie()
+    {
+        playerManager.Die();
+    }
+
+    #endregion
+
+    #region enumerators
     private IEnumerator RecoverHealth()
     {
         yield return new WaitForSeconds(secondsToStartRecovering);
@@ -62,6 +84,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region RPC
 
     [PunRPC]
     void RPC_TackeDamage(float damage, PhotonMessageInfo info)
@@ -94,16 +119,5 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    void UpdateHealthBar()
-    {
-        billboardHealth.updateBillboardBar(currentHealth / maxHealth);
-        health.updateHealthBar(currentHealth / maxHealth);
-        health.updateHealthTxt(currentHealth.ToString("00"));
-    }
-
-    
-    private void PlayerDie()
-    {        
-        playerManager.Die();
-    }
+    #endregion
 }
