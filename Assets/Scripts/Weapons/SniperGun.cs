@@ -130,7 +130,7 @@ public class SniperGun : Gun
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
         currentAmmo--;
-        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
+        ammoUI.UpdateAmmoTxt(currentAmmo, maxAmmo);
     }
 
 
@@ -163,7 +163,7 @@ public class SniperGun : Gun
         currentAmmo = maxAmmo;
         canUse = true;
         isReloading = false;
-        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
+        ammoUI.UpdateAmmoTxt(currentAmmo, maxAmmo);
     }
 
 
