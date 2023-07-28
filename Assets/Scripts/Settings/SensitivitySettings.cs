@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SensitivitySettings : MonoBehaviour
 {
+    [Header("Reference")]
     [SerializeField] PlayerSensConfig sensConfig;
     [Header("Sliders")]
     [SerializeField] Slider normalSlider;
@@ -19,12 +20,12 @@ public class SensitivitySettings : MonoBehaviour
 
     private void Start()
     {
-        loadSavedValues();
-        setValueToTxt();
-        addSliderListeners();
+        LoadSavedValues();
+        SetValueToTxt();
+        AddSliderListeners();
     }
 
-    private void loadSavedValues()
+    private void LoadSavedValues()
     {
         float normalSens = PlayerPrefs.GetFloat(normalName, 0.5f);
         float aimSens = PlayerPrefs.GetFloat(aimName, 0.5f);
@@ -36,26 +37,26 @@ public class SensitivitySettings : MonoBehaviour
         aimSlider.value = aimSens;
     }
 
-    private void addSliderListeners()
+    private void AddSliderListeners()
     {
-        normalSlider.onValueChanged.AddListener(setNormalSens);
-        aimSlider.onValueChanged.AddListener(setAimSens);
+        normalSlider.onValueChanged.AddListener(SetNormalSens);
+        aimSlider.onValueChanged.AddListener(SetAimSens);
     }
 
-    public void setNormalSens(float newValue)
+    public void SetNormalSens(float newValue)
     {
         sensConfig.sensitivity = newValue;
-        setValueToTxt();
+        SetValueToTxt();
         PlayerPrefs.SetFloat(normalName, sensConfig.sensitivity);
     }
-    public void setAimSens(float newValue)
+    public void SetAimSens(float newValue)
     {
         sensConfig.aimSens = newValue;
-        setValueToTxt();
+        SetValueToTxt();
         PlayerPrefs.SetFloat(aimName, sensConfig.aimSens);
     }
 
-    public void setValueToTxt()
+    public void SetValueToTxt()
     {
         normalTxt.text = (normalSlider.value * 10).ToString("0.00");
         aimTxt.text = (aimSlider.value * 10).ToString("0.00");

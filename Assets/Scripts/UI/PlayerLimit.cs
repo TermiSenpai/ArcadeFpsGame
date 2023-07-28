@@ -1,6 +1,3 @@
-using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,11 +16,12 @@ public class PlayerLimit : MonoBehaviour
 
     private void Start()
     {
-        onSliderUpdate();
+        playerLimitSlider.onValueChanged.AddListener(OnSliderUpdate);
+        OnSliderUpdate(2);
     }
 
 
-    public void onSliderUpdate()
+    public void OnSliderUpdate(float value)
     {
         playerLimitTxt.text = playerLimitSlider.value.ToString();
         limit = (int)playerLimitSlider.value;

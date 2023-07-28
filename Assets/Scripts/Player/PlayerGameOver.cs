@@ -2,16 +2,23 @@ using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerGameOver : MonoBehaviour
 {
+    #region Variables
     PhotonView pv;
+    [Header("References")]
     [SerializeField] PhotonTransformView transformView;
     [SerializeField] Camera weaponCam;
     [SerializeField] CinemachineVirtualCamera mainCam;
     [SerializeField] MonoBehaviour[] scripts;
+    
+    [Header("Speed")]
     [SerializeField] float verticalSpeed = 1.0f;
+
+    #endregion
+
+    #region Unity
     private void Awake()
     {
         pv =GetComponent<PhotonView>();
@@ -34,6 +41,9 @@ public class PlayerGameOver : MonoBehaviour
         GameTimer.timerFinishReleased -= GameOver;
     }
 
+    #endregion
+
+    #region Custom
     void DisableScripts()
     {
         foreach(var script in scripts)
@@ -54,6 +64,9 @@ public class PlayerGameOver : MonoBehaviour
         StartCoroutine(GameOverCamMovement());
     }
 
+    #endregion
+
+    #region Enumerator
     IEnumerator GameOverCamMovement()
     {
         float timer = 9;
@@ -66,4 +79,5 @@ public class PlayerGameOver : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
     }
+    #endregion
 }

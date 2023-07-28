@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomMenuMusic : MonoBehaviour
@@ -16,18 +14,18 @@ public class RandomMenuMusic : MonoBehaviour
 
     private void Start()
     {
-        Invoke(nameof(playRandomClip), 1f);
+        Invoke(nameof(PlayRandomClip), 1f);
     }
 
     private void Update()
     {
         if (!source.isPlaying && firstPlay != 0)
         {
-            playRandomClip();
+            PlayRandomClip();
         }
     }
 
-    void playRandomClip()
+    void PlayRandomClip()
     {
         firstPlay = 1;
         currentClip = musicClips[Random.Range(0, musicClips.Length)];

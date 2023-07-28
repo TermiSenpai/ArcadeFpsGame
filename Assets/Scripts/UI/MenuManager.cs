@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -15,35 +13,35 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void openMenu(string menuName)
+    public void OpenMenu(string menuName)
     {
         foreach (var menu in menus)
         {
             if (menu.menuName == menuName)
-                openMenu(menu);
+                OpenMenu(menu);
             else if (menu.isOpen)
-                closeMenu(menu);
+                CloseMenu(menu);
 
         }
     }
 
-    public void openMenu(Menu menu)
+    public void OpenMenu(Menu menu)
     {
-        checkOpenMenus();
-        menu.open();
+        CheckOpenMenus();
+        menu.Open();
     }
 
-    public void closeMenu(Menu menu)
+    public void CloseMenu(Menu menu)
     {
-        menu.close();
+        menu.Close();
     }
 
-    private void checkOpenMenus()
+    private void CheckOpenMenus()
     {
         foreach (var menu in menus)
         {
             if (menu.isOpen)
-                closeMenu(menu);
+                CloseMenu(menu);
         }
     }
 }

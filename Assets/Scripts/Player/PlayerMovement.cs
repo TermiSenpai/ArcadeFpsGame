@@ -4,22 +4,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    #region Variables
+    [Header("References")]
     [SerializeField] PlayerIngameSettings settings;
     [SerializeField] PlayerMovConfig config;
+
     CharacterController controller;
     PlayerJump player;
 
     float curMovementSpeed;
-
     Vector2 movementInput;
     Vector3 moveDirection;
     Vector3 currentSpeed;
-    public bool isFreeze = false;
-    public bool isActiveGrapple = false;
-    PhotonView pv;
     Vector3 velocityToSet;
 
+    public bool isFreeze = false;
+    public bool isActiveGrapple = false;
+    
+    PhotonView pv;
+    #endregion
+
+    #region Unity
     private void Awake()
     {
         player = GetComponent<PlayerJump>();
@@ -33,49 +38,27 @@ public class PlayerMovement : MonoBehaviour
         if (isActiveGrapple) return;
 
         MovePlayer();
-        controlSpeed();
+        ControlSpeed();
         FreezePlayer();
     }
+    #endregion
 
-    private void controlSpeed()
+    #region custom
+
+    private void ControlSpeed()
     {
-        if (player.isGrounded())
+        if (player.IsGrounded())
         {
             curMovementSpeed = config.groundSpeed;
         }
 
-        else if (!player.isGrounded())
+        else if (!player.IsGrounded())
         {
             curMovementSpeed = config.airSpeed;
         }
     }
 
-    private void MovePlayer()
-    {
-        // Normalized in PlayerInputs Processor
-        moveDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
-
-        // Si hay movimiento
-        if (moveDirection.magnitude >= 0.1f)
-        {
-            increaseSpeed();
-        }
-        else
-            reduceSpeed();
-
-        controller.Move(currentSpeed * curMovementSpeed * Time.deltaTime);
-    }
-
-    public void JumpToPosition(Vector3 targetPos, float trajectoryHeight)
-    {
-        isActiveGrapple = true;
-        velocityToSet = player.CalculateJumpVelocity(transform.position, targetPos, trajectoryHeight);
-        Invoke(nameof(setVelocity), 0.1f);
-    }
-
-    private void setVelocity() => currentSpeed = velocityToSet;
-
-    private void increaseSpeed()
+    private void IncreaseSpeed()
     {
         // Calcular la velocidad objetivo
         Vector3 objetiveSpeed = moveDirection * config.maxSpeed;
@@ -84,9 +67,9 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = Vector3.Lerp(currentSpeed, objetiveSpeed, config.acceleration * Time.deltaTime);
     }
 
-    private void reduceSpeed()
+    private void ReduceSpeed()
     {
-        switch (player.isGrounded())
+        switch (player.IsGrounded())
         {
             case true:
                 // Si no hay movimiento, detener al personaje
@@ -98,6 +81,36 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void SetVelocity() => currentSpeed = velocityToSet;
+
+    private void MovePlayer()
+    {
+        // Normalized in PlayerInputs Processor
+        moveDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
+
+        // Si hay movimiento
+        if (moveDirection.magnitude >= 0.1f)
+        {
+            IncreaseSpeed();
+        }
+        else
+            ReduceSpeed();
+
+        controller.Move(curMovementSpeed * Time.deltaTime * currentSpeed);
+    }
+
+    public Vector3 GetMovementDir()
+    {
+        return moveDirection;
+    }
+
+    public void JumpToPosition(Vector3 targetPos, float trajectoryHeight)
+    {
+        isActiveGrapple = true;
+        velocityToSet = player.CalculateJumpVelocity(transform.position, targetPos, trajectoryHeight);
+        Invoke(nameof(SetVelocity), 0.1f);
+    }
+
     private void FreezePlayer()
     {
         if (!isFreeze) return;
@@ -106,10 +119,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public Vector3 getMovementDir()
-    {
-        return moveDirection;
-    }
+    #endregion
+
+    #region input
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         if (!pv.IsMine) return;
@@ -133,5 +145,6 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
     }
+    #endregion
 }
 

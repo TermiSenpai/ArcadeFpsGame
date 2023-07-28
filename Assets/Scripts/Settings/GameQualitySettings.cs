@@ -10,11 +10,11 @@ public class GameQualitySettings : MonoBehaviour
     private void Start()
     {
         int lastToggled = PlayerPrefs.GetInt("Quality", 5);
-        setQuality(lastToggled);
+        SetQuality(lastToggled);
         toggles[lastToggled].isOn = true;
     }
 
-    public void setQuality(int value)
+    public void SetQuality(int value)
     {
         QualitySettings.SetQualityLevel(value);
         PlayerPrefs.SetInt("Quality", value);

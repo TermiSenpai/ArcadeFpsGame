@@ -1,6 +1,4 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBodyPart : MonoBehaviour, IDamageable
@@ -15,9 +13,9 @@ public class PlayerBodyPart : MonoBehaviour, IDamageable
         playerHP = GetComponentInParent<PlayerHealth>();
     }
 
-    public void takeDamage(float damage)
+    void IDamageable.TakeDamage(float damage)
     {
         damage *= partDamageMultiplier;
-        playerHP.takeDamage(damage);
+        playerHP.TakeDamage(damage);
     }
 }

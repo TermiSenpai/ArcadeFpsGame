@@ -1,6 +1,4 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCameraWeapons : MonoBehaviour
@@ -17,9 +15,9 @@ public class PlayerCameraWeapons : MonoBehaviour
     private void Start()
     {
         if (playerPv.IsMine)
-            changeLayer();
+            ChangeLayer();
     }
-    void changeLayer()
+    void ChangeLayer()
     {
         // objects that need to be of a specific layer
         foreach (GameObject part in ObjectsToWeaponLayer)

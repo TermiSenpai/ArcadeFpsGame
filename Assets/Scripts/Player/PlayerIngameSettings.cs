@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,39 +9,45 @@ public enum State
 }
 public class PlayerIngameSettings : MonoBehaviour
 {
-
-    //InGameMenu settingsMenu;
-    [SerializeField] private State pausedState;
+    
+    #region Variables
+    [SerializeField] private State currentState;
     [SerializeField] MonoBehaviour[] controlsScripts;
+    #endregion
 
+    #region custom
     public State GetState()
     {
-        return pausedState;
+        return currentState;
     }
 
-    private void continueGame()
+    private void ContinueGame()
     {
-        pausedState = State.gaming;
-        InGameMenu.Instance.togglePauseMenu(false);
+        currentState = State.gaming;
+        InGameMenu.Instance.TogglePauseMenu(false);
     }
 
-    void pauseMenu()
+    void PauseMenu()
     {
-        pausedState = State.paused;
-        InGameMenu.Instance.togglePauseMenu(true);
+        currentState = State.paused;
+        InGameMenu.Instance.TogglePauseMenu(true);
     }
 
+    #endregion
+
+    #region Input
     public void OnPauseInput(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
             case InputActionPhase.Started:
 
-                if (InGameMenu.Instance.isPauseMenuEnable())
-                    continueGame();
-                else pauseMenu();
+                if (InGameMenu.Instance.IsPauseMenuEnable())
+                    ContinueGame();
+                else PauseMenu();
 
                 break;
         }
     }
+    #endregion
 }

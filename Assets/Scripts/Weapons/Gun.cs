@@ -13,19 +13,19 @@ public abstract class Gun : Item
 
     public abstract override void Use();
 
-    public IEnumerator weaponCooldown()
+    public IEnumerator WeaponCooldown()
     {
         canUse = false;
         yield return new WaitForSeconds(cooldownSeconds);
         canUse = true;
     }
 
-    protected Vector3 impactPos(Vector3 hitPos, Vector3 hitNormal)
+    protected Vector3 ImpactPos(Vector3 hitPos, Vector3 hitNormal)
     {
         return hitPos + hitNormal * 0.001f;
     }
 
-    protected Quaternion impactRotation(Vector3 hitNormal)
+    protected Quaternion ImpactRotation(Vector3 hitNormal)
     {
         return Quaternion.LookRotation(hitNormal, Vector3.up) * Quaternion.Euler(0f, 0f, 0f);
     }

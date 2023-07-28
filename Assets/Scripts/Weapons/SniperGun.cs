@@ -7,37 +7,43 @@ using Random = UnityEngine.Random;
 
 public class SniperGun : Gun
 {
-    AudioSource source;
+    #region variables
 
+    [Header("References")]
     [SerializeField] GameObject scopeOverlay;
     [SerializeField] GameObject crosshairOverlay;
-
+    [SerializeField] UIAmmo ammoUI;
     [SerializeField] CinemachineVirtualCamera cam;
     [SerializeField] GameObject weaponCam;
+    PhotonView pv;
+    Animator anim;
+    AudioSource source;
+    GameObject impact;
+
+    [Header("Sniper variables")]
+    [SerializeField] float timeToScope;
     [SerializeField] int maxAmmo = 3;
     [SerializeField] float reloadTimeDelay;
     int currentAmmo;
-    PhotonView pv;
-    Animator anim;
+    bool isReloading = false;
+
 
     Coroutine aimCoroutine;
     Coroutine reloadCoroutine;
-    GameObject impact;
-
-    [SerializeField] UIAmmo ammoUI;
-    [SerializeField] float timeToScope;
-    bool isReloading = false;
 
     private event Action OnReloadFinished;
 
+    #endregion
+
+    #region unity
     private void OnEnable()
     {
-        OnReloadFinished += onFinishedReload;
+        OnReloadFinished += OnFinishedReload;
     }
 
     private void OnDisable()
     {
-        OnReloadFinished -= onFinishedReload;
+        OnReloadFinished -= OnFinishedReload;
     }
 
     private void Awake()
@@ -54,20 +60,23 @@ public class SniperGun : Gun
         source.minDistance = 10f;
     }
 
+    #endregion
+
+    #region overrides
     public override void Use()
     {
-        if (currentAmmo == 0) noAmmo();
+        if (currentAmmo == 0) NoAmmo();
         if (!canUse) return;
 
 
-        shoot();
+        Shoot();
     }
 
     public override void Aim()
     {
         source.PlayOneShot(gunInfo.aimClip);
         anim.SetBool("Scoped", true);
-        aimCoroutine = StartCoroutine(nameof(enableScope));
+        aimCoroutine = StartCoroutine(nameof(EnableScope));
     }
 
     public override void StopAim()
@@ -76,25 +85,38 @@ public class SniperGun : Gun
             StopCoroutine(aimCoroutine);
 
         anim.SetBool("Scoped", false);
-        disableScopeOverlay();
+        DisableScopeOverlay();
     }
 
     public override void Default()
     {
         currentAmmo = maxAmmo;
         canUse = true;
-        disableScopeOverlay();
-        onFinishedReload();
+        DisableScopeOverlay();
+        OnFinishedReload();
     }
 
-    public void enableScopeOverlay()
+    public override void Reload()
+    {
+        if (isReloading || currentAmmo >= maxAmmo) return;
+
+        source.PlayOneShot(gunInfo.reloadClip);
+        reloadCoroutine = StartCoroutine(nameof(Recharge));
+        anim.SetTrigger("Reload");
+
+    }
+
+    #endregion
+
+    #region custom methods
+    public void EnableScopeOverlay()
     {
         cam.m_Lens.FieldOfView = 15f;
         scopeOverlay.SetActive(true);
         crosshairOverlay.SetActive(false);
         weaponCam.SetActive(false);
     }
-    public void disableScopeOverlay()
+    public void DisableScopeOverlay()
     {
         cam.m_Lens.FieldOfView = 60f;
         scopeOverlay.SetActive(false);
@@ -102,13 +124,7 @@ public class SniperGun : Gun
         weaponCam.SetActive(true);
     }
 
-    private IEnumerator enableScope()
-    {
-        yield return new WaitForSeconds(timeToScope);
-        enableScopeOverlay();
-    }
-
-    private void shoot()
+    private void Shoot()
     {
         anim.SetTrigger("Shoot");
         Ray r;
@@ -125,47 +141,48 @@ public class SniperGun : Gun
 
         if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
         {
-            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
-            weaponCoroutine = StartCoroutine(weaponCooldown());
+            hit.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(gunInfo.damage);
+            weaponCoroutine = StartCoroutine(WeaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
         currentAmmo--;
-        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
+        ammoUI.UpdateAmmoTxt(currentAmmo, maxAmmo);
     }
 
-
-    public override void Reload()
-    {
-        if (isReloading || currentAmmo >= maxAmmo) return;
-
-        source.PlayOneShot(gunInfo.reloadClip);
-        reloadCoroutine = StartCoroutine(nameof(Recharge));
-        anim.SetTrigger("Reload");
-
-    }
-
-    private void noAmmo()
+    private void NoAmmo()
     {
         source.PlayOneShot(gunInfo.emptyShot);
         canUse = false;
     }
 
-    IEnumerator Recharge()
+    private void OnFinishedReload()
+    {
+        currentAmmo = maxAmmo;
+        canUse = true;
+        isReloading = false;
+        ammoUI.UpdateAmmoTxt(currentAmmo, maxAmmo);
+    }
+
+    #endregion
+
+    #region enumerators
+
+    private IEnumerator EnableScope()
+    {
+        yield return new WaitForSeconds(timeToScope);
+        EnableScopeOverlay();
+    }
+
+    private IEnumerator Recharge()
     {
         isReloading = true;
         canUse = false;
         yield return new WaitForSeconds(reloadTimeDelay);
         OnReloadFinished?.Invoke();
     }
+    #endregion
 
-    private void onFinishedReload()
-    {
-        currentAmmo = maxAmmo;
-        canUse = true;
-        isReloading = false;
-        ammoUI.updateAmmoTxt(currentAmmo, maxAmmo);
-    }
-
+    #region RPC
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
@@ -173,16 +190,24 @@ public class SniperGun : Gun
         // play sound online
         source.PlayOneShot(gunInfo.useClip);
 
-        Collider[] colliders = Physics.OverlapSphere(hitPos, 0.3f);
-        if (colliders.Length != 0)
+        // Define un array para almacenar los colliders detectados por OverlapSphereNonAlloc.
+        int maxColliders = 10; // Elige un número adecuado para el máximo de colisionadores esperados.
+        Collider[] colliders = new Collider[maxColliders];
+
+        // Realiza la detección de colisiones sin asignar memoria adicional.
+        int numColliders = Physics.OverlapSphereNonAlloc(hitPos, 0.3f, colliders);
+
+        // Comprueba si se han detectado colisiones.
+        if (numColliders != 0)
         {
             if (impact == null)
-                impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
+                impact = Instantiate(bulletImpactPrefab, ImpactPos(hitPos, hitNormal), ImpactRotation(hitNormal));
 
             impact.SetActive(true);
 
-            impact.transform.position = impactPos(hitPos, hitNormal);
-            impact.transform.rotation = impactRotation(hitNormal);
+            impact.transform.SetPositionAndRotation(ImpactPos(hitPos, hitNormal), ImpactRotation(hitNormal));
         }
     }
+
+    #endregion
 }

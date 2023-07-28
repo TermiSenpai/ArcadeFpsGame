@@ -2307,7 +2307,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4742289438950433614}
         m_TargetAssemblyTypeName: GameQualitySettings, Assembly-CSharp
-        m_MethodName: setQuality
+        m_MethodName: SetQuality
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5544,7 +5544,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4742289438950433614}
         m_TargetAssemblyTypeName: GameQualitySettings, Assembly-CSharp
-        m_MethodName: setQuality
+        m_MethodName: SetQuality
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5950,7 +5950,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4742289438950433614}
         m_TargetAssemblyTypeName: GameQualitySettings, Assembly-CSharp
-        m_MethodName: setQuality
+        m_MethodName: SetQuality
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6184,7 +6184,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4742289438950433614}
         m_TargetAssemblyTypeName: GameQualitySettings, Assembly-CSharp
-        m_MethodName: setQuality
+        m_MethodName: SetQuality
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6921,7 +6921,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4742289438950433614}
         m_TargetAssemblyTypeName: GameQualitySettings, Assembly-CSharp
-        m_MethodName: setQuality
+        m_MethodName: SetQuality
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7625,7 +7625,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4742289438950433614}
         m_TargetAssemblyTypeName: GameQualitySettings, Assembly-CSharp
-        m_MethodName: setQuality
+        m_MethodName: SetQuality
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

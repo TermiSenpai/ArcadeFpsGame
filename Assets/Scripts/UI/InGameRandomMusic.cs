@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameRandomMusic : MonoBehaviour
 {
-    AudioSource source;
     [SerializeField] AudioClip[] musicClips;
+    AudioSource source;
     AudioClip currentClip;
 
     private void Awake()

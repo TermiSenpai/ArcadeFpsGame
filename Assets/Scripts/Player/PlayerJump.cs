@@ -1,15 +1,14 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
-    PhotonView pv;
+    #region Variables
+    [Header("References")]
     [SerializeField] PlayerIngameSettings settings;
     [SerializeField] PlayerJumpConfig config;
+    PhotonView pv;
     CharacterController controller;
 
     Vector3 velocity;
@@ -17,8 +16,9 @@ public class PlayerJump : MonoBehaviour
     [Header("Ground check")]
     [SerializeField] Transform groundCheck;
 
+    #endregion
 
-
+    #region Unity
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -35,16 +35,19 @@ public class PlayerJump : MonoBehaviour
     {
         if (!pv.IsMine) return;
 
-        applyGravity();
+        ApplyGravity();
 
     }
 
+    #endregion
+
+    #region custom
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
         float gravity = Physics.gravity.y * config.gravityMultiplier;
         float displacementY = endPoint.y - startPoint.y;
 
-        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+        Vector3 displacementXZ = new(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
 
         Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
@@ -53,26 +56,29 @@ public class PlayerJump : MonoBehaviour
         return velocityY + velocityXZ;
     }
 
-    public bool isGrounded()
+    public bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, config.checkRadius, config.groundLayer);
     }
 
     private void Jump()
     {
-        if (!isGrounded()) return;
+        if (!IsGrounded()) return;
 
         velocity.y = Mathf.Sqrt(config.jumpForce * -2f * Physics.gravity.y);
     }
 
-    public void applyGravity()
+    public void ApplyGravity()
     {
-        if (isGrounded() && velocity.y < 0)
+        if (IsGrounded() && velocity.y < 0)
             velocity.y = -2f;
         velocity.y += Physics.gravity.y * Time.deltaTime * config.gravityMultiplier;
         controller.Move(velocity * Time.deltaTime);
     }
 
+    #endregion
+
+    #region Input
     public void OnJumpInput(InputAction.CallbackContext context)
     {
         if (!pv.IsMine) return;
@@ -88,6 +94,7 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
+    #endregion
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

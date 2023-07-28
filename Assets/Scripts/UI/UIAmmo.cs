@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,12 +6,12 @@ public class UIAmmo : MonoBehaviour
     [SerializeField] TMP_Text currentAmmoTxt;
     [SerializeField] GameObject ammoUI;
 
-    public void updateAmmoTxt(int ammo, int maxAmmo)
+    public void UpdateAmmoTxt(int ammo, int maxAmmo)
     {
         currentAmmoTxt.text = $"{ammo} / {maxAmmo}";
     }
 
-    public void toggleUI()
+    public void ToggleUI()
     {
         bool toggle = !ammoUI.activeInHierarchy;
         ammoUI.SetActive(toggle);
@@ -21,10 +19,10 @@ public class UIAmmo : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerWeapons.onWeaponChangedRelease += toggleUI;
+        PlayerWeapons.OnWeaponChangedRelease += ToggleUI;
     }
     private void OnDisable()
     {
-        PlayerWeapons.onWeaponChangedRelease -= toggleUI;
+        PlayerWeapons.OnWeaponChangedRelease -= ToggleUI;
     }
 }

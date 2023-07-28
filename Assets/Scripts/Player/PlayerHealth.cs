@@ -1,10 +1,10 @@
 using Photon.Pun;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    #region variables
     PhotonView pv;
     PlayerManager playerManager;
     private const float maxHealth = 100f;
@@ -19,6 +19,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip hitClip;
 
+    #endregion
+
+    #region unity
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -32,26 +35,44 @@ public class PlayerHealth : MonoBehaviour
             Destroy(health.gameObject);
         }
 
-        setMaxHealth();
-        updateHealthBar();
+        SetMaxHealth();
+        UpdateHealthBar();
     }
 
     private void OnEnable()
     {
         currentHealth = maxHealth;
-        updateHealthBar();
+        UpdateHealthBar();
     }
 
-    void setMaxHealth() => currentHealth = maxHealth;
+    #endregion
+
+    #region custom methods
+    void SetMaxHealth() => currentHealth = maxHealth;
 
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         source.PlayOneShot(hitClip);
         pv.RPC(nameof(RPC_TackeDamage), pv.Owner, damage);
     }
+    void UpdateHealthBar()
+    {
+        billboardHealth.UpdateBillboardBar(currentHealth / maxHealth);
+        health.UpdateHealthBar(currentHealth / maxHealth);
+        health.UpdateHealthTxt(currentHealth.ToString("00"));
+    }
 
-    private IEnumerator recoverHealth()
+
+    private void PlayerDie()
+    {
+        playerManager.Die();
+    }
+
+    #endregion
+
+    #region enumerators
+    private IEnumerator RecoverHealth()
     {
         yield return new WaitForSeconds(secondsToStartRecovering);
         while (currentHealth < maxHealth)
@@ -62,6 +83,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region RPC
 
     [PunRPC]
     void RPC_TackeDamage(float damage, PhotonMessageInfo info)
@@ -69,17 +93,17 @@ public class PlayerHealth : MonoBehaviour
         if (recoverHealthCoroutine != null)
             StopCoroutine(recoverHealthCoroutine);
 
-        recoverHealthCoroutine = StartCoroutine(recoverHealth());
+        recoverHealthCoroutine = StartCoroutine(RecoverHealth());
 
         currentHealth -= damage;
 
-        updateHealthBar();
+        UpdateHealthBar();
 
         if (currentHealth <= 0)
         {
-            playerDie();
-            PlayerManager.Find(info.Sender).getKill();
-            KillManager.Instance.enableKillInfo(info.Sender.NickName, playerManager.getNickname());
+            PlayerDie();
+            PlayerManager.Find(info.Sender).GetKill();
+            KillManager.Instance.EnableKillInfo(info.Sender.NickName, playerManager.GetNickname());
         }
     }
 
@@ -89,21 +113,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += Time.deltaTime;
 
         if (currentHealth >= maxHealth)
-            setMaxHealth();
+            SetMaxHealth();
 
-        updateHealthBar();
+        UpdateHealthBar();
     }
 
-    void updateHealthBar()
-    {
-        billboardHealth.updateBillboardBar(currentHealth / maxHealth);
-        health.updateHealthBar(currentHealth / maxHealth);
-        health.updateHealthTxt(currentHealth.ToString("00"));
-    }
-
-    
-    private void playerDie()
-    {        
-        playerManager.die();
-    }
+    #endregion
 }
