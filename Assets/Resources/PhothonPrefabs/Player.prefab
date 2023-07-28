@@ -3057,9 +3057,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3e01a9ccffe6b45bc1631967fb0df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ptv: {fileID: 6095217042096614561}
+  transformView: {fileID: 6095217042096614561}
   weaponCam: {fileID: 4269813384374192056}
   mainCam: {fileID: 9111037616720877483}
+  scripts:
+  - {fileID: 6095217042096614560}
+  - {fileID: 6095217042096614558}
+  - {fileID: 6095217042096614559}
+  - {fileID: 6393457726681453524}
+  - {fileID: 6095217042155911570}
+  - {fileID: 5814974665770905854}
+  - {fileID: 2809202334991303301}
+  - {fileID: 6095217042096614561}
+  - {fileID: 5487468529459871342}
   verticalSpeed: 0.001
 --- !u!114 &3762496954286049086
 MonoBehaviour:

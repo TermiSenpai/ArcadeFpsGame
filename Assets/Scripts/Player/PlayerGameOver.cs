@@ -7,9 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerGameOver : MonoBehaviour
 {
     PhotonView pv;
-    [SerializeField] PhotonTransformView ptv;
+    [SerializeField] PhotonTransformView transformView;
     [SerializeField] Camera weaponCam;
     [SerializeField] CinemachineVirtualCamera mainCam;
+    [SerializeField] MonoBehaviour[] scripts;
     [SerializeField] float verticalSpeed = 1.0f;
     private void Awake()
     {
@@ -33,13 +34,23 @@ public class PlayerGameOver : MonoBehaviour
         GameTimer.timerFinishReleased -= GameOver;
     }
 
+    void disableScripts()
+    {
+        foreach(var script in scripts)
+        {
+            script.enabled = false;
+        }
+    }
+
     void GameOver()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        ptv.enabled = false;
+
+        disableScripts(); 
         if (weaponCam != null)
             weaponCam.enabled = false;
+
         StartCoroutine(GameOverCamMovement());
     }
 
