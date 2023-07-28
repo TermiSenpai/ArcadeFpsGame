@@ -46,7 +46,7 @@ public class InGameMenu : MonoBehaviour
 
     private void GameOver()
     {
-        Invoke(nameof(EnableBtns), 1f);
+        Invoke(nameof(EnableBtns), 5f);
     }
 
     void EnableBtns()
