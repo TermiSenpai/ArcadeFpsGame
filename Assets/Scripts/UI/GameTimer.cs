@@ -26,8 +26,7 @@ public class GameTimer : MonoBehaviourPunCallbacks
         timerSeconds = (float)TimeSpan.FromMinutes(timerMinutes).TotalSeconds;
         if (PhotonNetwork.IsMasterClient)
         {
-            Hashtable initialProps = new Hashtable { { TimerKey, timerSeconds } };
-            PhotonNetwork.CurrentRoom.SetCustomProperties(initialProps);
+            SendHash(TimerKey, timerSeconds);
         }
     }
 
@@ -39,8 +38,7 @@ public class GameTimer : MonoBehaviourPunCallbacks
         if (timerSeconds > 0)
         {
             UpdateTimerText(timerSeconds);
-            Hashtable initialProps = new Hashtable { { TimerKey, timerSeconds } };
-            PhotonNetwork.CurrentRoom.SetCustomProperties(initialProps);
+            SendHash(TimerKey, timerSeconds);
         }
     }
 
@@ -53,8 +51,7 @@ public class GameTimer : MonoBehaviourPunCallbacks
             RestTimer();
 
             // Actualizar el temporizador en las propiedades personalizadas de la sala.
-            Hashtable timerProps = new Hashtable { { TimerKey, timerSeconds } };
-            PhotonNetwork.CurrentRoom.SetCustomProperties(timerProps);
+            SendHash(TimerKey, timerSeconds);
         }
 
         CheckTimer();
@@ -62,7 +59,6 @@ public class GameTimer : MonoBehaviourPunCallbacks
 
     void RestTimer()
     {
-        if (!canRestTimer) return;
         timerSeconds -= Time.deltaTime;
     }
 
@@ -85,8 +81,14 @@ public class GameTimer : MonoBehaviourPunCallbacks
 
     private void FinishGame()
     {
-        if (timerFinishReleased != null)
-            timerFinishReleased();
+        timerFinishReleased?.Invoke();
+    }
+
+
+    private void SendHash(string key, float value)
+    {
+        Hashtable prop = new() { { key, value } };
+        PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
     }
 
     // Método que se llama automáticamente cuando las propiedades personalizadas de la sala son actualizadas.

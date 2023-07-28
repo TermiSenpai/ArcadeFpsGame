@@ -21,12 +21,12 @@ public class VolumeSettings : MonoBehaviour
 
     private void Start()
     {
-        loadSaveValues();
-        addSliderListeners();
-        setAllVolumes();
+        LoadSaveValues();
+        AddSliderListeners();
+        SetAllVolumes();
     }
 
-    private void setAllVolumes()
+    private void SetAllVolumes()
     {
         // Establecer los valores iniciales de volumen llamando a SetVolume() directamente
         SetVolume(masterName, masterSlider.value);
@@ -34,7 +34,7 @@ public class VolumeSettings : MonoBehaviour
         SetVolume(fxName, fxSlider.value);
     }
 
-    private void loadSaveValues()
+    private void LoadSaveValues()
     {
         float masterVolume = PlayerPrefs.GetFloat(masterName, 0.5f);
         float musicVolume = PlayerPrefs.GetFloat(musicName, 0.5f);
@@ -45,7 +45,7 @@ public class VolumeSettings : MonoBehaviour
         fxSlider.value = sfxVolume;
     }
 
-    private void addSliderListeners()
+    private void AddSliderListeners()
     {
         // Agregar listeners para mantener el volumen actualizado cuando se interactúa con los sliders
         masterSlider.onValueChanged.AddListener(delegate { SetVolume(masterName, masterSlider.value); });

@@ -34,7 +34,7 @@ public class PlayerGameOver : MonoBehaviour
         GameTimer.timerFinishReleased -= GameOver;
     }
 
-    void disableScripts()
+    void DisableScripts()
     {
         foreach(var script in scripts)
         {
@@ -47,7 +47,7 @@ public class PlayerGameOver : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        disableScripts(); 
+        DisableScripts(); 
         if (weaponCam != null)
             weaponCam.enabled = false;
 
@@ -61,7 +61,7 @@ public class PlayerGameOver : MonoBehaviour
 
         while (timer > 0)
         {
-            mainCam.transform.position += Vector3.up * verticalSpeed * Time.deltaTime;
+            mainCam.transform.position += Time.deltaTime * verticalSpeed * Vector3.up;
             timer -= Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
