@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class KnifeGun : Gun
 {
-    int numberOfRays = 5;
-    float angleSpread = 30f;
+    readonly int numberOfRays = 5;
+    readonly float angleSpread = 30f;
 
     AudioSource source;
 
@@ -69,9 +69,9 @@ public class KnifeGun : Gun
 
     private void Attack() => anim.SetTrigger("Attack");
 
-    public void checkHit()
+    public void CheckHit()
     {
-        if (hitDettect())
+        if (HitDettect())
         {
             Vector3 hitPoint = hit.point;
             Vector3 hitNormal = hit.normal;
@@ -80,7 +80,7 @@ public class KnifeGun : Gun
         }
     }
 
-    private bool hitDettect()
+    private bool HitDettect()
     {
         Vector3 rayDirection = Camera.main.transform.forward;
 
@@ -94,7 +94,7 @@ public class KnifeGun : Gun
             Vector3 currentRayDirection = Quaternion.Euler(0f, -angleSpread / 2 + i * angleIncrement, 0f) * rayDirection;
 
             // Crear el rayo en la dirección actual
-            Ray ray = new Ray(Camera.main.transform.position, currentRayDirection);
+            Ray ray = new(Camera.main.transform.position, currentRayDirection);
 
             // Realizar el Raycast para obtener información del impacto
             if (Physics.Raycast(ray, out hit, gunInfo.maxDistance, otherPlayerLayer))
@@ -109,24 +109,29 @@ public class KnifeGun : Gun
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
     {
-        Collider[] colliders = Physics.OverlapSphere(hitPos, 0.3f);
-        if (colliders.Length != 0)
+        // Define un array para almacenar los colliders detectados por OverlapSphereNonAlloc.
+        int maxColliders = 10; // Elige un número adecuado para el máximo de colisionadores esperados.
+        Collider[] colliders = new Collider[maxColliders];
+
+        // Realiza la detección de colisiones sin asignar memoria adicional.
+        int numColliders = Physics.OverlapSphereNonAlloc(hitPos, 0.3f, colliders);
+
+        // Comprueba si se han detectado colisiones.
+        if (numColliders != 0)
         {
             if (impact == null)
                 impact = Instantiate(bulletImpactPrefab, impactPos(hitPos, hitNormal), impactRotation(hitNormal));
 
             impact.SetActive(true);
 
-            impact.transform.position = impactPos(hitPos, hitNormal);
-            impact.transform.rotation = impactRotation(hitNormal);
-
+            impact.transform.SetPositionAndRotation(impactPos(hitPos, hitNormal), impactRotation(hitNormal));
         }
     }
 
     private void OnDrawGizmos()
     {
         // Dibujar el gizmo del raycast central
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray ray = new(Camera.main.transform.position, Camera.main.transform.forward);
         Gizmos.color = Color.red;
         Gizmos.DrawRay(ray.origin, ray.direction * gunInfo.maxDistance);
 
@@ -136,7 +141,7 @@ public class KnifeGun : Gun
         for (int i = 0; i < numberOfRays; i++)
         {
             Vector3 currentRayDirection = Quaternion.Euler(0f, -angleSpread / 2 + i * angleIncrement, 0f) * rayDirection;
-            Ray fanRay = new Ray(Camera.main.transform.position, currentRayDirection);
+            Ray fanRay = new(Camera.main.transform.position, currentRayDirection);
             Gizmos.DrawRay(fanRay.origin, fanRay.direction * gunInfo.maxDistance);
         }
 
