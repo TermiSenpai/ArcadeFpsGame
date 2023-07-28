@@ -25,13 +25,6 @@ public class PlayerGrappling : MonoBehaviour
     [SerializeField] private float grappleDelay;
     [SerializeField] private float overshootYAxis;
 
-    [Header("Fov Effect")]
-    [SerializeField] CinemachineVirtualCamera cam;
-    [SerializeField] float currenFovMultiplier;
-    [SerializeField] float minFovMultiplier;
-    [SerializeField] float maxFovMultiplier;
-    Coroutine fovCoroutine;
-
     private Vector3 grapplePoint;
 
     [Header("Cooldown")]
@@ -64,55 +57,51 @@ public class PlayerGrappling : MonoBehaviour
         if (!pv.IsMine) return;
 
         if (isGrappling)
-            lr.SetPosition(0, gunTip.position);       
+            lr.SetPosition(0, gunTip.position);
     }
     #endregion
 
     #region Grapple
-    void startGrapple()
+    void StartGrapple()
     {
         if (grapplingCdTimer > 0) return;
 
 
         pm.isFreeze = true;
         isGrappling = true;
-        RaycastHit hit;
-        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, maxGrappleDistance, whatIsGrappleable))
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out RaycastHit hit, maxGrappleDistance, whatIsGrappleable))
         {
             grapplePoint = hit.point;
-            Invoke(nameof(executeGrapple), grappleDelay);
+            Invoke(nameof(ExecuteGrapple), grappleDelay);
         }
         else
         {
             grapplePoint = camTransform.position + camTransform.forward * maxGrappleDistance;
 
-            Invoke(nameof(stopGrapple), grappleDelay);
+            Invoke(nameof(StopGrapple), grappleDelay);
         }
 
         lr.enabled = true;
         lr.SetPosition(1, grapplePoint);
     }
 
-    void executeGrapple()
+    void ExecuteGrapple()
     {
         if (!pv.IsMine) return;
 
-        if (fovCoroutine != null) StopCoroutine(fovCoroutine);
-        fovCoroutine = StartCoroutine(increaseFov());
-
         pm.isFreeze = false;
 
-        Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+        Vector3 lowestPoint = new(transform.position.x, transform.position.y - 1f, transform.position.z);
         float grapplePointRelativeYPos = grapplePoint.y - lowestPoint.y;
         float highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
 
         if (grapplePointRelativeYPos < 0) highestPointOnArc = overshootYAxis;
         pm.JumpToPosition(grapplePoint, highestPointOnArc);
 
-        Invoke(nameof(stopGrapple), grappleDelay);
+        Invoke(nameof(StopGrapple), grappleDelay);
     }
 
-    void stopGrapple()
+    void StopGrapple()
     {
         if (!pv.IsMine) return;
         isGrappling = false;
@@ -125,30 +114,6 @@ public class PlayerGrappling : MonoBehaviour
     }
     #endregion
 
-    IEnumerator increaseFov()
-    {
-
-        while (cam.m_Lens.FieldOfView < 90)
-        {
-            yield return new WaitForSeconds(Time.deltaTime);
-            cam.m_Lens.FieldOfView += Time.deltaTime * currenFovMultiplier;
-        }
-    }
-    IEnumerator decreaseFov()
-    {
-        while (cam.m_Lens.FieldOfView > 60)
-        {
-            yield return new WaitForSeconds(Time.deltaTime);
-            cam.m_Lens.FieldOfView -= Time.deltaTime * currenFovMultiplier;
-        }
-    }
-
-    void defaultFov()
-    {
-        if (fovCoroutine != null) StopCoroutine(fovCoroutine);
-        fovCoroutine = StartCoroutine(decreaseFov());
-    }
-
     #region Input
 
     public void OnGrappleInput(InputAction.CallbackContext context)
@@ -159,7 +124,7 @@ public class PlayerGrappling : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                startGrapple();
+                StartGrapple();
                 break;
         }
     }
