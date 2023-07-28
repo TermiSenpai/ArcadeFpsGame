@@ -32,26 +32,26 @@ public class PlayerHealth : MonoBehaviour
             Destroy(health.gameObject);
         }
 
-        setMaxHealth();
-        updateHealthBar();
+        SetMaxHealth();
+        UpdateHealthBar();
     }
 
     private void OnEnable()
     {
         currentHealth = maxHealth;
-        updateHealthBar();
+        UpdateHealthBar();
     }
 
-    void setMaxHealth() => currentHealth = maxHealth;
+    void SetMaxHealth() => currentHealth = maxHealth;
 
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         source.PlayOneShot(hitClip);
         pv.RPC(nameof(RPC_TackeDamage), pv.Owner, damage);
     }
 
-    private IEnumerator recoverHealth()
+    private IEnumerator RecoverHealth()
     {
         yield return new WaitForSeconds(secondsToStartRecovering);
         while (currentHealth < maxHealth)
@@ -69,15 +69,15 @@ public class PlayerHealth : MonoBehaviour
         if (recoverHealthCoroutine != null)
             StopCoroutine(recoverHealthCoroutine);
 
-        recoverHealthCoroutine = StartCoroutine(recoverHealth());
+        recoverHealthCoroutine = StartCoroutine(RecoverHealth());
 
         currentHealth -= damage;
 
-        updateHealthBar();
+        UpdateHealthBar();
 
         if (currentHealth <= 0)
         {
-            playerDie();
+            PlayerDie();
             PlayerManager.Find(info.Sender).GetKill();
             KillManager.Instance.EnableKillInfo(info.Sender.NickName, playerManager.GetNickname());
         }
@@ -89,12 +89,12 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += Time.deltaTime;
 
         if (currentHealth >= maxHealth)
-            setMaxHealth();
+            SetMaxHealth();
 
-        updateHealthBar();
+        UpdateHealthBar();
     }
 
-    void updateHealthBar()
+    void UpdateHealthBar()
     {
         billboardHealth.updateBillboardBar(currentHealth / maxHealth);
         health.updateHealthBar(currentHealth / maxHealth);
@@ -102,7 +102,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     
-    private void playerDie()
+    private void PlayerDie()
     {        
         playerManager.Die();
     }

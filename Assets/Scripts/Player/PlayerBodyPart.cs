@@ -18,6 +18,6 @@ public class PlayerBodyPart : MonoBehaviour, IDamageable
     public void takeDamage(float damage)
     {
         damage *= partDamageMultiplier;
-        playerHP.takeDamage(damage);
+        playerHP.TakeDamage(damage);
     }
 }
