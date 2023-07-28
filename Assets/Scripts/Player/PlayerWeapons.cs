@@ -1,6 +1,5 @@
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
