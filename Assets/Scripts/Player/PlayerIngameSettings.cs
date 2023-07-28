@@ -25,13 +25,13 @@ public class PlayerIngameSettings : MonoBehaviour
     private void continueGame()
     {
         pausedState = State.gaming;
-        InGameMenu.Instance.togglePauseMenu(false);
+        InGameMenu.Instance.TogglePauseMenu(false);
     }
 
     void pauseMenu()
     {
         pausedState = State.paused;
-        InGameMenu.Instance.togglePauseMenu(true);
+        InGameMenu.Instance.TogglePauseMenu(true);
     }
 
     public void OnPauseInput(InputAction.CallbackContext context)
@@ -40,7 +40,7 @@ public class PlayerIngameSettings : MonoBehaviour
         {
             case InputActionPhase.Started:
 
-                if (InGameMenu.Instance.isPauseMenuEnable())
+                if (InGameMenu.Instance.IsPauseMenuEnable())
                     continueGame();
                 else pauseMenu();
 
