@@ -17,7 +17,7 @@ public class PlayerWalkSound : MonoBehaviour
     void Update()
     {
         steptimer -= Time.deltaTime;
-        if (playerMov.GetMovementDir().magnitude >= 0.1f && steptimer <= 0 && PlayerJump.isGrounded())
+        if (playerMov.GetMovementDir().magnitude >= 0.1f && steptimer <= 0 && PlayerJump.IsGrounded())
         {
             PlayStepSound();
             steptimer = stepInterval;

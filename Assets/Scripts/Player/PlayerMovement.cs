@@ -39,12 +39,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void ControlSpeed()
     {
-        if (player.isGrounded())
+        if (player.IsGrounded())
         {
             curMovementSpeed = config.groundSpeed;
         }
 
-        else if (!player.isGrounded())
+        else if (!player.IsGrounded())
         {
             curMovementSpeed = config.airSpeed;
         }
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ReduceSpeed()
     {
-        switch (player.isGrounded())
+        switch (player.IsGrounded())
         {
             case true:
                 // Si no hay movimiento, detener al personaje
