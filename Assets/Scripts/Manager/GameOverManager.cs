@@ -6,13 +6,8 @@ using UnityEngine;
 
 public class GameOverManager : MonoBehaviour
 {
-    PhotonTransformView[] photonTransforms;
     [SerializeField] CanvasGroup scoreboard;
 
-    private void Start()
-    {
-        photonTransforms = FindObjectsOfType<PhotonTransformView>();
-    }
 
     private void OnEnable()
     {
@@ -26,18 +21,9 @@ public class GameOverManager : MonoBehaviour
 
     void GameOver()
     {
-        disablePhotonTransform();
         StartCoroutine(GradualScoreboard());
     }
 
-    void disablePhotonTransform()
-    {
-        foreach (var t in photonTransforms)
-        {
-            t.enabled = false;
-        }
-
-    }
     public IEnumerator GradualScoreboard()
     {
         while (scoreboard.alpha < 1.0f)
