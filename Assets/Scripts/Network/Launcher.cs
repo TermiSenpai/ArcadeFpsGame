@@ -46,7 +46,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        MenuManager.Instance.openMenu("title");
+        MenuManager.Instance.OpenMenu("title");
         Debug.Log("Joined lobby");
 
         PhotonNetwork.NickName = GetNickName();
@@ -69,7 +69,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         roomName.text = RoomUpperName(roomName.text);
         PhotonNetwork.CreateRoom(roomName.text, roomOptions);
 
-        MenuManager.Instance.openMenu("loading");
+        MenuManager.Instance.OpenMenu("loading");
     }
     // if failed, show error
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -85,13 +85,13 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void JoinRoom(RoomInfo info)
     {
         PhotonNetwork.JoinRoom(info.Name);
-        MenuManager.Instance.openMenu("loading");
+        MenuManager.Instance.OpenMenu("loading");
     }
 
     // On join, open room and update playerLists
     public override void OnJoinedRoom()
     {
-        MenuManager.Instance.openMenu("room");
+        MenuManager.Instance.OpenMenu("room");
 
         OnPlayerListUpdate();
         startGameBtn.SetActive(PhotonNetwork.IsMasterClient);
@@ -115,14 +115,14 @@ public class Launcher : MonoBehaviourPunCallbacks
     // Leave current room
     public void LeaveRoom()
     {
-        MenuManager.Instance.openMenu("loading");
+        MenuManager.Instance.OpenMenu("loading");
         PhotonNetwork.LeaveRoom();
     }
 
     // Open title menu on left room
     public override void OnLeftRoom()
     {
-        MenuManager.Instance.openMenu("title");
+        MenuManager.Instance.OpenMenu("title");
     }
 
     #endregion
@@ -132,7 +132,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     // Show error messages
     private void ShowError(string message)
     {
-        MenuManager.Instance.openMenu("error");
+        MenuManager.Instance.OpenMenu("error");
         errorTxt.text = $"Error: {message}";
     }
 
