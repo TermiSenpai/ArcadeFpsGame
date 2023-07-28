@@ -10,7 +10,6 @@ public class KillManager : MonoBehaviourPunCallbacks
     public static KillManager Instance;
 
     [SerializeField] GameObject[] Infos;
-    PhotonView pv;
     int index = -1;
     KillerInfo info;
     GameObject lastKill;
@@ -18,40 +17,36 @@ public class KillManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         Instance = this;
-        pv = GetComponent<PhotonView>();
     }
 
-    public void enableKillInfo(string killer, string killed)
+    public void EnableKillInfo(string killer, string killed)
     {
-        increaseIndex();
+        IncreaseIndex();
 
         // Obtenemos el índice del GameObject actual y lo sincronizamos como una propiedad personalizada
         SendHash("CurrentKillInfoIndex", index);
 
-        Dictionary<string, string> infoDict = new Dictionary<string, string>();
-        infoDict.Add("Killer", killer);
-        infoDict.Add("Killed", killed);
+        Dictionary<string, string> infoDict = new()
+        {
+            { "Killer", killer },
+            { "Killed", killed }
+        };
 
         SendHash("Info", infoDict);
 
 
-        //Hastable hash = new Hastable();
-        //hash.Add("Info", info);
-        //PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
-        
-
         lastKill = Infos[index];
         lastKill.SetActive(true);
-        setupInfo(killer, killed);
+        SetupInfo(killer, killed);
     }
 
-    public void setupInfo(string killer, string killed)
+    public void SetupInfo(string killer, string killed)
     {
         info = Infos[index].GetComponent<KillerInfo>();
-        info.setUp(killer, killed);
+        info.SetUp(killer, killed);
     }
 
-    void increaseIndex()
+    void IncreaseIndex()
     {
         index++;
 
@@ -61,15 +56,19 @@ public class KillManager : MonoBehaviourPunCallbacks
 
     void SendHash(string type, int value)
     {
-        Hastable hash = new Hastable();
-        hash.Add(type, value);
+        Hastable hash = new()
+        {
+            { type, value }
+        };
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
     void SendHash(string type, Dictionary<string, string> value)
     {
-        Hastable hash = new Hastable();
-        hash.Add(type, value);
+        Hastable hash = new()
+        {
+            { type, value }
+        };
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
@@ -93,7 +92,7 @@ public class KillManager : MonoBehaviourPunCallbacks
                 // Obtener los valores de "Killer" y "Killed" del diccionario "Info"
                 if (infoDict.TryGetValue("Killer", out string killer) && infoDict.TryGetValue("Killed", out string killed))
                 {
-                    setupInfo(killer, killed);
+                    SetupInfo(killer, killed);
                 }
             }
         }

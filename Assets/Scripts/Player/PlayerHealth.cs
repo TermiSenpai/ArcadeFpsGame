@@ -79,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
         {
             playerDie();
             PlayerManager.Find(info.Sender).getKill();
-            KillManager.Instance.enableKillInfo(info.Sender.NickName, playerManager.getNickname());
+            KillManager.Instance.EnableKillInfo(info.Sender.NickName, playerManager.getNickname());
         }
     }
 

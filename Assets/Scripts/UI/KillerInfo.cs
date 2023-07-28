@@ -11,16 +11,16 @@ public class KillerInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke(nameof(disableInfo), 5f);
+        Invoke(nameof(DisableInfo), 5f);
     }
 
-    public void setUp(string killerName, string killedName)
+    public void SetUp(string killerName, string killedName)
     {
         killerTxt.text = killerName;
         killedTxt.text = killedName;
     }
 
-    void disableInfo()
+    void DisableInfo()
     {
         gameObject.SetActive(false);
     }
