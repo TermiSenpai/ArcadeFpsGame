@@ -22,13 +22,13 @@ public class PlayerIngameSettings : MonoBehaviour
         return pausedState;
     }
 
-    private void continueGame()
+    private void ContinueGame()
     {
         pausedState = State.gaming;
         InGameMenu.Instance.TogglePauseMenu(false);
     }
 
-    void pauseMenu()
+    void PauseMenu()
     {
         pausedState = State.paused;
         InGameMenu.Instance.TogglePauseMenu(true);
@@ -41,8 +41,8 @@ public class PlayerIngameSettings : MonoBehaviour
             case InputActionPhase.Started:
 
                 if (InGameMenu.Instance.IsPauseMenuEnable())
-                    continueGame();
-                else pauseMenu();
+                    ContinueGame();
+                else PauseMenu();
 
                 break;
         }
