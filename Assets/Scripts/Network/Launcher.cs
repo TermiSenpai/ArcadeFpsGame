@@ -29,7 +29,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
 
     private void Start()
-    { 
+    {
         Debug.Log("Connecting to Master");
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -49,7 +49,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.openMenu("title");
         Debug.Log("Joined lobby");
 
-        PhotonNetwork.NickName = getNickName();        
+        PhotonNetwork.NickName = GetNickName();
     }
 
     #endregion
@@ -61,10 +61,12 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (string.IsNullOrEmpty(roomName.text))
             return;
 
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = PlayerLimit.Instance.limit;
+        RoomOptions roomOptions = new()
+        {
+            MaxPlayers = PlayerLimit.Instance.limit
+        };
 
-        roomName.text = roomUpperName(roomName.text);
+        roomName.text = RoomUpperName(roomName.text);
         PhotonNetwork.CreateRoom(roomName.text, roomOptions);
 
         MenuManager.Instance.openMenu("loading");
@@ -72,7 +74,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     // if failed, show error
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        showError(message);
+        ShowError(message);
     }
 
     #endregion
@@ -80,21 +82,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     #region Join room
 
     // Join room based in list
-    public void joinRoom(RoomInfo info)
+    public void JoinRoom(RoomInfo info)
     {
         PhotonNetwork.JoinRoom(info.Name);
-        MenuManager.Instance.openMenu("loading");
-    }
-
-    //Join room based in inputfield text
-    public void joinRoom(TMP_InputField roomName)
-    {
-        if (string.IsNullOrEmpty(roomName.text))
-            return;
-
-        roomName.text = roomUpperName(roomName.text);
-
-        PhotonNetwork.JoinRoom(roomName.text);
         MenuManager.Instance.openMenu("loading");
     }
 
@@ -112,11 +102,11 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Instantiate(playerListPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
     }
-    
+
     // If joining room fail, show error
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        showError(message);
+        ShowError(message);
     }
 
     #endregion
@@ -140,7 +130,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     #region Errors
 
     // Show error messages
-    private void showError(string message)
+    private void ShowError(string message)
     {
         MenuManager.Instance.openMenu("error");
         errorTxt.text = $"Error: {message}";
@@ -192,7 +182,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     #region Starting
 
-    public void startGame()
+    public void StartGame()
     {
         PhotonNetwork.LoadLevel(1);
     }
@@ -201,7 +191,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     #region Custom methods
     // transform any room name in UPPERCASE
-    private string roomUpperName(string name)
+    private string RoomUpperName(string name)
     {
         return name.ToUpper();
     }
@@ -212,7 +202,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
 
     // Obtain nickname based in have play anytime or not
-    private string getNickName()
+    private string GetNickName()
     {
         if (!PlayerPrefs.HasKey("Nickname"))
             return $"Player {Random.Range(1, 20)}";

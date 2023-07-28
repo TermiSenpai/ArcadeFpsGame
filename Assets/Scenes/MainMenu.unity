@@ -8404,7 +8404,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 34608621}
         m_TargetAssemblyTypeName: Launcher, Assembly-CSharp
-        m_MethodName: startGame
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
