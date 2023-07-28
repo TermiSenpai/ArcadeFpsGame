@@ -2440,16 +2440,15 @@ GameObject:
   - component: {fileID: 6095217042096614559}
   - component: {fileID: 6095217042096614558}
   - component: {fileID: 6095217042096614560}
+  - component: {fileID: 1939415276933384094}
+  - component: {fileID: 4136674286549288116}
+  - component: {fileID: 393713488862476061}
+  - component: {fileID: 1533611051077154744}
   - component: {fileID: 6062109617032368201}
   - component: {fileID: 6095217042096614561}
   - component: {fileID: 650088769}
-  - component: {fileID: 393713488862476061}
-  - component: {fileID: 1533611051077154744}
-  - component: {fileID: 4136674286549288116}
   - component: {fileID: 5487468529459871342}
   - component: {fileID: 7159868030839031038}
-  - component: {fileID: 1939415276933384094}
-  - component: {fileID: 3762496954286049086}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2490,10 +2489,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 6d86cc7c2e0d7d64c827621ae2499e94, type: 2}
-  stepInterval: 0.4
   source: {fileID: 7159868030839031038}
-  playerMov: {fileID: 6095217042096614559}
   PlayerJump: {fileID: 6095217042096614558}
+  playerMov: {fileID: 6095217042096614559}
+  stepInterval: 0.4
 --- !u!114 &5814974665770905854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2517,7 +2516,6 @@ MonoBehaviour:
   grappleDelay: 0.1
   overshootYAxis: 2.5
   grapplingCd: 0.5
-  isGrappling: 0
 --- !u!114 &6095217042155911570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2548,8 +2546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 1533611051077154744}
-  config: {fileID: 11400000, guid: bfdd93386b6578b49a2974933b69f8f0, type: 2}
   cameraHolder: {fileID: 5487468528657033774}
+  config: {fileID: 11400000, guid: bfdd93386b6578b49a2974933b69f8f0, type: 2}
 --- !u!114 &6095217042096614559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,6 +2597,91 @@ MonoBehaviour:
   - {fileID: 6095217042364308607}
   isAiming: 0
   canChangeWeapon: 1
+--- !u!114 &1939415276933384094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3e01a9ccffe6b45bc1631967fb0df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformView: {fileID: 6095217042096614561}
+  weaponCam: {fileID: 4269813384374192056}
+  mainCam: {fileID: 9111037616720877483}
+  scripts:
+  - {fileID: 6095217042096614560}
+  - {fileID: 6095217042096614558}
+  - {fileID: 6095217042096614559}
+  - {fileID: 6393457726681453524}
+  - {fileID: 6095217042155911570}
+  - {fileID: 5814974665770905854}
+  - {fileID: 2809202334991303301}
+  - {fileID: 6095217042096614561}
+  - {fileID: 5487468529459871342}
+  verticalSpeed: 0.001
+--- !u!114 &4136674286549288116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectsToWeaponLayer:
+  - {fileID: 6095217043222202092}
+  - {fileID: 8023445030871989263}
+  - {fileID: 233030808945955912}
+  - {fileID: 1686229442778204926}
+  - {fileID: 6470364844566125680}
+  - {fileID: 1749225603402742787}
+  - {fileID: 847277688265144321}
+  - {fileID: 3825844272961540447}
+  - {fileID: 1833193904957044478}
+  - {fileID: 6095217043717617500}
+  - {fileID: 1681112669535817829}
+  - {fileID: 3093761875666308937}
+  weaponLayerValue: 8
+--- !u!114 &393713488862476061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dcc50c64e84904c8a1e08969d71cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 1533611051077154744}
+--- !u!114 &1533611051077154744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487468529459871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf25b11989c39445a28a5399ef795be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  controlsScripts:
+  - {fileID: 393713488862476061}
+  - {fileID: 6095217042096614560}
+  - {fileID: 6095217042096614558}
+  - {fileID: 6095217042096614559}
+  - {fileID: 6393457726681453524}
+  - {fileID: 5814974665770905854}
 --- !u!114 &6062109617032368201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2656,65 +2739,6 @@ CharacterController:
   m_SkinWidth: 0.1
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &393713488862476061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69dcc50c64e84904c8a1e08969d71cf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 1533611051077154744}
---- !u!114 &1533611051077154744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf25b11989c39445a28a5399ef795be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pausedState: 0
-  controlsScripts:
-  - {fileID: 393713488862476061}
-  - {fileID: 6095217042096614560}
-  - {fileID: 6095217042096614558}
-  - {fileID: 6095217042096614559}
-  - {fileID: 6393457726681453524}
-  - {fileID: 5814974665770905854}
---- !u!114 &4136674286549288116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a25269ad68a0f459003d22ce085dcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectsToWeaponLayer:
-  - {fileID: 6095217043222202092}
-  - {fileID: 8023445030871989263}
-  - {fileID: 233030808945955912}
-  - {fileID: 1686229442778204926}
-  - {fileID: 6470364844566125680}
-  - {fileID: 1749225603402742787}
-  - {fileID: 847277688265144321}
-  - {fileID: 3825844272961540447}
-  - {fileID: 1833193904957044478}
-  - {fileID: 6095217043717617500}
-  - {fileID: 1681112669535817829}
-  - {fileID: 3093761875666308937}
-  weaponLayerValue: 8
 --- !u!114 &5487468529459871342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3041,45 +3065,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1939415276933384094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f3e01a9ccffe6b45bc1631967fb0df0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformView: {fileID: 6095217042096614561}
-  weaponCam: {fileID: 4269813384374192056}
-  mainCam: {fileID: 9111037616720877483}
-  scripts:
-  - {fileID: 6095217042096614560}
-  - {fileID: 6095217042096614558}
-  - {fileID: 6095217042096614559}
-  - {fileID: 6393457726681453524}
-  - {fileID: 6095217042155911570}
-  - {fileID: 5814974665770905854}
-  - {fileID: 2809202334991303301}
-  - {fileID: 6095217042096614561}
-  - {fileID: 5487468529459871342}
-  verticalSpeed: 0.001
---- !u!114 &3762496954286049086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5487468529459871345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6603f199d1612e64aaedf35498b49c10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerModel: {fileID: 5487468529805772124}
 --- !u!1 &5487468529805772124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,12 +3420,12 @@ MonoBehaviour:
     m_Bits: 191
   scopeOverlay: {fileID: 641443908}
   crosshairOverlay: {fileID: 3980459047496005393}
+  ammoUI: {fileID: 4871017591454010504}
   cam: {fileID: 9111037616720877483}
   weaponCam: {fileID: 7224073935488071204}
+  timeToScope: 0.07
   maxAmmo: 3
   reloadTimeDelay: 1.5
-  ammoUI: {fileID: 4871017591454010504}
-  timeToScope: 0.07
 --- !u!114 &2012654019935618904
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,23 +1,24 @@
 using Cinemachine;
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
 public class PlayerCam : MonoBehaviour
 {
+    #region variables
     [SerializeField] PlayerIngameSettings settings;
-    public PlayerSensConfig config;
     [SerializeField] Transform cameraHolder;
+    [SerializeField] PlayerSensConfig config;
     PlayerWeapons player;
 
     float camCurXRot;
 
     private Vector2 mouseDelta;
     PhotonView pv;
+    #endregion
 
+    #region Unity
 
     private void Awake()
     {
@@ -46,7 +47,9 @@ public class PlayerCam : MonoBehaviour
         if (pv.IsMine)
             PlayerLook();
     }
+    #endregion
 
+    #region Custom Methods
     void PlayerLook()
     {
         float currentSens = player.isAiming ? config.aimSens : config.sensitivity;
@@ -67,6 +70,9 @@ public class PlayerCam : MonoBehaviour
         // Esto permite que el jugador rote horizontalmente        
         transform.eulerAngles += new Vector3(0, mouseDelta.x * currentSens, 0);
     }
+    #endregion
+
+    #region input
 
     public void OnLookInput(InputAction.CallbackContext context)
     {
@@ -78,5 +84,5 @@ public class PlayerCam : MonoBehaviour
 
         mouseDelta = context.ReadValue<Vector2>();
     }
-
+    #endregion
 }

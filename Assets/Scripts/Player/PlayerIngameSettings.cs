@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,28 +9,33 @@ public enum State
 }
 public class PlayerIngameSettings : MonoBehaviour
 {
-
-    //InGameMenu settingsMenu;
-    [SerializeField] private State pausedState;
+    
+    #region Variables
+    [SerializeField] private State currentState;
     [SerializeField] MonoBehaviour[] controlsScripts;
+    #endregion
 
+    #region custom
     public State GetState()
     {
-        return pausedState;
+        return currentState;
     }
 
     private void ContinueGame()
     {
-        pausedState = State.gaming;
+        currentState = State.gaming;
         InGameMenu.Instance.TogglePauseMenu(false);
     }
 
     void PauseMenu()
     {
-        pausedState = State.paused;
+        currentState = State.paused;
         InGameMenu.Instance.TogglePauseMenu(true);
     }
 
+    #endregion
+
+    #region Input
     public void OnPauseInput(InputAction.CallbackContext context)
     {
         switch (context.phase)
@@ -47,4 +49,5 @@ public class PlayerIngameSettings : MonoBehaviour
                 break;
         }
     }
+    #endregion
 }

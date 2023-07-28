@@ -1,14 +1,10 @@
-using Cinemachine;
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerGrappling : MonoBehaviour
 {
-
+    #region variables
     [Header("References")]
     [SerializeField] PlayerIngameSettings settings;
     [SerializeField] private Transform camTransform;
@@ -24,15 +20,16 @@ public class PlayerGrappling : MonoBehaviour
     [SerializeField] private float maxGrappleDistance;
     [SerializeField] private float grappleDelay;
     [SerializeField] private float overshootYAxis;
-
     private Vector3 grapplePoint;
+
 
     [Header("Cooldown")]
     [SerializeField] float grapplingCd;
     float grapplingCdTimer;
+    bool isGrappling;
 
-    // Temporal to see in editor
-    [SerializeField] bool isGrappling;
+
+    #endregion
 
     #region unity
     private void Awake()

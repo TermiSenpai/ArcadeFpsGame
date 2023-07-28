@@ -1,15 +1,14 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
-    PhotonView pv;
+    #region Variables
+    [Header("References")]
     [SerializeField] PlayerIngameSettings settings;
     [SerializeField] PlayerJumpConfig config;
+    PhotonView pv;
     CharacterController controller;
 
     Vector3 velocity;
@@ -17,8 +16,9 @@ public class PlayerJump : MonoBehaviour
     [Header("Ground check")]
     [SerializeField] Transform groundCheck;
 
+    #endregion
 
-
+    #region Unity
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -39,6 +39,9 @@ public class PlayerJump : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region custom
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
         float gravity = Physics.gravity.y * config.gravityMultiplier;
@@ -73,6 +76,9 @@ public class PlayerJump : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    #endregion
+
+    #region Input
     public void OnJumpInput(InputAction.CallbackContext context)
     {
         if (!pv.IsMine) return;
@@ -88,6 +94,7 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
+    #endregion
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

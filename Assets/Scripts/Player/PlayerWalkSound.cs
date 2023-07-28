@@ -1,18 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWalkSound : MonoBehaviour
 {
-
+    [Header("References")]
     [SerializeField] PlayerMovConfig config;
+    [SerializeField] AudioSource source;
+    [SerializeField] PlayerJump PlayerJump;
+    [SerializeField] PlayerMovement playerMov;
+
+    [Header("Interval")]
     [SerializeField] float stepInterval;
     float steptimer;
-
-    [SerializeField] AudioSource source;
-    [SerializeField] PlayerMovement playerMov;
-    [SerializeField] PlayerJump PlayerJump;
 
     void Update()
     {
