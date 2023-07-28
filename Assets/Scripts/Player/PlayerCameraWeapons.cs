@@ -17,9 +17,9 @@ public class PlayerCameraWeapons : MonoBehaviour
     private void Start()
     {
         if (playerPv.IsMine)
-            changeLayer();
+            ChangeLayer();
     }
-    void changeLayer()
+    void ChangeLayer()
     {
         // objects that need to be of a specific layer
         foreach (GameObject part in ObjectsToWeaponLayer)
