@@ -7,29 +7,35 @@ using Random = UnityEngine.Random;
 
 public class SniperGun : Gun
 {
-    AudioSource source;
+    #region variables
 
+    [Header("References")]
     [SerializeField] GameObject scopeOverlay;
     [SerializeField] GameObject crosshairOverlay;
-
+    [SerializeField] UIAmmo ammoUI;
     [SerializeField] CinemachineVirtualCamera cam;
     [SerializeField] GameObject weaponCam;
+    PhotonView pv;
+    Animator anim;
+    AudioSource source;
+    GameObject impact;
+
+    [Header("Sniper variables")]
+    [SerializeField] float timeToScope;
     [SerializeField] int maxAmmo = 3;
     [SerializeField] float reloadTimeDelay;
     int currentAmmo;
-    PhotonView pv;
-    Animator anim;
+    bool isReloading = false;
+
 
     Coroutine aimCoroutine;
     Coroutine reloadCoroutine;
-    GameObject impact;
-
-    [SerializeField] UIAmmo ammoUI;
-    [SerializeField] float timeToScope;
-    bool isReloading = false;
 
     private event Action OnReloadFinished;
 
+    #endregion
+
+    #region unity
     private void OnEnable()
     {
         OnReloadFinished += OnFinishedReload;
@@ -54,6 +60,9 @@ public class SniperGun : Gun
         source.minDistance = 10f;
     }
 
+    #endregion
+
+    #region overrides
     public override void Use()
     {
         if (currentAmmo == 0) NoAmmo();
@@ -87,6 +96,19 @@ public class SniperGun : Gun
         OnFinishedReload();
     }
 
+    public override void Reload()
+    {
+        if (isReloading || currentAmmo >= maxAmmo) return;
+
+        source.PlayOneShot(gunInfo.reloadClip);
+        reloadCoroutine = StartCoroutine(nameof(Recharge));
+        anim.SetTrigger("Reload");
+
+    }
+
+    #endregion
+
+    #region custom methods
     public void EnableScopeOverlay()
     {
         cam.m_Lens.FieldOfView = 15f;
@@ -100,12 +122,6 @@ public class SniperGun : Gun
         scopeOverlay.SetActive(false);
         crosshairOverlay.SetActive(true);
         weaponCam.SetActive(true);
-    }
-
-    private IEnumerator EnableScope()
-    {
-        yield return new WaitForSeconds(timeToScope);
-        EnableScopeOverlay();
     }
 
     private void Shoot()
@@ -133,29 +149,10 @@ public class SniperGun : Gun
         ammoUI.UpdateAmmoTxt(currentAmmo, maxAmmo);
     }
 
-
-    public override void Reload()
-    {
-        if (isReloading || currentAmmo >= maxAmmo) return;
-
-        source.PlayOneShot(gunInfo.reloadClip);
-        reloadCoroutine = StartCoroutine(nameof(Recharge));
-        anim.SetTrigger("Reload");
-
-    }
-
     private void NoAmmo()
     {
         source.PlayOneShot(gunInfo.emptyShot);
         canUse = false;
-    }
-
-    IEnumerator Recharge()
-    {
-        isReloading = true;
-        canUse = false;
-        yield return new WaitForSeconds(reloadTimeDelay);
-        OnReloadFinished?.Invoke();
     }
 
     private void OnFinishedReload()
@@ -166,6 +163,26 @@ public class SniperGun : Gun
         ammoUI.UpdateAmmoTxt(currentAmmo, maxAmmo);
     }
 
+    #endregion
+
+    #region enumerators
+
+    private IEnumerator EnableScope()
+    {
+        yield return new WaitForSeconds(timeToScope);
+        EnableScopeOverlay();
+    }
+
+    private IEnumerator Recharge()
+    {
+        isReloading = true;
+        canUse = false;
+        yield return new WaitForSeconds(reloadTimeDelay);
+        OnReloadFinished?.Invoke();
+    }
+    #endregion
+
+    #region RPC
 
     [PunRPC]
     void RPC_Shoot(Vector3 hitPos, Vector3 hitNormal)
@@ -191,4 +208,6 @@ public class SniperGun : Gun
             impact.transform.SetPositionAndRotation(ImpactPos(hitPos, hitNormal), ImpactRotation(hitNormal));
         }
     }
+
+    #endregion
 }
