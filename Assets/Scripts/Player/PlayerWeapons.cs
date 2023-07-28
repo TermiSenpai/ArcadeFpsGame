@@ -7,8 +7,11 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerWeapons : MonoBehaviourPunCallbacks
 {
+    #region variables
+    [Header("References")]
     [SerializeField] PlayerIngameSettings settings;
     [SerializeField] Item[] items;
+
     int itemIndex = -1;
     int previusItemIndex = -1;
 
@@ -16,9 +19,13 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     public bool canChangeWeapon = true;
     PhotonView pv;
 
+    // Delegate events
     public delegate void OnWeaponChanged();
     public static event OnWeaponChanged OnWeaponChangedRelease;
 
+    #endregion
+
+    #region unity
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -33,6 +40,9 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         Sync();
     }
 
+    #endregion
+
+    #region custom methods
     public void SetWeaponDefault()
     {
         EquipItem(0);
@@ -73,12 +83,6 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
-
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
-    {
-        if (changedProps.ContainsKey("itemIndex") && !pv.IsMine && targetPlayer == pv.Owner)
-            EquipItem((int)changedProps["itemIndex"]);
-    }
     private void CheckInputValue(Vector2 value)
     {
         if (value.y > 0)
@@ -99,6 +103,17 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         }
         OnWeaponChangedRelease?.Invoke();
     }
+
+    #endregion
+
+    #region overrides
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+        if (changedProps.ContainsKey("itemIndex") && !pv.IsMine && targetPlayer == pv.Owner)
+            EquipItem((int)changedProps["itemIndex"]);
+    }
+
+    #endregion
 
     #region Input
 
