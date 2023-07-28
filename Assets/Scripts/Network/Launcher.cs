@@ -9,7 +9,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public static Launcher Instance;
 
     #region Variables
-
+    [Header("Errors")]
     [SerializeField] TextMeshProUGUI errorTxt;
     [Header("Find Room")]
     [SerializeField] Transform roomListContent;
