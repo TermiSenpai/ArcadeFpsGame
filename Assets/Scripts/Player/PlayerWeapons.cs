@@ -17,7 +17,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     PhotonView pv;
 
     public delegate void OnWeaponChanged();
-    public static event OnWeaponChanged onWeaponChangedRelease;
+    public static event OnWeaponChanged OnWeaponChangedRelease;
 
     private void Awake()
     {
@@ -29,17 +29,17 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         if (!pv.IsMine)
             return;
 
-        equipItem(0);
-        sync();
+        EquipItem(0);
+        Sync();
     }
 
-    public void setWeaponDefault()
+    public void SetWeaponDefault()
     {
-        equipItem(0);
+        EquipItem(0);
         items[itemIndex].Default();
     }
 
-    public void equipItem(int _index)
+    public void EquipItem(int _index)
     {
         if (_index == itemIndex) return;
 
@@ -59,14 +59,14 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
         previusItemIndex = itemIndex;
 
-        sync();
+        Sync();
     }
 
-    private void sync()
+    private void Sync()
     {
         if (!pv.IsMine) return;
 
-        Hashtable hash = new Hashtable
+        Hashtable hash = new()
         {
             { "itemIndex", itemIndex }
         };
@@ -77,28 +77,27 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
         if (changedProps.ContainsKey("itemIndex") && !pv.IsMine && targetPlayer == pv.Owner)
-            equipItem((int)changedProps["itemIndex"]);
+            EquipItem((int)changedProps["itemIndex"]);
     }
-    private void checkInputValue(Vector2 value)
+    private void CheckInputValue(Vector2 value)
     {
         if (value.y > 0)
         {
             if (itemIndex >= items.Length - 1)
-                equipItem(0);
+                EquipItem(0);
             else
-                equipItem(itemIndex + 1);
+                EquipItem(itemIndex + 1);
         }
 
         else
         {
             if (itemIndex <= 0)
-                equipItem(items.Length - 1);
+                EquipItem(items.Length - 1);
             else
-                equipItem(itemIndex - 1);
+                EquipItem(itemIndex - 1);
 
         }
-        if(onWeaponChangedRelease != null)
-            onWeaponChangedRelease();
+        OnWeaponChangedRelease?.Invoke();
     }
 
     #region Input
@@ -115,7 +114,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                checkInputValue(context.ReadValue<Vector2>());
+                CheckInputValue(context.ReadValue<Vector2>());
                 break;
         }
     }
@@ -156,7 +155,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
     public void OnReloadInput(InputAction.CallbackContext context)
     {
-        if(!pv.IsMine) return;
+        if (!pv.IsMine) return;
         if (settings.GetState() == State.paused) return;
 
         switch (context.phase)

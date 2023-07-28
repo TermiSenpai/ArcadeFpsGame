@@ -21,10 +21,10 @@ public class UIAmmo : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerWeapons.onWeaponChangedRelease += toggleUI;
+        PlayerWeapons.OnWeaponChangedRelease += toggleUI;
     }
     private void OnDisable()
     {
-        PlayerWeapons.onWeaponChangedRelease -= toggleUI;
+        PlayerWeapons.OnWeaponChangedRelease -= toggleUI;
     }
 }

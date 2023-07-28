@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         TogglePlayer(true);
-        pWeapon.setWeaponDefault();
+        pWeapon.SetWeaponDefault();
 
         player.transform.SetPositionAndRotation(spawnpoint.position, spawnpoint.rotation);
 
