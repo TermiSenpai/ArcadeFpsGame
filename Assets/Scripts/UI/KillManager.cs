@@ -1,6 +1,5 @@
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Hastable = ExitGames.Client.Photon.Hashtable;
@@ -9,16 +8,24 @@ public class KillManager : MonoBehaviourPunCallbacks
 {
     public static KillManager Instance;
 
+    #region Variables
     [SerializeField] GameObject[] Infos;
+
     int index = -1;
     KillerInfo info;
     GameObject lastKill;
 
+    #endregion
+
+    #region Unity
     private void Awake()
     {
         Instance = this;
     }
 
+    #endregion
+
+    #region Custom
     public void EnableKillInfo(string killer, string killed)
     {
         IncreaseIndex();
@@ -54,6 +61,9 @@ public class KillManager : MonoBehaviourPunCallbacks
             index = 0;
     }
 
+    #endregion
+
+    #region Sync
     void SendHash(string type, int value)
     {
         Hastable hash = new()
@@ -71,7 +81,6 @@ public class KillManager : MonoBehaviourPunCallbacks
         };
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
-
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hastable changedProps)
     {
@@ -99,4 +108,6 @@ public class KillManager : MonoBehaviourPunCallbacks
 
 
     }
+
+    #endregion
 }

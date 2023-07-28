@@ -14,7 +14,7 @@ public class ProfileName : MonoBehaviour
         nickname.text = string.Empty;
     }
 
-    public void saveNickname()
+    public void SaveNickname()
     {
         string newNickname = nickname.text;
         if (newNickname != string.Empty)

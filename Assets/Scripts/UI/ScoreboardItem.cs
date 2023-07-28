@@ -1,9 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using Hastable = ExitGames.Client.Photon.Hashtable;
 
 public class ScoreboardItem : MonoBehaviourPunCallbacks
@@ -15,15 +12,15 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
 
     Player player;
 
-    public void initialize(Player player)
+    public void Initialize(Player player)
     {
         this.player = player;
 
         usernameTxt.text = player.NickName;
-        updateStats();
+        UpdateStats();
     }
 
-    void updateStats()
+    void UpdateStats()
     {
         if (player.CustomProperties.TryGetValue("kills", out object kills))
         {
@@ -37,10 +34,10 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        updatePing();
+        UpdatePing();
     }
 
-    void updatePing()
+    void UpdatePing()
     {       
         pingTxt.text = PhotonNetwork.GetPing().ToString();
     }
@@ -50,7 +47,7 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         if (targetPlayer == player)
         {
             if (changedProps.ContainsKey("kills") || changedProps.ContainsKey("deaths"))
-                updateStats();
+                UpdateStats();
         }
     }
 

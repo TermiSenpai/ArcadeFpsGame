@@ -58,9 +58,9 @@ public class PlayerHealth : MonoBehaviour
     }
     void UpdateHealthBar()
     {
-        billboardHealth.updateBillboardBar(currentHealth / maxHealth);
-        health.updateHealthBar(currentHealth / maxHealth);
-        health.updateHealthTxt(currentHealth.ToString("00"));
+        billboardHealth.UpdateBillboardBar(currentHealth / maxHealth);
+        health.UpdateHealthBar(currentHealth / maxHealth);
+        health.UpdateHealthTxt(currentHealth.ToString("00"));
     }
 
 

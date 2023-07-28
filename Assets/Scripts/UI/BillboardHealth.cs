@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
@@ -13,7 +11,7 @@ public class BillboardHealth : MonoBehaviourPunCallbacks
     {
         pv = GetComponent<PhotonView>();
     }
-    public void updateBillboardBar(float health)
+    public void UpdateBillboardBar(float health)
     {
         pv.RPC(nameof(RPC_UpdateBar), RpcTarget.All, health);
     }

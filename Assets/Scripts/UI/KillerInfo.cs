@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class KillerInfo : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private TMP_Text killerTxt;
     [SerializeField] private TMP_Text killedTxt;
 
