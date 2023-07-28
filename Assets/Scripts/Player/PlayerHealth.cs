@@ -78,8 +78,8 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             playerDie();
-            PlayerManager.Find(info.Sender).getKill();
-            KillManager.Instance.EnableKillInfo(info.Sender.NickName, playerManager.getNickname());
+            PlayerManager.Find(info.Sender).GetKill();
+            KillManager.Instance.EnableKillInfo(info.Sender.NickName, playerManager.GetNickname());
         }
     }
 
@@ -104,6 +104,6 @@ public class PlayerHealth : MonoBehaviour
     
     private void playerDie()
     {        
-        playerManager.die();
+        playerManager.Die();
     }
 }

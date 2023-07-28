@@ -31,10 +31,10 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         if (pv.IsMine)
-            createController();
+            CreateController();
     }
 
-    void createController()
+    void CreateController()
     {
         Transform spawnpoint = SpawnpointManager.Instance.GetRandomSpawnPoint();
 
@@ -45,25 +45,25 @@ public class PlayerManager : MonoBehaviour
             source = player.GetComponent<AudioSource>();
         }
 
-        togglePlayer(true);
+        TogglePlayer(true);
         pWeapon.setWeaponDefault();
-        player.transform.rotation = spawnpoint.rotation;
-        player.transform.position = spawnpoint.position;
+
+        player.transform.SetPositionAndRotation(spawnpoint.position, spawnpoint.rotation);
 
         // set gameobjet name in editor, just for debug
 #if UNITY_EDITOR
         player.name = PhotonNetwork.NickName;
 #endif
     }
-    void togglePlayer(bool value)
+    void TogglePlayer(bool value)
     {
         player.SetActive(value);
     }
 
-    public void die()
+    public void Die()
     {
-        showDeathEffect();
-        togglePlayer(false);
+        ShowDeathEffect();
+        TogglePlayer(false);
 
         deaths++;
         SendHash("deaths", deaths);
@@ -73,16 +73,16 @@ public class PlayerManager : MonoBehaviour
 
     private void Respawn()
     {
-        createController();
+        CreateController();
     }
 
-    void showDeathEffect()
+    void ShowDeathEffect()
     {
         skullEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Skull"), player.transform.position + Vector3.up, Quaternion.identity, 0, new object[] { pv.ViewID });
         explosionEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Explosion"), player.transform.position, Quaternion.Euler(-90f, 0, 0), 0, new object[] { pv.ViewID });
     }
 
-    public void getKill() => pv.RPC(nameof(RPC_GetKill), pv.Owner);
+    public void GetKill() => pv.RPC(nameof(RPC_GetKill), pv.Owner);
 
     [PunRPC]
     void RPC_GetKill()
@@ -93,8 +93,10 @@ public class PlayerManager : MonoBehaviour
 
     void SendHash(string type, int value)
     {
-        Hastable hash = new Hastable();
-        hash.Add(type, value);
+        Hastable hash = new()
+        {
+            { type, value }
+        };
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 
@@ -103,7 +105,7 @@ public class PlayerManager : MonoBehaviour
         return FindObjectsOfType<PlayerManager>().SingleOrDefault(x => x.pv.Owner == player);
     }
 
-    public string getNickname()
+    public string GetNickname()
     {
         return PhotonNetwork.NickName;
     }
