@@ -2,13 +2,16 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using System.IO;
-using System;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
+    #region Variables
     public static RoomManager Instance;
     private PhotonView pv;
 
+    #endregion
+
+    #region Unity
     private void Awake()
     {
         if (Instance)
@@ -37,6 +40,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    #endregion
+
+    #region Network
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.buildIndex == 1) // in the game scene
@@ -55,5 +61,5 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel(1);
     }
-
+    #endregion
 }

@@ -7,6 +7,7 @@ using Hastable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerManager : MonoBehaviour
 {
+    #region Variables
     PhotonView pv;
 
     [SerializeField] AudioClip deathClip;
@@ -18,11 +19,16 @@ public class PlayerManager : MonoBehaviour
     GameObject skullEffect;
     GameObject explosionEffect;
 
+    // Photon prefabs path
     const string path = "PhothonPrefabs";
 
+    // Stats
     int kills = 0;
     int deaths = 0;
 
+    #endregion
+
+    #region Unity
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -33,7 +39,9 @@ public class PlayerManager : MonoBehaviour
         if (pv.IsMine)
             CreateController();
     }
+    #endregion
 
+    #region Custom
     void CreateController()
     {
         Transform spawnpoint = SpawnpointManager.Instance.GetRandomSpawnPoint();
@@ -75,21 +83,25 @@ public class PlayerManager : MonoBehaviour
     {
         CreateController();
     }
+    #endregion
 
+    #region Effects
     void ShowDeathEffect()
     {
         skullEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Skull"), player.transform.position + Vector3.up, Quaternion.identity, 0, new object[] { pv.ViewID });
         explosionEffect = PhotonNetwork.Instantiate(Path.Combine(path, "Explosion"), player.transform.position, Quaternion.Euler(-90f, 0, 0), 0, new object[] { pv.ViewID });
     }
+    #endregion
 
-    public void GetKill() => pv.RPC(nameof(RPC_GetKill), pv.Owner);
-
+    #region Network
     [PunRPC]
     void RPC_GetKill()
     {
         kills++;
         SendHash("kills", kills);
     }
+
+    public void GetKill() => pv.RPC(nameof(RPC_GetKill), pv.Owner);
 
     void SendHash(string type, int value)
     {
@@ -110,4 +122,5 @@ public class PlayerManager : MonoBehaviour
         return PhotonNetwork.NickName;
     }
 
+    #endregion
 }
