@@ -136,6 +136,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine)
             return;
+
         if (settings.GetState() == State.paused) return;
 
         switch (context.phase)

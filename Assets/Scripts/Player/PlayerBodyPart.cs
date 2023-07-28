@@ -15,7 +15,7 @@ public class PlayerBodyPart : MonoBehaviour, IDamageable
         playerHP = GetComponentInParent<PlayerHealth>();
     }
 
-    public void takeDamage(float damage)
+    void IDamageable.TakeDamage(float damage)
     {
         damage *= partDamageMultiplier;
         playerHP.TakeDamage(damage);

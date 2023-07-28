@@ -75,7 +75,7 @@ public class KnifeGun : Gun
         {
             Vector3 hitPoint = hit.point;
             Vector3 hitNormal = hit.normal;
-            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
+            hit.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(gunInfo.damage);
             pv.RPC(nameof(RPC_Shoot), RpcTarget.All, hitPoint, hitNormal);
         }
     }

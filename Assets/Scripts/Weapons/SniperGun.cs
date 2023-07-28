@@ -125,7 +125,7 @@ public class SniperGun : Gun
 
         if (Physics.Raycast(r, out RaycastHit hit, gunInfo.maxDistance, otherPlayerLayer))
         {
-            hit.collider.gameObject.GetComponent<IDamageable>()?.takeDamage(gunInfo.damage);
+            hit.collider.gameObject.GetComponent<IDamageable>()?.TakeDamage(gunInfo.damage);
             weaponCoroutine = StartCoroutine(WeaponCooldown());
             pv.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
         }
