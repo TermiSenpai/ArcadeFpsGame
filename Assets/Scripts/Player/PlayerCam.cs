@@ -14,7 +14,6 @@ public class PlayerCam : MonoBehaviour
     PlayerWeapons player;
 
     float camCurXRot;
-    float yRotation;
 
     private Vector2 mouseDelta;
     PhotonView pv;
@@ -45,10 +44,10 @@ public class PlayerCam : MonoBehaviour
     private void LateUpdate()
     {
         if (pv.IsMine)
-            playerLook();
+            PlayerLook();
     }
 
-    void playerLook()
+    void PlayerLook()
     {
         float currentSens = player.isAiming ? config.aimSens : config.sensitivity;
         // Aumenta el valor actual de camCurXRot por la entrada vertical del ratón multiplicada por un factor de sensibilidad
