@@ -45,7 +45,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
     }
     
-    public void loadLevel()
+    public void LoadLevel()
     {
         pv.RPC(nameof(RPC_LoadLevel), RpcTarget.All);
     }

@@ -17,19 +17,19 @@ public class InGameMenu : MonoBehaviour
         Instance = this;
     }
 
-    public void togglePauseMenu(bool value)
+    public void TogglePauseMenu(bool value)
     {
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = value;
         pauseMenu.SetActive(value);
     }
 
-    public bool isPauseMenuEnable()
+    public bool IsPauseMenuEnable()
     {
         return pauseMenu.activeInHierarchy;
     }
 
-    public void leaveRoom()
+    public void LeaveRoom()
     {
         Destroy(RoomManager.Instance.gameObject);
         StartCoroutine(DisconnectAndLoad());
@@ -70,7 +70,7 @@ public class InGameMenu : MonoBehaviour
     public void RestartGame()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        RoomManager.Instance.loadLevel();
+        RoomManager.Instance.LoadLevel();
     }
 
 }
