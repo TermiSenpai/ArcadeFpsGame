@@ -33,11 +33,11 @@ public class PlayerMovement : MonoBehaviour
         if (isActiveGrapple) return;
 
         MovePlayer();
-        controlSpeed();
+        ControlSpeed();
         FreezePlayer();
     }
 
-    private void controlSpeed()
+    private void ControlSpeed()
     {
         if (player.isGrounded())
         {
@@ -58,24 +58,24 @@ public class PlayerMovement : MonoBehaviour
         // Si hay movimiento
         if (moveDirection.magnitude >= 0.1f)
         {
-            increaseSpeed();
+            IncreaseSpeed();
         }
         else
-            reduceSpeed();
+            ReduceSpeed();
 
-        controller.Move(currentSpeed * curMovementSpeed * Time.deltaTime);
+        controller.Move(curMovementSpeed * Time.deltaTime * currentSpeed);
     }
 
     public void JumpToPosition(Vector3 targetPos, float trajectoryHeight)
     {
         isActiveGrapple = true;
         velocityToSet = player.CalculateJumpVelocity(transform.position, targetPos, trajectoryHeight);
-        Invoke(nameof(setVelocity), 0.1f);
+        Invoke(nameof(SetVelocity), 0.1f);
     }
 
-    private void setVelocity() => currentSpeed = velocityToSet;
+    private void SetVelocity() => currentSpeed = velocityToSet;
 
-    private void increaseSpeed()
+    private void IncreaseSpeed()
     {
         // Calcular la velocidad objetivo
         Vector3 objetiveSpeed = moveDirection * config.maxSpeed;
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = Vector3.Lerp(currentSpeed, objetiveSpeed, config.acceleration * Time.deltaTime);
     }
 
-    private void reduceSpeed()
+    private void ReduceSpeed()
     {
         switch (player.isGrounded())
         {
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public Vector3 getMovementDir()
+    public Vector3 GetMovementDir()
     {
         return moveDirection;
     }
