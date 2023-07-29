@@ -3341,6 +3341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAmmoTxt: {fileID: 4128020174913222645}
   ammoUI: {fileID: 6120892780540096645}
+  sniper: {fileID: 8023445030871989263}
 --- !u!1 &6095217041803826806
 GameObject:
   m_ObjectHideFlags: 0

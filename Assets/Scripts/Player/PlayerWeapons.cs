@@ -68,7 +68,9 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
         previusItemIndex = itemIndex;
 
-        OnWeaponChangedRelease?.Invoke();
+        if (items[0].gameObject.activeInHierarchy)
+            OnWeaponChangedRelease?.Invoke();
+
         Sync();
     }
 
