@@ -151,6 +151,62 @@ MonoBehaviour:
     m_Key: KilledEntryTxt
     m_Metadata:
       m_Items: []
+  - m_Id: 44975936348160
+    m_Key: controlsTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68445818691584
+    m_Key: M&KTxT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68729622077440
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68841781960704
+    m_Key: New Entry 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71477520343040
+    m_Key: MoveTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71607560544256
+    m_Key: CameraTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71702553141248
+    m_Key: ReloadTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71826876506112
+    m_Key: ChangeWeapTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71938763759616
+    m_Key: ScoreboardTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72099682426880
+    m_Key: PauseTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72301269065728
+    m_Key: ShootTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72712533155840
+    m_Key: AimTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73906395652096
+    m_Key: New Entry 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74876211011584
+    m_Key: New Entry 3
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

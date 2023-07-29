@@ -155,6 +155,62 @@ MonoBehaviour:
     m_Localized: Killed
     m_Metadata:
       m_Items: []
+  - m_Id: 44975936348160
+    m_Localized: controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68445818691584
+    m_Localized: Mouse/Keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68729622077440
+    m_Localized: Gamepad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68841781960704
+    m_Localized: Return
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71477520343040
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71607560544256
+    m_Localized: Camera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71702553141248
+    m_Localized: Reload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71826876506112
+    m_Localized: Change Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71938763759616
+    m_Localized: Scoreboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72099682426880
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72301269065728
+    m_Localized: Shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72712533155840
+    m_Localized: Aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73906395652096
+    m_Localized: Grappling hook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74876211011584
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
