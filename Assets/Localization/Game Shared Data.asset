@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Game Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Game
+  m_TableCollectionNameGuidString: 29a8796a10829cc468957bb283c04a3d
+  m_Entries:
+  - m_Id: 6875817959424
+    m_Key: FindTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6959284609024
+    m_Key: LoadingTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7139656458240
+    m_Key: CreateTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7454015348736
+    m_Key: ProfileTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7562010288128
+    m_Key: SettingsTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7664040927232
+    m_Key: ExitTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8075409874944
+    m_Key: FindTitleTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8417962876928
+    m_Key: ReturnToMenuTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8549164900352
+    m_Key: RoomNameTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8698293379072
+    m_Key: CreateRoomPlaceholder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8906431520768
+    m_Key: PlayerLimitsTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9027906953216
+    m_Key: CancelTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9138057764864
+    m_Key: CreateRoomTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9300159225856
+    m_Key: PlayerNameTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9537422614528
+    m_Key: ReturnTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9620708909056
+    m_Key: SaveTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14124011479040
+    m_Key: SettingsTitleTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14256106889216
+    m_Key: SoundsTitleTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14358317883392
+    m_Key: MasterSoundTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14443013464064
+    m_Key: MusicVolumeTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14539163688960
+    m_Key: EffectsVolumeTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14655731785728
+    m_Key: sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14740033101824
+    m_Key: sensitivityTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14860942303232
+    m_Key: aimsensitivityTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15024364969984
+    m_Key: aimSensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15294654308352
+    m_Key: ReturnBtnTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15439999524864
+    m_Key: StartTxt
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 941033082746044440
+  references:
+    version: 2
+    RefIds:
+    - rid: 941033082746044440
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1690613299400
