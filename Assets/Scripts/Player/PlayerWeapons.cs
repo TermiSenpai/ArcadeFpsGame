@@ -68,6 +68,7 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
 
         previusItemIndex = itemIndex;
 
+        OnWeaponChangedRelease?.Invoke();
         Sync();
     }
 
@@ -100,7 +101,19 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
                 EquipItem(itemIndex - 1);
 
         }
-        OnWeaponChangedRelease?.Invoke();
+    }
+
+    private void SwitchWeapon()
+    {
+        switch (itemIndex)
+        {
+            case 0:
+                EquipItem(1);
+                break;
+            case 1:
+                EquipItem(0);
+                break;
+        }
     }
 
     #endregion
@@ -129,6 +142,20 @@ public class PlayerWeapons : MonoBehaviourPunCallbacks
         {
             case InputActionPhase.Started:
                 CheckInputValue(context.ReadValue<Vector2>());
+                break;
+        }
+    }
+    public void OnGamepadSwitchInput(InputAction.CallbackContext context)
+    {
+        if (!pv.IsMine)
+            return;
+        if (!canChangeWeapon) return;
+        if (settings.GetState() == State.paused) return;
+
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                SwitchWeapon();
                 break;
         }
     }

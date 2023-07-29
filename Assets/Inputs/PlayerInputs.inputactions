@@ -60,6 +60,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "ChangeWeaponGamepad",
+                    "type": "Button",
+                    "id": "794397d7-c560-4492-95fd-e239e775938b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "95da890a-f7ab-4b0a-ae36-3557126185e1",
@@ -308,17 +317,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6fa997e1-2127-4082-a66f-423e584d7b02",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "ChangeWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0df266f3-d482-4166-b32f-7a89a314f7e6",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -402,6 +400,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Grappling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56ba75cd-acc4-4cd2-8d6c-4530d5a13704",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ChangeWeaponGamepad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
