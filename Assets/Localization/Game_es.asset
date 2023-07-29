@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Game_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 29a8796a10829cc468957bb283c04a3d, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 941033082746044443
+  m_TableData:
+  - m_Id: 6959284609024
+    m_Localized: Cargando..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6875817959424
+    m_Localized: Buscar sala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7139656458240
+    m_Localized: Crear sala
+    m_Metadata:
+      m_Items:
+      - rid: 941033082746044443
+  - m_Id: 7454015348736
+    m_Localized: Perfil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7562010288128
+    m_Localized: Opciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7664040927232
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8075409874944
+    m_Localized: Buscar partida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8417962876928
+    m_Localized: Volver al menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8549164900352
+    m_Localized: Nombre de la sala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8698293379072
+    m_Localized: Introduzca el nombre de la sala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8906431520768
+    m_Localized: Limite de jugadores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9027906953216
+    m_Localized: Cancelar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9138057764864
+    m_Localized: Crear sala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9300159225856
+    m_Localized: Nombre de usuario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9537422614528
+    m_Localized: Volver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9620708909056
+    m_Localized: Guardar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14124011479040
+    m_Localized: Opciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14256106889216
+    m_Localized: Sonido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14358317883392
+    m_Localized: Global
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14443013464064
+    m_Localized: Musica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14539163688960
+    m_Localized: Efectos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14655731785728
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14740033101824
+    m_Localized: general
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14860942303232
+    m_Localized: Sensibilidad al apuntar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15024364969984
+    m_Localized: Apuntado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15294654308352
+    m_Localized: Volver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15439999524864
+    m_Localized: Comenzar
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 941033082746044443
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e06f418c03000000e0efabbb04000000e0af547e060000
