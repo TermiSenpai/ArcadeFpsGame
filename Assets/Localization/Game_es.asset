@@ -20,7 +20,7 @@ MonoBehaviour:
     - rid: 941033082746044443
   m_TableData:
   - m_Id: 6959284609024
-    m_Localized: Cargando..
+    m_Localized: Cargando...
     m_Metadata:
       m_Items: []
   - m_Id: 6875817959424
@@ -61,7 +61,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8906431520768
-    m_Localized: Limite de jugadores
+    m_Localized: "L\xEDmite de jugadores"
     m_Metadata:
       m_Items: []
   - m_Id: 9027906953216
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14443013464064
-    m_Localized: Musica
+    m_Localized: "M\xFAsica"
     m_Metadata:
       m_Items: []
   - m_Id: 14539163688960
@@ -149,7 +149,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 36609809440768
-    m_Localized: Graficos
+    m_Localized: "Gr\xE1ficos"
     m_Metadata:
       m_Items: []
   - m_Id: 37164992684032
