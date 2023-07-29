@@ -108,7 +108,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14860942303232
-    m_Key: aimsensitivityTxt
+    m_Key: SensitivityTitleTxt
     m_Metadata:
       m_Items: []
   - m_Id: 15024364969984
@@ -121,6 +121,34 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15439999524864
     m_Key: StartTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34939994103808
+    m_Key: ScoreboardNameTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35033392865280
+    m_Key: ScoreboardKillsTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35154910240768
+    m_Key: ScoreboardDeathsTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35270027108352
+    m_Key: RestartTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35396359544832
+    m_Key: LeaveTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36609809440768
+    m_Key: GraphicTitleTxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37164992684032
+    m_Key: KilledEntryTxt
     m_Metadata:
       m_Items: []
   m_Metadata:

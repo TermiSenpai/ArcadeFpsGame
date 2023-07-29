@@ -113,7 +113,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14860942303232
-    m_Localized: Sensibilidad al apuntar
+    m_Localized: Sensibilidad
     m_Metadata:
       m_Items: []
   - m_Id: 15024364969984
@@ -126,6 +126,34 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15439999524864
     m_Localized: Comenzar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34939994103808
+    m_Localized: Nombre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35033392865280
+    m_Localized: Asesinatos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35154910240768
+    m_Localized: Muertes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35270027108352
+    m_Localized: Reiniciar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35396359544832
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36609809440768
+    m_Localized: Graficos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37164992684032
+    m_Localized: "Mat\xF3 a"
     m_Metadata:
       m_Items: []
   references:

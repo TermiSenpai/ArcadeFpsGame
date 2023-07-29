@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14860942303232
-    m_Localized: aim sensitivity
+    m_Localized: Sensitivity
     m_Metadata:
       m_Items: []
   - m_Id: 15024364969984
@@ -125,6 +125,34 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15439999524864
     m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34939994103808
+    m_Localized: Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35033392865280
+    m_Localized: Kills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35154910240768
+    m_Localized: Deaths
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35270027108352
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35396359544832
+    m_Localized: Leave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36609809440768
+    m_Localized: graphic quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37164992684032
+    m_Localized: Killed
     m_Metadata:
       m_Items: []
   references:
