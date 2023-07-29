@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE0090: Usar "new(...)"
+dotnet_diagnostic.IDE0090.severity = none
+
+# IDE0031: Usar propagación de null
+dotnet_diagnostic.IDE0031.severity = silent
