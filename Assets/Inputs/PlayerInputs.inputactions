@@ -218,6 +218,17 @@
                 },
                 {
                     "name": "",
+                    "id": "135173d1-43f6-469e-ac62-42d2b83c493e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -234,6 +245,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78ca3c91-6c64-4040-9953-9f89c9278f39",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -262,6 +284,17 @@
                 },
                 {
                     "name": "",
+                    "id": "99db323f-26f6-4c73-a25e-a887d71b97bf",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ba76cf5b-6054-487c-87c0-04b931d1154f",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -284,6 +317,17 @@
                 },
                 {
                     "name": "",
+                    "id": "dc521f16-b47a-494e-8d77-51bf4462154f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
+                    "action": "AltFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5c62532f-4d70-4640-8f46-7e5fe7959474",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -300,6 +344,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fef2c2b7-d13c-402a-be78-121360c3fd04",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -339,6 +394,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5e01afbb-cd37-44da-9e37-7888d382fefd",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "96768371-d98f-4caf-b1e9-9950501b6ecd",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -355,6 +421,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Scoreboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06b3a09d-2afc-41b4-817e-574a1e0ef06c",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
                     "action": "Scoreboard",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -383,6 +460,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0ae265b7-2f50-4c10-9573-075a61b9540d",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "689d6856-ae09-4fe9-9658-a07354b28c88",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -405,11 +493,33 @@
                 },
                 {
                     "name": "",
+                    "id": "c7f364bd-bab9-4466-bdfd-73d8fd985f39",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
+                    "action": "Grappling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "56ba75cd-acc4-4cd2-8d6c-4530d5a13704",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "ChangeWeaponGamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "baa43f50-3535-48d9-a1b5-b5994f2f2145",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ps4",
                     "action": "ChangeWeaponGamepad",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -857,6 +967,17 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Ps4",
+            "bindingGroup": "Ps4",
+            "devices": [
+                {
+                    "devicePath": "<DualShockGamepad>",
                     "isOptional": false,
                     "isOR": false
                 }
