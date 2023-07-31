@@ -2556,7 +2556,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1734603241}
         m_TargetAssemblyTypeName: ProfileName, Assembly-CSharp
-        m_MethodName: saveNickname
+        m_MethodName: SaveNickname
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13180,7 +13180,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:29a8796a10829cc468957bb283c04a3d
     m_TableEntryReference:
-      m_KeyId: 14655731785728
+      m_KeyId: 14860942303232
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
