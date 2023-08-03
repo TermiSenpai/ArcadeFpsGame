@@ -10,11 +10,11 @@ public class PlayerCam : MonoBehaviour
     [SerializeField] PlayerIngameSettings settings;
     [SerializeField] Transform cameraHolder;
     [SerializeField] PlayerSensConfig config;
+    [SerializeField] float controllerSensMultiplier;
     PlayerWeapons player;
 
     float camCurXRot;
-
-    private Vector2 mouseDelta;
+    private Vector2 inputDelta;
     PhotonView pv;
     #endregion
 
@@ -55,7 +55,7 @@ public class PlayerCam : MonoBehaviour
         float currentSens = player.isAiming ? config.aimSens : config.sensitivity;
         // Aumenta el valor actual de camCurXRot por la entrada vertical del ratón multiplicada por un factor de sensibilidad
         // Esto controla la rotación vertical de la cámara
-        camCurXRot += mouseDelta.y * currentSens;
+        camCurXRot += inputDelta.y * currentSens;
 
         // Limita el valor de camCurXRot dentro del rango definido por config.minY y config.maxY
         // asegurando que la rotación vertical de la cámara esté dentro de los límites establecidos
@@ -68,7 +68,7 @@ public class PlayerCam : MonoBehaviour
         // Actualiza la rotación del jugador en el eje Y
         // utilizando la entrada horizontal del ratón multiplicada por la sensibilidad
         // Esto permite que el jugador rote horizontalmente        
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * currentSens, 0);
+        transform.eulerAngles += new Vector3(0, inputDelta.x * currentSens, 0);
     }
     #endregion
 
@@ -76,13 +76,20 @@ public class PlayerCam : MonoBehaviour
 
     public void OnLookInput(InputAction.CallbackContext context)
     {
+        if (!pv.IsMine) return;
         if (settings.GetState() == State.paused)
         {
-            mouseDelta = Vector2.zero;
+            inputDelta = Vector2.zero;
             return;
         }
+        InputDevice curDevice = context.control.device;
 
-        mouseDelta = context.ReadValue<Vector2>();
+        if (curDevice is Gamepad && curDevice.displayName.Contains("Wireless Controller"))
+            inputDelta = context.ReadValue<Vector2>() * controllerSensMultiplier;
+        // Ajuste de sensibilidad para los mandos
+        else
+            inputDelta = context.ReadValue<Vector2>();
+
     }
     #endregion
 }

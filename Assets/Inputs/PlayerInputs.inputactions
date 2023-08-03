@@ -218,8 +218,8 @@
                 },
                 {
                     "name": "",
-                    "id": "135173d1-43f6-469e-ac62-42d2b83c493e",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "b99b6f73-ce19-45bd-a276-537de6647d8d",
+                    "path": "<DualShockGamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -251,8 +251,8 @@
                 },
                 {
                     "name": "",
-                    "id": "78ca3c91-6c64-4040-9953-9f89c9278f39",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "ed141d08-ced6-4633-9222-e4de03abf959",
+                    "path": "<DualShockGamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -285,7 +285,7 @@
                 {
                     "name": "",
                     "id": "99db323f-26f6-4c73-a25e-a887d71b97bf",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<DualShockGamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -318,7 +318,7 @@
                 {
                     "name": "",
                     "id": "dc521f16-b47a-494e-8d77-51bf4462154f",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<DualShockGamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -351,7 +351,7 @@
                 {
                     "name": "",
                     "id": "fef2c2b7-d13c-402a-be78-121360c3fd04",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<DualShockGamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -395,7 +395,7 @@
                 {
                     "name": "",
                     "id": "5e01afbb-cd37-44da-9e37-7888d382fefd",
-                    "path": "<Gamepad>/start",
+                    "path": "<DualShockGamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -428,7 +428,7 @@
                 {
                     "name": "",
                     "id": "06b3a09d-2afc-41b4-817e-574a1e0ef06c",
-                    "path": "<Gamepad>/select",
+                    "path": "<DualShockGamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -461,7 +461,7 @@
                 {
                     "name": "",
                     "id": "0ae265b7-2f50-4c10-9573-075a61b9540d",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -494,7 +494,7 @@
                 {
                     "name": "",
                     "id": "c7f364bd-bab9-4466-bdfd-73d8fd985f39",
-                    "path": "<Gamepad>/leftStickPress",
+                    "path": "<DualShockGamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
@@ -516,7 +516,7 @@
                 {
                     "name": "",
                     "id": "baa43f50-3535-48d9-a1b5-b5994f2f2145",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<DualShockGamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ps4",
