@@ -30,23 +30,17 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         {
             deathsTxt.text = deaths.ToString();
         }
-    }
-
-    private void Update()
-    {
-        UpdatePing();
-    }
-
-    void UpdatePing()
-    {       
-        pingTxt.text = PhotonNetwork.GetPing().ToString();
+        if(player.CustomProperties.TryGetValue("ping", out object ping))
+        {
+            pingTxt.text = ping.ToString();
+        }
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hastable changedProps)
     {
         if (targetPlayer == player)
         {
-            if (changedProps.ContainsKey("kills") || changedProps.ContainsKey("deaths"))
+            if (changedProps.ContainsKey("kills") || changedProps.ContainsKey("deaths") || changedProps.ContainsKey("ping"))
                 UpdateStats();
         }
     }
