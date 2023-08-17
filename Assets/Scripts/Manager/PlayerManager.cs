@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     // Stats
     int kills = 0;
     int deaths = 0;
+    float ping = 0;
 
     #endregion
 
@@ -38,6 +39,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (pv.IsMine)
             CreateController();
+    }
+
+    private void Update()
+    {
+        ping = PhotonNetwork.GetPing();
+        SendHash("ping", ping);
+
     }
     #endregion
 
@@ -107,6 +115,14 @@ public class PlayerManager : MonoBehaviour
     public void GetKill() => pv.RPC(nameof(RPC_GetKill), pv.Owner);
 
     void SendHash(string type, int value)
+    {
+        Hastable hash = new()
+        {
+            { type, value }
+        };
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
+    void SendHash(string type, float value)
     {
         Hastable hash = new()
         {
