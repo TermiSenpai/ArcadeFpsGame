@@ -44,15 +44,23 @@ public class PlayerJump : MonoBehaviour
     #region custom
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
+        // Calcula la gravedad ajustada según el multiplicador definido en la configuración
         float gravity = Physics.gravity.y * config.gravityMultiplier;
+
+        // Calcula la diferencia en la posición vertical
         float displacementY = endPoint.y - startPoint.y;
 
+        // Calcula la diferencia en las coordenadas horizontales (ignorando la altura)
         Vector3 displacementXZ = new(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        // Calcula la velocidad vertical inicial usando la ecuación de movimiento vertical bajo gravedad
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
 
+        // Calcula la velocidad horizontal usando la ecuación de movimiento horizontal
         Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
             + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
 
+        // Retorna la suma de las velocidades vertical y horizontal para obtener la velocidad total
         return velocityY + velocityXZ;
     }
 
